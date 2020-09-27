@@ -1,4 +1,4 @@
-<h2>Rectangle Creator</h2>
+<h2>Button Maker</h2>
 <p>Select Your Style: 
   <select name="style" id="style">
   <option value="basic-solid" selected>Basic Solid</option>
@@ -20,7 +20,7 @@ document.getElementById('create').onclick = () => {
   const radius = document.getElementById('borderRadius')
   const count = parseInt(textbox.value, 10);
   const borderRadius = parseInt(radius.value, 10);
-  parent.postMessage({ pluginMessage: { type: 'create-rectangles', count , borderRadius, styleValue, textColor} }, '*')
+  parent.postMessage({ pluginMessage: { type: 'button-maker', count , borderRadius, styleValue, textColor} }, '*')
 }
 
 
