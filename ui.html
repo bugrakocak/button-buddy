@@ -1,0 +1,31 @@
+<h2>Rectangle Creator</h2>
+<p>Select Your Style: 
+  <select name="style" id="style">
+  <option value="basic-solid" selected>Basic Solid</option>
+  <option value="basic-outline">Basic Outline</option>
+  <option value="comic">Comic</option>
+</select>
+</p>
+<p>Count: <input id="count" value="1"></p>
+<p>Color: <input id="textColor" type="color"></p>
+<p>Border Radius: <input id="borderRadius" value="12"></p>
+<button id="create">Create</button>
+<button id="cancel">Cancel</button>
+<script>
+
+document.getElementById('create').onclick = () => {
+  const textbox = document.getElementById('count');
+  const styleValue = document.getElementById('style').value;
+  const textColor = document.getElementById('textColor').value;
+  const radius = document.getElementById('borderRadius')
+  const count = parseInt(textbox.value, 10);
+  const borderRadius = parseInt(radius.value, 10);
+  parent.postMessage({ pluginMessage: { type: 'create-rectangles', count , borderRadius, styleValue, textColor} }, '*')
+}
+
+
+document.getElementById('cancel').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
+}
+
+</script>
