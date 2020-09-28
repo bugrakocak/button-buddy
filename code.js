@@ -64,18 +64,133 @@ function hexToRgb(hex) { var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/
             const buttonCreator = () => createButton({ borderRadius: msg.borderRadius, style: msg.styleValue, color: msg.textColor });
             sizes.forEach(size => {
                 if (size === 'small') {
-                    const smallMasterClone = buttonCreator();
-                    smallMasterClone.y = -200;
-                    figma.currentPage.appendChild(smallMasterClone);
-                    nodes.push(smallMasterClone);
+                    const smallMaster = buttonCreator();
+                    smallMaster.name = `${msg.styleValue} / ${size} / Master`;
+                    figma.currentPage.appendChild(smallMaster);
+                    nodes.push(smallMaster);
                     layouts.forEach(layout => {
                         if (layout === 'noIcon') {
                             states.forEach((state, i) => {
                                 const clone = buttonCreator();
                                 const children = clone.findChildren(node => node.type === 'VECTOR');
-                                clone.x = i * 200;
-                                clone.name = `${msg.styleValue}/${size}/${layout}/${state}`;
                                 children.forEach(c => c.visible = false);
+                                clone.x = i * 300;
+                                clone.y = 200;
+                                clone.name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                                figma.currentPage.appendChild(clone);
+                                nodes.push(clone);
+                            });
+                        }
+                        if (layout === 'rightIcon') {
+                            states.forEach((state, i) => {
+                                const clone = buttonCreator();
+                                const children = clone.findChildren(node => node.type === 'VECTOR');
+                                children.forEach(c => c.visible = false);
+                                clone.x = i * 300;
+                                clone.y = 400;
+                                clone.name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                                figma.currentPage.appendChild(clone);
+                                nodes.push(clone);
+                            });
+                        }
+                        if (layout === 'leftIcon') {
+                            states.forEach((state, i) => {
+                                const clone = buttonCreator();
+                                const children = clone.findChildren(node => node.type === 'VECTOR');
+                                children.forEach(c => c.visible = false);
+                                clone.x = i * 300;
+                                clone.y = 600;
+                                clone.name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                                figma.currentPage.appendChild(clone);
+                                nodes.push(clone);
+                            });
+                        }
+                    });
+                }
+                if (size === 'medium') {
+                    const smallMaster = buttonCreator();
+                    smallMaster.name = `${msg.styleValue} / ${size} / Master`;
+                    smallMaster.y = 1100;
+                    figma.currentPage.appendChild(smallMaster);
+                    nodes.push(smallMaster);
+                    layouts.forEach(layout => {
+                        if (layout === 'noIcon') {
+                            states.forEach((state, i) => {
+                                const clone = buttonCreator();
+                                const children = clone.findChildren(node => node.type === 'VECTOR');
+                                children.forEach(c => c.visible = false);
+                                clone.x = i * 300;
+                                clone.y = 1100 + 200;
+                                clone.name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                                figma.currentPage.appendChild(clone);
+                                nodes.push(clone);
+                            });
+                        }
+                        if (layout === 'rightIcon') {
+                            states.forEach((state, i) => {
+                                const clone = buttonCreator();
+                                const children = clone.findChildren(node => node.type === 'VECTOR');
+                                children.forEach(c => c.visible = false);
+                                clone.x = i * 300;
+                                clone.y = 1100 + 400;
+                                clone.name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                                figma.currentPage.appendChild(clone);
+                                nodes.push(clone);
+                            });
+                        }
+                        if (layout === 'leftIcon') {
+                            states.forEach((state, i) => {
+                                const clone = buttonCreator();
+                                const children = clone.findChildren(node => node.type === 'VECTOR');
+                                children.forEach(c => c.visible = false);
+                                clone.x = i * 300;
+                                clone.y = 1100 + 600;
+                                clone.name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                                figma.currentPage.appendChild(clone);
+                                nodes.push(clone);
+                            });
+                        }
+                    });
+                }
+                if (size === 'large') {
+                    const smallMaster = buttonCreator();
+                    smallMaster.name = `${msg.styleValue} / ${size} / Master`;
+                    smallMaster.y = 2200;
+                    figma.currentPage.appendChild(smallMaster);
+                    nodes.push(smallMaster);
+                    layouts.forEach(layout => {
+                        if (layout === 'noIcon') {
+                            states.forEach((state, i) => {
+                                const clone = buttonCreator();
+                                const children = clone.findChildren(node => node.type === 'VECTOR');
+                                children.forEach(c => c.visible = false);
+                                clone.x = i * 300;
+                                clone.y = 2200 + 200;
+                                clone.name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                                figma.currentPage.appendChild(clone);
+                                nodes.push(clone);
+                            });
+                        }
+                        if (layout === 'rightIcon') {
+                            states.forEach((state, i) => {
+                                const clone = buttonCreator();
+                                const children = clone.findChildren(node => node.type === 'VECTOR');
+                                children.forEach(c => c.visible = false);
+                                clone.x = i * 300;
+                                clone.y = 2200 + 400;
+                                clone.name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                                figma.currentPage.appendChild(clone);
+                                nodes.push(clone);
+                            });
+                        }
+                        if (layout === 'leftIcon') {
+                            states.forEach((state, i) => {
+                                const clone = buttonCreator();
+                                const children = clone.findChildren(node => node.type === 'VECTOR');
+                                children.forEach(c => c.visible = false);
+                                clone.x = i * 300;
+                                clone.y = 2200 + 600;
+                                clone.name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
                                 figma.currentPage.appendChild(clone);
                                 nodes.push(clone);
                             });
