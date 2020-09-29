@@ -6,21 +6,18 @@
   <option value="comic">Comic</option>
 </select>
 </p>
-<p>Count: <input id="count" value="1"></p>
-<p>Color: <input id="textColor" type="color"></p>
+<p>Color: <input id="textColor" type="color" value="#ffffff"></p>
 <p>Border Radius: <input id="borderRadius" value="12"></p>
 <button id="create">Create</button>
 <button id="cancel">Cancel</button>
 <script>
 
 document.getElementById('create').onclick = () => {
-  const textbox = document.getElementById('count');
   const styleValue = document.getElementById('style').value;
   const textColor = document.getElementById('textColor').value;
   const radius = document.getElementById('borderRadius')
-  const count = parseInt(textbox.value, 10);
   const borderRadius = parseInt(radius.value, 10);
-  parent.postMessage({ pluginMessage: { type: 'button-maker', count , borderRadius, styleValue, textColor} }, '*')
+  parent.postMessage({ pluginMessage: { type: 'button-maker', borderRadius, styleValue, textColor} }, '*')
 }
 
 
