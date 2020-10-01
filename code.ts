@@ -49,9 +49,9 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     large: (color) => `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32"><defs/><path fill="${color}" fill-rule="evenodd" d="M16 30a14 14 0 100-28 14 14 0 000 28zm6.487-16.263a1.75 1.75 0 00-2.474-2.474l-5.763 5.763-2.263-2.263a1.75 1.75 0 00-2.474 2.474l3.5 3.5a1.75 1.75 0 002.474 0l7-7z" clip-rule="evenodd"/></svg>`,
   }
 
-  const createSideIcon = (color, size) => {
+  const createSideIcon = (color, size, name) => {
     const iconNode = figma.createNodeFromSvg(iconsBySize[size](color));
-    iconNode.name = "sideIcon";
+    iconNode.name = name;
     return iconNode;
   };
 
@@ -72,11 +72,11 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     return text;
   }
 
-  const createButton = ({ borderRadius, style, color, iconPosition, size }) => {
+  const createButton = ({ borderRadius, style, color, size }) => {
     const buttonComponent = figma.createComponent();
     const text = createText(color);
 
-    buttonComponent.name = `${style} / Master`
+    buttonComponent.name = `${style} / Main`;
     buttonComponent.layoutMode = "VERTICAL";
     buttonComponent.counterAxisSizingMode = "AUTO";
     buttonComponent.cornerRadius = borderRadius;
@@ -94,29 +94,11 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     frame.fills = [];
     frame.name = 'Content';
 
-    if (iconPosition === 'leftOnly') {
-      const vectorLeft = createSideIcon(color, size);
-      frame.insertChild(0, vectorLeft);
-      frame.insertChild(1, text);
-    }
-
-    if (iconPosition === 'rightOnly') {
-      const vectorRight = createSideIcon(color, size);
-      frame.insertChild(0, text);
-      frame.insertChild(1, vectorRight);
-    }
-
-    if (iconPosition === 'bothSide') {
-      const vectorRight = createSideIcon(color, size);
-      const vectorLeft = createSideIcon(color, size);
-      frame.insertChild(0, vectorLeft);
-      frame.insertChild(1, text);
-      frame.insertChild(2, vectorRight);
-    }
-
-    if (!iconPosition) {
-      frame.insertChild(0, text);
-    }
+    const vectorRight = createSideIcon(color, size, 'iconRight');
+    const vectorLeft = createSideIcon(color, size, 'iconLeft');
+    frame.insertChild(0, vectorLeft);
+    frame.insertChild(1, text);
+    frame.insertChild(2, vectorRight);
 
     buttonComponent.insertChild(0, frame);
 
@@ -127,125 +109,140 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     return buttonComponent;
   }
 
+  const hideIconByLayout = (layout, component: ComponentNode) => {
+    if (layout === 'textOnly') {
+      const icons = component.findAll(n => n.name === 'iconRight' || n.name === 'iconLeft');
+      icons.forEach(i => i.visible = false);
+    }
+
+    if (layout === 'text+IconR') {
+      const icon = component.findOne(n => n.name === 'iconLeft');
+      icon.visible = false;
+    }
+
+    if (layout === 'text+IconL') {
+      const icon = component.findOne(n => n.name === 'iconRight');
+      icon.visible = false;
+    }
+
+    return component;
+  }
+
+  const createInstanceComponent = ({ main, x, y, name, layout }) => {
+    const instance = main.createInstance();
+    const instanceComponent = figma.createComponent();
+    instanceComponent.layoutMode = 'VERTICAL';
+    instanceComponent.counterAxisSizingMode = 'AUTO';
+    instanceComponent.fills = [];
+    instanceComponent.insertChild(0, instance);
+    instanceComponent.x = x;
+    instanceComponent.y = y;
+    instanceComponent.name = name;
+    return hideIconByLayout(layout, instanceComponent);
+  }
+
   figma.ui.onmessage = msg => {
     const nodes: SceneNode[] = [];
     if (msg.type === 'button-maker') {
-      const buttonCreator = ({ iconPosition, size }: { iconPosition?: string; size?: string; }) => createButton({ borderRadius: msg.borderRadius, style: msg.styleValue, color: msg.textColor, iconPosition, size });
+      const buttonCreator = ({ size }: { size?: string; }) => createButton({ borderRadius: msg.borderRadius, style: msg.styleValue, color: msg.textColor, size });
       sizes.forEach(size => {
         if (size === 'small') {
-          const smallMaster = buttonCreator({ iconPosition: 'bothSide', size });
-          smallMaster.name = `${msg.styleValue} / ${size} / Master`;
-          figma.currentPage.appendChild(smallMaster);
-          nodes.push(smallMaster);
+          const smallMain = buttonCreator({ size });
+          smallMain.name = `${msg.styleValue} / ${size} / Main`;
+          figma.currentPage.appendChild(smallMain);
+          nodes.push(smallMain);
           layouts.forEach(layout => {
             if (layout === 'textOnly') {
               states.forEach((state, i) => {
-                const clone = buttonCreator({ size });
-                clone.x = i * 300;
-                clone.y = 200
-                clone.name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
-                figma.currentPage.appendChild(clone);
-                nodes.push(clone);
+                const name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                const instanceComponent = createInstanceComponent({ main: smallMain, x: i * 300, y: 200, name, layout })
+                figma.currentPage.appendChild(instanceComponent);
+                nodes.push(instanceComponent);
               })
             }
             if (layout === 'text+IconR') {
               states.forEach((state, i) => {
-                const clone = buttonCreator({ iconPosition: 'rightOnly', size });
-                clone.x = i * 300;
-                clone.y = 400;
-                clone.name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
-                figma.currentPage.appendChild(clone);
-                nodes.push(clone);
+                const name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                const instanceComponent = createInstanceComponent({ main: smallMain, x: i * 300, y: 400, name, layout });
+                figma.currentPage.appendChild(instanceComponent);
+                nodes.push(instanceComponent);
               })
             }
             if (layout === 'text+IconL') {
               states.forEach((state, i) => {
-                const clone = buttonCreator({ iconPosition: 'leftOnly', size });
-                clone.x = i * 300;
-                clone.y = 600;
-                clone.name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
-                figma.currentPage.appendChild(clone);
-                nodes.push(clone);
+            const instance = smallMain.createInstance();
+                const name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                const instanceComponent = createInstanceComponent({ main: smallMain, x: i * 300, y: 600, name, layout });
+                figma.currentPage.appendChild(instanceComponent);
+                nodes.push(instanceComponent);
               })
             }
           })
         }
         if (size === 'medium') {
-          const mediumMaster = buttonCreator({ iconPosition: 'bothSide', size });
-          mediumMaster.name = `${msg.styleValue} / ${size} / Master`;
-          mediumMaster.y = 1100;
-          figma.currentPage.appendChild(mediumMaster);
-          nodes.push(mediumMaster);
+          const mediumMain = buttonCreator({ size });
+          mediumMain.name = `${msg.styleValue} / ${size} / Main`;
+          mediumMain.y = 1100;
+          figma.currentPage.appendChild(mediumMain);
+          nodes.push(mediumMain);
           layouts.forEach(layout => {
             if (layout === 'textOnly') {
               states.forEach((state, i) => {
-                const clone = buttonCreator({ size });
-                clone.x = i * 300;
-                clone.y = 1100 + 200
-                clone.name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
-                figma.currentPage.appendChild(clone);
-                nodes.push(clone);
+                const name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                const instanceComponent = createInstanceComponent({ main: mediumMain, x: i * 300, y: 1100 + 200, name, layout });
+                figma.currentPage.appendChild(instanceComponent);
+                nodes.push(instanceComponent);
               })
             }
             if (layout === 'text+IconR') {
               states.forEach((state, i) => {
-                const clone = buttonCreator({ iconPosition: 'rightOnly', size });
-                clone.x = i * 300;
-                clone.y = 1100 + 400
-                clone.name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
-                figma.currentPage.appendChild(clone);
-                nodes.push(clone);
+                const name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                const instanceComponent = createInstanceComponent({ main: mediumMain, x: i * 300, y: 1100 + 400, name, layout });
+                figma.currentPage.appendChild(instanceComponent);
+                nodes.push(instanceComponent);
               })
             }
             if (layout === 'text+IconL') {
               states.forEach((state, i) => {
-                const clone = buttonCreator({ iconPosition: 'leftOnly', size });
-                clone.x = i * 300;
-                clone.y = 1100 + 600
-                clone.name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
-                figma.currentPage.appendChild(clone);
-                nodes.push(clone);
+                const name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                const instanceComponent = createInstanceComponent({ main: mediumMain, x: i * 300, y: 1100 + 600, name, layout });
+                figma.currentPage.appendChild(instanceComponent);
+                nodes.push(instanceComponent);
               })
             }
           })
         }
         if (size === 'large') {
-          const largeMaster = buttonCreator({ iconPosition: 'bothSide', size });
-          largeMaster.name = `${msg.styleValue} / ${size} / Master`;
-          largeMaster.y = 2200;
-          figma.currentPage.appendChild(largeMaster);
-          nodes.push(largeMaster);
+          const largeMain = buttonCreator({ size });
+          largeMain.name = `${msg.styleValue} / ${size} / Main`;
+          largeMain.y = 2200;
+          figma.currentPage.appendChild(largeMain);
+          nodes.push(largeMain);
           layouts.forEach(layout => {
             if (layout === 'textOnly') {
               states.forEach((state, i) => {
-                const clone = buttonCreator({ size });
-                clone.x = i * 300;
-                clone.y = 2200 + 200
-                clone.name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
-                figma.currentPage.appendChild(clone);
-                nodes.push(clone);
+                const name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                const instanceComponent = createInstanceComponent({ main: largeMain, x: i * 300, y: 2200 + 200, name, layout });
+                figma.currentPage.appendChild(instanceComponent);
+                nodes.push(instanceComponent);
               })
             }
 
             if (layout === 'text+IconR') {
               states.forEach((state, i) => {
-                const clone = buttonCreator({ iconPosition: 'rightOnly', size });
-                clone.x = i * 300;
-                clone.y = 2200 + 400
-                clone.name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
-                figma.currentPage.appendChild(clone);
-                nodes.push(clone);
+                const name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                const instanceComponent = createInstanceComponent({ main: largeMain, x: i * 300, y: 2200 + 400, name, layout });
+                figma.currentPage.appendChild(instanceComponent);
+                nodes.push(instanceComponent);
               })
             }
 
             if (layout === 'text+IconL') {
               states.forEach((state, i) => {
-                const clone = buttonCreator({ iconPosition: 'leftOnly', size });
-                clone.x = i * 300;
-                clone.y = 2200 + 600
-                clone.name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
-                figma.currentPage.appendChild(clone);
-                nodes.push(clone);
+                const name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                const instanceComponent = createInstanceComponent({ main: largeMain, x: i * 300, y: 2200 + 600, name, layout });
+                figma.currentPage.appendChild(instanceComponent);
+                nodes.push(instanceComponent);
               })
             }
           })
