@@ -93,6 +93,7 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     frame.itemSpacing = 8;
     frame.fills = [];
     frame.name = 'Content';
+    frame.layoutAlign = 'CENTER';
 
     if (iconPosition === 'leftOnly') {
       const vectorLeft = createSideIcon(color, size);
