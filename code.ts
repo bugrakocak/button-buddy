@@ -72,7 +72,7 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     return text;
   }
 
-  const createButton = ({ borderRadius, style, color, size }) => {
+  const createButton = ({ borderRadius, style, color, size, strokeWeight }) => {
     const buttonComponent = figma.createComponent();
     const text = createText(color);
 
@@ -80,6 +80,7 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     buttonComponent.layoutMode = "VERTICAL";
     buttonComponent.counterAxisSizingMode = "AUTO";
     buttonComponent.cornerRadius = borderRadius;
+    buttonComponent.strokeWeight = strokeWeight;
 
     const sizeStyle = sizeStyles[size];
     buttonComponent.verticalPadding = sizeStyle.verticalPadding;
@@ -88,12 +89,12 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     text.lineHeight = sizeStyle.lineHeight;
 
     const frame = figma.createFrame();
+    frame.name = 'Content';
     frame.layoutMode = 'HORIZONTAL';
     frame.counterAxisSizingMode = 'AUTO';
+    frame.layoutAlign = 'CENTER';
     frame.itemSpacing = 8;
     frame.fills = [];
-    frame.name = 'Content';
-    frame.layoutAlign = 'CENTER';
 
     const vectorRight = createSideIcon(color, size, 'iconRight');
     const vectorLeft = createSideIcon(color, size, 'iconLeft');
@@ -106,9 +107,40 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     if (style === "basic-solid") {
       buttonComponent.fills = [{type: 'SOLID', color: {r: 0/255, g: 56/255, b: 255/255}}];
     }
+    if (style === "basic-outline") {
+      buttonComponent.fills = [];
+      buttonComponent.strokeWeight = strokeWeight;
+      buttonComponent.strokes = [{type: 'SOLID', color: {r: 0/255, g: 56/255, b: 255/255}}];
+    }
+
+//TODO// For shadow color we should get the fill of the button and make it 10% darker
+
+    if (style === "flat-shadow") {
+      buttonComponent.fills = [{type: 'SOLID', color: {r: 0/255, g: 56/255, b: 255/255}}];
+      buttonComponent.effects = [{type: 'DROP_SHADOW', color: {r: 19/255, g: 56/255, b: 189/255, a: 1}, offset: {x: 0, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }];
+  }
+
+//TODO// Make the gradient vertical, it's horizontal now.
+
+    if (style === "soft-gradient") {
+      buttonComponent.fills = [{type: 'GRADIENT_LINEAR',
+      gradientTransform: [ [1, 0, 0], [0, 1, 0] ],
+          gradientStops: [
+            {
+              position: 0,
+              color: {r: 54/255, g: 98/255, b: 253/255, a: 1},
+            },
+            {
+              position: 1,
+              color: {r: 0/255, g: 56/255, b: 255/255, a: 1},
+            }
+          ],
+      }];
+  }
 
     return buttonComponent;
   }
+    
 
   const hideIconByLayout = (layout, component: ComponentNode) => {
     if (layout === 'textOnly') {
@@ -145,7 +177,7 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
   figma.ui.onmessage = msg => {
     const nodes: SceneNode[] = [];
     if (msg.type === 'button-maker') {
-      const buttonCreator = ({ size }: { size?: string; }) => createButton({ borderRadius: msg.borderRadius, style: msg.styleValue, color: msg.textColor, size });
+      const buttonCreator = ({ size }: { size?: string; }) => createButton({ borderRadius: msg.borderRadius, style: msg.styleValue, color: msg.textColor, strokeWeight: msg.strokeWeight, size });
       sizes.forEach(size => {
         if (size === 'small') {
           const smallMain = buttonCreator({ size });
