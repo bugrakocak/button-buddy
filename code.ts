@@ -72,9 +72,10 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     return text;
   }
 
-  const createButton = ({ borderRadius, style, textColor, size, strokeWeight }) => {
+  const createButton = ({ borderRadius, style, textColor, size, strokeWeight, buttonColor }) => {
     const buttonComponent = figma.createComponent();
     const text = createText(textColor);
+    const rgb = hexToRgb(buttonColor);
 
     buttonComponent.name = `${style} / Main`;
     buttonComponent.layoutMode = "VERTICAL";
@@ -106,7 +107,7 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     
 
     if (style === "basic-solid") {
-      buttonComponent.fills = [{type: 'SOLID', color: {r: 0/255, g: 56/255, b: 255/255}}];
+      buttonComponent.fills = [{type: 'SOLID', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255}}];
     }
 
     if (style === "basic-outline") {
@@ -116,14 +117,12 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     }
 
 //TODO// For shadow color we should get the fill of the button and make it 10% darker
-
     if (style === "flat-shadow") {
-      buttonComponent.fills = [{type: 'SOLID', color: {r: 0/255, g: 56/255, b: 255/255}}];
+      buttonComponent.fills = [{type: 'SOLID', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255}}];
       buttonComponent.effects = [{type: 'DROP_SHADOW', color: {r: 19/255, g: 56/255, b: 189/255, a: 1}, offset: {x: 0, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }];
   }
-
+  
 //TODO// Make the gradient vertical, it's horizontal now.
-
     if (style === "soft-gradient") {
       buttonComponent.fills = [{type: 'GRADIENT_LINEAR',
       gradientTransform: [ [1, 0, 0], [0, 1, 0] ],
@@ -179,7 +178,7 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
   figma.ui.onmessage = msg => {
     const nodes: SceneNode[] = [];
     if (msg.type === 'button-maker') {
-      const buttonCreator = ({ size }: { size?: string; }) => createButton({ borderRadius: msg.borderRadius, style: msg.styleValue, textColor: msg.textColor, strokeWeight: msg.strokeWeight, size });
+      const buttonCreator = ({ size }: { size?: string; }) => createButton({ borderRadius: msg.borderRadius, style: msg.styleValue, textColor: msg.textColor, strokeWeight: msg.strokeWeight, buttonColor: msg.buttonColor, size });
       sizes.forEach(size => {
         if (size === 'small') {
           const smallMain = buttonCreator({ size });
