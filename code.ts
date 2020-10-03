@@ -1,5 +1,5 @@
-function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);  return result ? {    r: parseInt(result[1], 16),    g: parseInt(result[2], 16),    b: parseInt(result[3], 16)  } : null;}
 
+function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);  return result ? {    r: parseInt(result[1], 16),    g: parseInt(result[2], 16),    b: parseInt(result[3], 16)  } : null;}
 (async () => {
   await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
   await figma.loadFontAsync({ family: "Inter", style: "Bold" });
@@ -44,13 +44,13 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
   const layouts = ['textOnly', 'text+IconR', 'text+IconL'];
 
   const iconsBySize = {
-    small: (color) => `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><defs/><path fill="${color}" fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.244-8.131a.875.875 0 00-1.238-1.238L7.125 8.513 5.994 7.38A.875.875 0 004.756 8.62l1.75 1.75a.875.875 0 001.238 0l3.5-3.5z" clip-rule="evenodd"/></svg>`,
-    medium: (color) => `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><defs/><path fill="${color}" fill-rule="evenodd" d="M12 22a10 10 0 100-20 10 10 0 000 20zm4.634-11.616a1.25 1.25 0 00-1.768-1.768l-4.116 4.117-1.616-1.617a1.25 1.25 0 00-1.768 1.768l2.5 2.5a1.25 1.25 0 001.768 0l5-5z" clip-rule="evenodd"/></svg>`,
-    large: (color) => `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32"><defs/><path fill="${color}" fill-rule="evenodd" d="M16 30a14 14 0 100-28 14 14 0 000 28zm6.487-16.263a1.75 1.75 0 00-2.474-2.474l-5.763 5.763-2.263-2.263a1.75 1.75 0 00-2.474 2.474l3.5 3.5a1.75 1.75 0 002.474 0l7-7z" clip-rule="evenodd"/></svg>`,
+    small: (textColor) => `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><defs/><path fill="${textColor}" fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm3.244-8.131a.875.875 0 00-1.238-1.238L7.125 8.513 5.994 7.38A.875.875 0 004.756 8.62l1.75 1.75a.875.875 0 001.238 0l3.5-3.5z" clip-rule="evenodd"/></svg>`,
+    medium: (textColor) => `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><defs/><path fill="${textColor}" fill-rule="evenodd" d="M12 22a10 10 0 100-20 10 10 0 000 20zm4.634-11.616a1.25 1.25 0 00-1.768-1.768l-4.116 4.117-1.616-1.617a1.25 1.25 0 00-1.768 1.768l2.5 2.5a1.25 1.25 0 001.768 0l5-5z" clip-rule="evenodd"/></svg>`,
+    large: (textColor) => `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32"><defs/><path fill="${textColor}" fill-rule="evenodd" d="M16 30a14 14 0 100-28 14 14 0 000 28zm6.487-16.263a1.75 1.75 0 00-2.474-2.474l-5.763 5.763-2.263-2.263a1.75 1.75 0 00-2.474 2.474l3.5 3.5a1.75 1.75 0 002.474 0l7-7z" clip-rule="evenodd"/></svg>`,
   }
 
-  const createSideIcon = (color, size, name) => {
-    const iconNode = figma.createNodeFromSvg(iconsBySize[size](color));
+  const createSideIcon = (textColor, size, name) => {
+    const iconNode = figma.createNodeFromSvg(iconsBySize[size](textColor));
     iconNode.name = name;
     return iconNode;
   };
@@ -72,9 +72,9 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     return text;
   }
 
-  const createButton = ({ borderRadius, style, color, size, strokeWeight }) => {
+  const createButton = ({ borderRadius, style, textColor, size, strokeWeight }) => {
     const buttonComponent = figma.createComponent();
-    const text = createText(color);
+    const text = createText(textColor);
 
     buttonComponent.name = `${style} / Main`;
     buttonComponent.layoutMode = "VERTICAL";
@@ -96,17 +96,19 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     frame.itemSpacing = 8;
     frame.fills = [];
 
-    const vectorRight = createSideIcon(color, size, 'iconRight');
-    const vectorLeft = createSideIcon(color, size, 'iconLeft');
+    const vectorRight = createSideIcon(textColor, size, 'iconRight');
+    const vectorLeft = createSideIcon(textColor, size, 'iconLeft');
     frame.insertChild(0, vectorLeft);
     frame.insertChild(1, text);
     frame.insertChild(2, vectorRight);
 
     buttonComponent.insertChild(0, frame);
+    
 
     if (style === "basic-solid") {
       buttonComponent.fills = [{type: 'SOLID', color: {r: 0/255, g: 56/255, b: 255/255}}];
     }
+
     if (style === "basic-outline") {
       buttonComponent.fills = [];
       buttonComponent.strokeWeight = strokeWeight;
@@ -177,7 +179,7 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
   figma.ui.onmessage = msg => {
     const nodes: SceneNode[] = [];
     if (msg.type === 'button-maker') {
-      const buttonCreator = ({ size }: { size?: string; }) => createButton({ borderRadius: msg.borderRadius, style: msg.styleValue, color: msg.textColor, strokeWeight: msg.strokeWeight, size });
+      const buttonCreator = ({ size }: { size?: string; }) => createButton({ borderRadius: msg.borderRadius, style: msg.styleValue, textColor: msg.textColor, strokeWeight: msg.strokeWeight, size });
       sizes.forEach(size => {
         if (size === 'small') {
           const smallMain = buttonCreator({ size });

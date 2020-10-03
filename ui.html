@@ -7,7 +7,8 @@
   <option value="soft-gradient">Soft Gradient</option>
 </select>
 </p>
-<p>Color: <input id="textColor" type="color" value="#ffffff"></p>
+<p>Text Color: <input id="textColor" type="color" value="#ffffff"></p>
+<p>Button Color: <input id="buttonColor" type="color" value="#0038FF"></p>
 <p>Border Radius: <input id="borderRadius" value="12"></p>
 <p>Stroke: <input id="strokeWeight" value="2"></p>
 <button id="create">Create</button>
@@ -17,11 +18,12 @@
 document.getElementById('create').onclick = () => {
   const styleValue = document.getElementById('style').value;
   const textColor = document.getElementById('textColor').value;
+  const buttonColor = document.getElementById('buttonColor').value;
   const radius = document.getElementById('borderRadius');
   const borderRadius = parseInt(radius.value, 10);
   const stroke = document.getElementById('strokeWeight');
   const strokeWeight = parseInt(stroke.value, 10);
-  parent.postMessage({ pluginMessage: { type: 'button-maker', borderRadius, styleValue, textColor, strokeWeight } }, '*')
+  parent.postMessage({ pluginMessage: { type: 'button-maker', borderRadius, styleValue, textColor, buttonColor, strokeWeight } }, '*')
 }
 
 
