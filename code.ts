@@ -108,24 +108,24 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     buttonComponent.insertChild(0, frame);
     
 
-    if (style === 'Basic Solid') {
+    if (style === 'BasicSolid') {
       buttonComponent.fills = [{type: 'SOLID', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255}}];
     }
 
-    if (style === 'Basic Outline') {
+    if (style === 'BasicOutline') {
       buttonComponent.fills = [];
       buttonComponent.strokeWeight = strokeWeight;
       buttonComponent.strokes = [{type: 'SOLID', color: {r: rgb.r/255, g: rgb.b/255, b: rgb.b/255}}];
     }
 
-//TODO// Make the shadow 10% darker than fill
-    if (style === 'Flat Shadow') {
+//TODO// Adjust the shadow brightness based on the original color's threshold. OR work with HSL
+    if (style === 'FlatShadow') {
       buttonComponent.fills = [{type: 'SOLID', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255}}];
-      buttonComponent.effects = [{type: 'DROP_SHADOW', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255, a: 1}, offset: {x: 0, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }];
-  }
+      buttonComponent.effects = [{type: 'DROP_SHADOW', color: {r: rgb.r/255, g: rgb.g/255, b: (rgb.b/255 *.8) , a: 1}, offset: {x: 0, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }];
+    }
 
 //TODO// Make the gradient vertical, it's horizontal now.
-    if (style === 'Soft Gradient') {
+    if (style === 'SoftGradient') {
       buttonComponent.fills = [{type: 'GRADIENT_LINEAR',
       gradientTransform: [ [1, 0, 0], [0, 1, 0] ],
           gradientStops: [
@@ -139,25 +139,29 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
             }
           ],
       }];
-  }
-
-  if (style === 'Glossy') {
-    buttonComponent.fills = [{type: 'SOLID', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255}}];
-    buttonComponent.effects = [
-      {type: 'INNER_SHADOW', color: {r: 0/255, g: 0/255, b: 0/255, a: 0.2}, offset: {x: 0, y: -8}, radius: 10, visible: true, blendMode: 'NORMAL' },
-      {type: 'INNER_SHADOW', color: {r: 255/255, g: 255/255, b: 255/255, a: 0.5}, offset: {x: 0, y: 4}, radius: 4, visible: true, blendMode: 'NORMAL' }
-    ];
-
-}
-  if (style === 'Comic Light') {
-    buttonComponent.fills = [{type: 'SOLID', color: {r: 255/255, g: 255/255, b: 255/255}}];
-    buttonComponent.strokeWeight = strokeWeight;
-    buttonComponent.strokes = [{type: 'SOLID', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255}}];
-    buttonComponent.effects = [{type: 'DROP_SHADOW', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255, a: 1}, offset: {x: -4, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }]
-  }
+    }
+    if (style === 'Glossy') {
+      buttonComponent.fills = [{type: 'SOLID', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255}}];
+      buttonComponent.effects = [
+        {type: 'INNER_SHADOW', color: {r: 0/255, g: 0/255, b: 0/255, a: 0.2}, offset: {x: 0, y: -8}, radius: 10, visible: true, blendMode: 'NORMAL' },
+        {type: 'INNER_SHADOW', color: {r: 255/255, g: 255/255, b: 255/255, a: 0.5}, offset: {x: 0, y: 4}, radius: 4, visible: true, blendMode: 'NORMAL' }
+      ];
+    }
+    if (style === 'ComicLight') {
+      buttonComponent.fills = [{type: 'SOLID', color: {r: 255/255, g: 255/255, b: 255/255}}];
+      buttonComponent.strokeWeight = strokeWeight;
+      buttonComponent.strokes = [{type: 'SOLID', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255}}];
+      buttonComponent.effects = [{type: 'DROP_SHADOW', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255, a: 1}, offset: {x: -4, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }]
+    }
+    if (style === 'ComicBold') {
+      buttonComponent.fills = [{type: 'SOLID', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255}}];
+      buttonComponent.strokeWeight = strokeWeight;
+      buttonComponent.strokes = [{type: 'SOLID', color: {r: 255/255, g: 255/255, b: 255/255}}];
+      buttonComponent.effects = [{type: 'DROP_SHADOW', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255, a: 1}, offset: {x: -4, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }]
+    }
     return buttonComponent;
   }
-    
+
 
   const hideIconByLayout = (layout, component: ComponentNode) => {
     if (layout === 'textOnly') {
