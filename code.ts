@@ -41,7 +41,7 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
 
   const sizes = ['small', 'medium', 'large'];
   const states = ['idle', 'hover', 'focus', 'active', 'disabled'];
-  const layouts = ['textOnly', 'text+IconR', 'text+IconL'];
+  const layouts = ['Without Icon', 'With Icon'];
 
   const iconsBySize = {
     small: (textColor) => `<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16'><defs/><path fill='${textColor}' fill-rule='evenodd' d='M8 15A7 7 0 108 1a7 7 0 000 14zm3.244-8.131a.875.875 0 00-1.238-1.238L7.125 8.513 5.994 7.38A.875.875 0 004.756 8.62l1.75 1.75a.875.875 0 001.238 0l3.5-3.5z' clip-rule='evenodd'/></svg>`,
@@ -78,7 +78,7 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     const text = createText(textColor);
     const rgb = hexToRgb(buttonColor);
 
-    buttonComponent.name = `${style} / Main`;
+    buttonComponent.name = `${style} Main`;
     buttonComponent.layoutMode = 'VERTICAL';
     buttonComponent.counterAxisSizingMode = 'AUTO';
     buttonComponent.cornerRadius = borderRadius;
@@ -98,11 +98,9 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     frame.itemSpacing = 8;
     frame.fills = [];
 
-    const vectorRight = createSideIcon(textColor, size, 'iconRight');
-    const vectorLeft = createSideIcon(textColor, size, 'iconLeft');
-    frame.insertChild(0, vectorLeft);
-    frame.insertChild(1, text);
-    frame.insertChild(2, vectorRight);
+    const vector = createSideIcon(textColor, size, 'Icon');
+    frame.insertChild(0, text);
+    frame.insertChild(1, vector);
 
     buttonComponent.insertChild(0, frame);
     
@@ -182,21 +180,15 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
 
 
   const hideIconByLayout = (layout, component: ComponentNode) => {
-    if (layout === 'textOnly') {
-      const icons = component.findAll(n => n.name === 'iconRight' || n.name === 'iconLeft');
-      icons.forEach(i => i.visible = false);
+    if (layout === 'Without Icon') {
+      const icon = component.findAll(n => n.name === 'Icon');
+      icon.forEach(i => i.visible = false);
     }
 
-    if (layout === 'text+IconR') {
-      const icon = component.findOne(n => n.name === 'iconLeft');
-      icon.visible = false;
+    if (layout === 'With Icon') {
+      const icon = component.findOne(n => n.name === 'Icon');
+      icon.visible = true;
     }
-
-    if (layout === 'text+IconL') {
-      const icon = component.findOne(n => n.name === 'iconRight');
-      icon.visible = false;
-    }
-
     return component;
   }
 
@@ -220,31 +212,21 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
       sizes.forEach(size => {
         if (size === 'small') {
           const smallMain = buttonCreator({ size });
-          smallMain.name = `${msg.styleValue} / ${size} / Main`;
-          figma.currentPage.appendChild(smallMain);
+          smallMain.name = `${msg.styleValue} Button Main`;
           nodes.push(smallMain);
           layouts.forEach(layout => {
-            if (layout === 'textOnly') {
+            if (layout === 'Without Icon') {
               states.forEach((state, i) => {
-                const name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                const name = `${msg.styleValue} Button / ${size} / false / ${state}`;
                 const instanceComponent = createInstanceComponent({ main: smallMain, x: i * 300, y: 200, name, layout })
                 figma.currentPage.appendChild(instanceComponent);
                 nodes.push(instanceComponent);
               })
             }
-            if (layout === 'text+IconR') {
+            if (layout === 'With Icon') {
               states.forEach((state, i) => {
-                const name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                const name = `${msg.styleValue} Button / ${size} / true / ${state}`;
                 const instanceComponent = createInstanceComponent({ main: smallMain, x: i * 300, y: 400, name, layout });
-                figma.currentPage.appendChild(instanceComponent);
-                nodes.push(instanceComponent);
-              })
-            }
-            if (layout === 'text+IconL') {
-              states.forEach((state, i) => {
-            const instance = smallMain.createInstance();
-                const name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
-                const instanceComponent = createInstanceComponent({ main: smallMain, x: i * 300, y: 600, name, layout });
                 figma.currentPage.appendChild(instanceComponent);
                 nodes.push(instanceComponent);
               })
@@ -253,31 +235,23 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
         }
         if (size === 'medium') {
           const mediumMain = buttonCreator({ size });
-          mediumMain.name = `${msg.styleValue} / ${size} / Main`;
+          mediumMain.name = `${msg.styleValue} Button Main`;
           mediumMain.y = 1100;
           figma.currentPage.appendChild(mediumMain);
           nodes.push(mediumMain);
           layouts.forEach(layout => {
-            if (layout === 'textOnly') {
+            if (layout === 'Without Icon') {
               states.forEach((state, i) => {
-                const name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                const name = `${msg.styleValue} Button / ${size} / false / ${state}`;
                 const instanceComponent = createInstanceComponent({ main: mediumMain, x: i * 300, y: 1100 + 200, name, layout });
                 figma.currentPage.appendChild(instanceComponent);
                 nodes.push(instanceComponent);
               })
             }
-            if (layout === 'text+IconR') {
+            if (layout === 'With Icon') {
               states.forEach((state, i) => {
-                const name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                const name = `${msg.styleValue} Button / ${size} / true / ${state}`;
                 const instanceComponent = createInstanceComponent({ main: mediumMain, x: i * 300, y: 1100 + 400, name, layout });
-                figma.currentPage.appendChild(instanceComponent);
-                nodes.push(instanceComponent);
-              })
-            }
-            if (layout === 'text+IconL') {
-              states.forEach((state, i) => {
-                const name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
-                const instanceComponent = createInstanceComponent({ main: mediumMain, x: i * 300, y: 1100 + 600, name, layout });
                 figma.currentPage.appendChild(instanceComponent);
                 nodes.push(instanceComponent);
               })
@@ -286,33 +260,24 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
         }
         if (size === 'large') {
           const largeMain = buttonCreator({ size });
-          largeMain.name = `${msg.styleValue} / ${size} / Main`;
+          largeMain.name = `${msg.styleValue} Button Main`;
           largeMain.y = 2200;
           figma.currentPage.appendChild(largeMain);
           nodes.push(largeMain);
           layouts.forEach(layout => {
-            if (layout === 'textOnly') {
+            if (layout === 'Without Icon') {
               states.forEach((state, i) => {
-                const name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                const name = `${msg.styleValue} Button / ${size} / false / ${state}`;
                 const instanceComponent = createInstanceComponent({ main: largeMain, x: i * 300, y: 2200 + 200, name, layout });
                 figma.currentPage.appendChild(instanceComponent);
                 nodes.push(instanceComponent);
               })
             }
 
-            if (layout === 'text+IconR') {
+            if (layout === 'With Icon') {
               states.forEach((state, i) => {
-                const name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
+                const name = `${msg.styleValue} Button / ${size} / true / ${state}`;
                 const instanceComponent = createInstanceComponent({ main: largeMain, x: i * 300, y: 2200 + 400, name, layout });
-                figma.currentPage.appendChild(instanceComponent);
-                nodes.push(instanceComponent);
-              })
-            }
-
-            if (layout === 'text+IconL') {
-              states.forEach((state, i) => {
-                const name = `${msg.styleValue} / ${size} / ${layout} / ${state}`;
-                const instanceComponent = createInstanceComponent({ main: largeMain, x: i * 300, y: 2200 + 600, name, layout });
                 figma.currentPage.appendChild(instanceComponent);
                 nodes.push(instanceComponent);
               })
@@ -322,6 +287,7 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
       })
 
       figma.currentPage.selection = nodes;
+      // figma.combineAsVariants(figma.currentPage.selection, parent)
       figma.viewport.scrollAndZoomIntoView(nodes);
     }
 
