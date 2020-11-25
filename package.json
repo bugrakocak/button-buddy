@@ -12,5 +12,6 @@
   "devDependencies": {
     "@figma/plugin-typings": "^1.16.1",
     "nodemon": "^2.0.4"
-  }
+  },
+  "dependencies": {}
 }
