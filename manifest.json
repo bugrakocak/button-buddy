@@ -2,6 +2,6 @@
   "name": "ButtonMaker",
   "id": "891833918736503296",
   "api": "1.0.0",
-  "main": "code.js",
-  "ui": "ui.html"
+  "main": "dist/code.js",
+  "ui": "dist/ui.html"
 }
