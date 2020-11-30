@@ -1,4 +1,6 @@
-function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);  return result ? {    r: parseInt(result[1], 16),    g: parseInt(result[2], 16),    b: parseInt(result[3], 16)  } : null;}
+import Color from 'color';
+
+const hexToRgbUnitObject = (hex) => Color(hex).rgb().unitObject();
 
 (async () => {
   await figma.loadFontAsync({ family: 'Roboto', style: 'Regular' });
@@ -55,7 +57,7 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     return iconNode;
   };
 
-  const createText = (hexColor) => {
+  const createText = (hex) => {
     const text = figma.createText();
     text.fontSize = 16;
     text.lineHeight = {
@@ -67,16 +69,13 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
       family: 'Inter',
       style: 'Bold',
     };
-    const rgb = hexToRgb(hexColor);
-    text.fills = [{type: 'SOLID', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255}}];
+    text.fills = [{type: 'SOLID', color: hexToRgbUnitObject(hex)}];
     return text;
   }
-
 
   const createButton = ({ borderRadius, style, textColor, size, strokeWeight, buttonColor }) => {
     const buttonComponent = figma.createComponent();
     const text = createText(textColor);
-    const rgb = hexToRgb(buttonColor);
 
     buttonComponent.name = `${style} Main`;
     buttonComponent.layoutMode = 'VERTICAL';
@@ -104,24 +103,26 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
 
     buttonComponent.insertChild(0, frame);
 
+    const rgbUnit = hexToRgbUnitObject(buttonColor);
+
     if (style === 'BasicSolid') {
-      buttonComponent.fills = [{type: 'SOLID', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255}}];
+      buttonComponent.fills = [{type: 'SOLID', color: rgbUnit}];
     }
 
     if (style === 'BasicOutline') {
       buttonComponent.fills = [];
       buttonComponent.strokeWeight = strokeWeight;
-      buttonComponent.strokes = [{type: 'SOLID', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255}}];
+      buttonComponent.strokes = [{type: 'SOLID', color: rgbUnit}];
     }
 
     if (style === 'Modern') {
-      buttonComponent.fills = [{type: 'SOLID', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255}}];
-      buttonComponent.effects = [{type: 'DROP_SHADOW', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255, a: .4}, offset: {x: 0, y: 4}, radius: 16, visible: true, blendMode: 'NORMAL'}]
+      buttonComponent.fills = [{type: 'SOLID', color: rgbUnit}];
+      buttonComponent.effects = [{type: 'DROP_SHADOW', color: {...rgbUnit, a: .4}, offset: {x: 0, y: 4}, radius: 16, visible: true, blendMode: 'NORMAL'}]
     }
 //TODO// Adjust the shadow brightness based on the original color's threshold. OR work with HSL
     if (style === 'FlatShadow') {
-      buttonComponent.fills = [{type: 'SOLID', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255}}];
-      buttonComponent.effects = [{type: 'DROP_SHADOW', color: {r: rgb.r/255, g: rgb.g/255, b: (rgb.b/255 *.8) , a: 1}, offset: {x: 0, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }];
+      buttonComponent.fills = [{type: 'SOLID', color: rgbUnit}];
+      buttonComponent.effects = [{type: 'DROP_SHADOW', color: {...rgbUnit, b: rgbUnit.b * .8 , a: 1}, offset: {x: 0, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }];
     }
 
 //TODO// Gradient is vertical but it's position is off on x axis.
@@ -135,18 +136,18 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
           gradientStops: [
             {
               position: 0,
-              color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255, a: 1},
+              color: {...rgbUnit, a: 1},
             },
             {
               position: 1,
-              color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255 * .6, a: 1},
+              color: {...rgbUnit, b: rgbUnit.b * .6, a: 1},
             }
           ],
       }];
     }
 
     if (style === 'Glossy') {
-      buttonComponent.fills = [{type: 'SOLID', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255}}];
+      buttonComponent.fills = [{type: 'SOLID', color: rgbUnit}];
       buttonComponent.effects = [
         {type: 'INNER_SHADOW', color: {r: 0/255, g: 0/255, b: 0/255, a: 0.2}, offset: {x: 0, y: -8}, radius: 10, visible: true, blendMode: 'NORMAL' },
         {type: 'INNER_SHADOW', color: {r: 255/255, g: 255/255, b: 255/255, a: 0.5}, offset: {x: 0, y: 4}, radius: 4, visible: true, blendMode: 'NORMAL' }
@@ -156,15 +157,15 @@ function hexToRgb(hex) {  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$
     if (style === 'ComicLight') {
       buttonComponent.fills = [{type: 'SOLID', color: {r: 255/255, g: 255/255, b: 255/255}}];
       buttonComponent.strokeWeight = strokeWeight;
-      buttonComponent.strokes = [{type: 'SOLID', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255}}];
-      buttonComponent.effects = [{type: 'DROP_SHADOW', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255, a: 1}, offset: {x: -4, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }]
+      buttonComponent.strokes = [{type: 'SOLID', color: rgbUnit}];
+      buttonComponent.effects = [{type: 'DROP_SHADOW', color: {...rgbUnit, a: 1}, offset: {x: -4, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }]
     }
 
     if (style === 'ComicBold') {
-      buttonComponent.fills = [{type: 'SOLID', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255}}];
+      buttonComponent.fills = [{type: 'SOLID', color: rgbUnit}];
       buttonComponent.strokeWeight = strokeWeight;
       buttonComponent.strokes = [{type: 'SOLID', color: {r: 255/255, g: 255/255, b: 255/255}}];
-      buttonComponent.effects = [{type: 'DROP_SHADOW', color: {r: rgb.r/255, g: rgb.g/255, b: rgb.b/255, a: 1}, offset: {x: -4, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }]
+      buttonComponent.effects = [{type: 'DROP_SHADOW', color: {...rgbUnit, a: 1}, offset: {x: -4, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }]
     }
 
     // ** Couldn't find a way to make the icon color equal to buttonColor
