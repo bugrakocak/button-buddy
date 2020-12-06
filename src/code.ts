@@ -1,6 +1,7 @@
 import Color from 'color';
 
 const hexToRgbUnitObject = (hex) => Color(hex).rgb().unitObject();
+const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b * 255 }).hex();
 
 (async () => {
   await figma.loadFontAsync({ family: 'Roboto', style: 'Regular' });
@@ -42,7 +43,7 @@ const hexToRgbUnitObject = (hex) => Color(hex).rgb().unitObject();
   };
 
   const sizes = ['small', 'medium', 'large'];
-  const states = ['idle', 'hover', 'focus', 'active', 'disabled'];
+  const states = ['idle', 'hover', 'active', 'disabled', 'focus'];
   const layouts = ['withoutIcon', 'withIcon'];
 
   const iconsBySize = {
@@ -197,13 +198,28 @@ const hexToRgbUnitObject = (hex) => Color(hex).rgb().unitObject();
     return component;
   }
 
-  const createInstanceComponent = ({ main, x, y, name, layout }) => {
-    const instance = main.createInstance();
+  const setPropertiesByState = (instance, state, rgbUnit) => {
+    if (state === 'hover') {
+      instance.fills = [{ type: 'SOLID', color: hexToRgbUnitObject(Color(rgbUnitObjectToHex(rgbUnit)).darken(0.4)) }];
+    }
+
+    if (state === 'disabled') {
+      instance.opacity = 0.4;
+    }
+
+    if (state === 'active') {
+      instance.fills = [{ type: 'SOLID', color: hexToRgbUnitObject(Color(rgbUnitObjectToHex(rgbUnit)).darken(0.4)) }];
+    }
+  }
+
+  const createInstanceComponent = ({ main, x, y, name, layout, state }) => {
+    let instance = main.createInstance();
     const instanceComponent = figma.createComponent();
     instanceComponent.layoutMode = 'VERTICAL';
     instanceComponent.counterAxisSizingMode = 'AUTO';
     instanceComponent.fills = [];
     instanceComponent.insertChild(0, instance);
+    setPropertiesByState(instance, state,instance.fills[0].color);
     instanceComponent.x = x;
     instanceComponent.y = y;
     instanceComponent.name = name;
@@ -232,7 +248,7 @@ const hexToRgbUnitObject = (hex) => Color(hex).rgb().unitObject();
       if (layout === 'withoutIcon') {
         states.forEach((state, i) => {
           const name = `${msg.styleValue} Button / ${size} / false / ${state}`;
-          const instanceComponent = createInstanceComponent({ main: button, x: i * 300, y: instanceY, name, layout })
+          const instanceComponent = createInstanceComponent({ main: button, x: i * 300, y: instanceY, name, layout, state });
           figma.currentPage.appendChild(instanceComponent);
           nodes.push(instanceComponent);
         })
@@ -241,7 +257,7 @@ const hexToRgbUnitObject = (hex) => Color(hex).rgb().unitObject();
       if (layout === 'withIcon') {
         states.forEach((state, i) => {
           const name = `${msg.styleValue} Button / ${size} / true / ${state}`;
-          const instanceComponent = createInstanceComponent({ main: button, x: i * 300, y: instanceY + 200, name, layout });
+          const instanceComponent = createInstanceComponent({ main: button, x: i * 300, y: instanceY + 200, name, layout, state });
           figma.currentPage.appendChild(instanceComponent);
           nodes.push(instanceComponent);
         })
