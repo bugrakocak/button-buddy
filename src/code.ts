@@ -239,7 +239,7 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
   const adjustButtonBySize = (size, msg, sizeIndex) => {
     const nodes: SceneNode[] = [];
     const button = buttonCreator({ size, msg });
-    button.name = `${msg.styleValue} Button Base`;
+    button.name = `${msg.styleValue} Base`;
     const baseY = sizeIndex * 900;
     const instanceY = 200 + baseY;
     button.y = baseY;
@@ -248,7 +248,7 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
     layouts.forEach(layout => {
       if (layout === 'withoutIcon') {
         states.forEach((state, i) => {
-          const name = `${msg.styleValue} Button / ${size} / ${state} / false`;
+          const name = `${msg.styleValue} / ${size} / ${state} / false`;
           const instanceComponent = createInstanceComponent({ main: button, x: i * 300, y: instanceY, name, layout, state });
           figma.currentPage.appendChild(instanceComponent);
           nodes.push(instanceComponent);
