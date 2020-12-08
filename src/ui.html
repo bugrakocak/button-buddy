@@ -1,20 +1,351 @@
-<h2>Button Maker</h2>
-<p>Select Your Style:
-  <select name='style' id='style'>
-  <option value='BasicSolid' selected>Basic Solid</option>
-  <option value='BasicOutline'>Basic Outline</option>
-  <option value='Modern'>Modern</option>
-  <option value='FlatShadow'>Flat Shadow</option>
-  <option value='SoftGradient'>Soft Gradient</option>
-  <option value='Glossy'>Glossy</option>
-  <option value='ComicLight'>Comic Light</option>
-  <option value='ComicBold'>Comic Bold</option>
-  <!-- <option value='Fillet'>Fillet</option> -->
-</select>
-</p>
-<p>Text Color: <input id='textColor' type='color' value='#ffffff'></p>
-<p>Button Color: <input id='buttonColor' type='color' value='#0038FF'></p>
-<p>Border Radius: <input id='borderRadius' value='12'></p>
-<p>Stroke: <input id='strokeWeight' value='2'></p>
-<button id='create'>Create</button>
-<button id='cancel'>Cancel</button>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&display=swap');
+
+  :root {
+    --default-color: #1c4efe;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+  }
+
+  .header {
+    padding: 24px 24px 32px;
+    border-bottom: 1px solid #E5E5E5;
+  }
+
+  .title {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .form-group:not(:first-child) {
+    margin-left: 24px;
+  }
+
+  .header-inputs {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+  }
+
+  .label-text {
+    font-size: 14px;
+    line-height: 16px;
+    color: #7C7B7B;
+    font-weight: 600;
+    display: block;
+  }
+
+  .visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  .color-input__mask {
+    width: 104px;
+    height: 32px;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    color: #1F2C37;
+    border-radius: 8px;
+    border: 1px solid #E6EBF1;
+    display: flex;
+    overflow: hidden;
+  }
+
+  .color-input__preview {
+    width: 32px;
+    flex-shrink: 0;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  .color-input__hex {
+    padding: 8px 16px 8px 12px;
+    font-weight: 600;
+    color: #1F2C37;
+    background-color: #E6EBF1;
+    text-align: center;
+    flex-grow: 1;
+    text-transform: uppercase;
+  }
+
+  .form {
+    background-color: #fbfbfb;
+  }
+
+  .header-inputs {
+    display: flex;
+    align-items: center;
+  }
+
+  .text-input {
+    background-color: #E6EBF1;
+    border-radius: 8px;
+    text-align: center;
+    padding: 8px 4px;
+    width: 56px;
+    border: none;
+  }
+
+  .u-gap-top-8 {
+    margin-top: 8px;
+  }
+
+  .u-pad-bottom-16 {
+    padding-bottom: 16px;
+  }
+
+  .body {
+    padding: 24px 24px 32px;
+  }
+
+  .button-container {
+    margin-right: -24px;
+    padding-bottom: 40px;
+    height: 270px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  .buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 14px;
+    row-gap: 16px;
+    padding-bottom: 32px;
+    padding-right: 24px;
+  }
+
+  .button {
+    padding: 8px 16px;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+    font-weight: 800;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .button-input__mask {
+    padding: 16px 12px;
+    border: 1px solid #E6EBF1;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .button-input__mask:hover {
+    background-color: #E6EBF1;
+  }
+
+  .button-input__label-text {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600px;
+    text-align: center;
+    color: #000000;
+    margin-top: 8px;
+  }
+
+  .basic-button {
+    background-color: var(--default-color);
+    color: #ffffff;
+  }
+
+  .basic-outline-button {
+    border: 2px solid var(--default-color);
+    color: var(--default-color);
+  }
+
+  .modern-button {
+    background-color: var(--default-color);
+    color: #ffffff;
+    box-shadow: 0 5px 10px rgba(28, 78, 254, 0.3);
+  }
+
+  .glossy-button {
+    background-color: var(--default-color);
+    color: #ffffff;
+    box-shadow: inset 0 -8px 10px rgba(0, 0, 0, 0.2), inset 0 4px 4px rgba(255, 255, 255, 0.5);
+  }
+
+  .comic-light-button {
+    background-color: #ffffff;
+    border: 2px solid var(--default-color);
+    color: var(--default-color);
+    box-shadow: -4px 4px 0 var(--default-color);
+  }
+
+  .comic-bold-button {
+    background-color: var(--default-color);
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    box-shadow: -4px 4px 0 var(--default-color);
+  }
+
+  .fancy-button {
+    background-color: var(--default-color);
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(28, 78, 254, 0.4);;
+  }
+
+  .flat-shadow-button {
+    background-color: var(--default-color);
+    color: #ffffff;
+    box-shadow: 0 4px 0 #1338bd;
+  }
+
+  label:not(.button-input) {
+    cursor: pointer;
+  }
+
+  .button-input__input:checked + .button-input__mask {
+    background-color: #E6EBF1 !important;
+    border-color: #1c4efe !important;
+  }
+
+  .form-footer {
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #e5e5e5;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+  }
+
+  .form-button {
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    padding: 12px 16px;
+    border: none;
+  }
+
+  .form-button--submit {
+    background-color: #18A0FB;
+    color: #ffffff;
+  }
+
+  .form-button--feedback {
+    background-color: #E6EBF1;
+    color: #000000;
+  }
+
+</style>
+
+  <form class="form" id="form" action="">
+    <div class="header">
+      <h2 class="title">Customization</h2>
+      <div class="header-inputs">
+        <div class='form-group'>
+          <label class="color-input">
+            <span class="label-text">Fill Color</span>
+            <input class="visually-hidden js-color-input" name="fillColor" type='color' value='#1c4efe'>
+            <div class="color-input__mask u-gap-top-8">
+              <span class="color-input__preview js-color-preview" style="background-color: #1c4efe;"></span>
+              <div class="color-input__hex js-color-hex">#1c4efe</div>
+            </div>
+          </label>
+        </div>
+        <div class='form-group'>
+          <label class="color-input">
+            <span class="label-text">Text Color</span>
+            <input class="visually-hidden js-color-input" name="textColor" type='color' value='#ffffff'>
+            <div class="color-input__mask u-gap-top-8">
+              <span class="color-input__preview js-color-preview" style="background-color: #ffffff;"></span>
+              <div class="color-input__hex js-color-hex">#ffffff</div>
+            </div>
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="label-text" for="radiusInput">Radius</label>
+          <input class="text-input u-gap-top-8" name="borderRadius" id="radiusInput" type="text" value="8">
+        </div>
+      </div>
+    </div>
+    <div class="body">
+      <h2 class="title u-pad-bottom-16">Button Styles</h2>
+      <div class="button-container">
+        <div class="buttons">
+          <label class="button-input">
+            <input type="radio" checked name="buttonInput" value="basicSolid" class="button-input__input visually-hidden">
+            <div class="button-input__mask">
+              <div class="button basic-button">Button</div>
+            </div>
+            <div class="button-input__label-text">Basic</div>
+          </label>
+          <label class="button-input">
+            <input type="radio" name="buttonInput" value="basicOutline" class="button-input__input visually-hidden">
+            <div class="button-input__mask">
+              <div class="button basic-outline-button">Button</div>
+            </div>
+            <div class="button-input__label-text">Basic Outline</div>
+          </label>
+          <label class="button-input">
+            <input type="radio" name="buttonInput" value="modern" class="button-input__input visually-hidden">
+            <div class="button-input__mask">
+              <div class="button modern-button">Button</div>
+            </div>
+            <div class="button-input__label-text">Modern</div>
+          </label>
+          <label class="button-input">
+            <input type="radio" name="buttonInput" value="glossy" class="button-input__input visually-hidden">
+            <div class="button-input__mask">
+              <div class="button glossy-button">Button</div>
+            </div>
+            <div class="button-input__label-text">Glossy</div>
+          </label>
+          <label class="button-input">
+            <input type="radio" name="buttonInput" value="comicLight" class="button-input__input visually-hidden">
+            <div class="button-input__mask">
+              <div class="button comic-light-button">Button</div>
+            </div>
+            <div class="button-input__label-text">Comic Light</div>
+          </label>
+          <label class="button-input">
+            <input type="radio" name="buttonInput" value="comicBold" class="button-input__input visually-hidden">
+            <div class="button-input__mask">
+              <div class="button comic-bold-button">Button</div>
+            </div>
+            <div class="button-input__label-text">Comic Bold</div>
+          </label>
+          <label class="button-input">
+            <input type="radio" name="buttonInput" value="fancy" class="button-input__input visually-hidden">
+            <div class="button-input__mask">
+              <div class="button fancy-button">Button</div>
+            </div>
+            <div class="button-input__label-text">Fancy</div>
+          </label>
+          <label class="button-input">
+            <input type="radio" name="buttonInput" value="flatShadow" class="button-input__input visually-hidden">
+            <div class="button-input__mask">
+              <div class="button flat-shadow-button">Button</div>
+            </div>
+            <div class="button-input__label-text">Flat Shadow</div>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-footer">
+      <button class="form-button form-button--feedback" type="button">Give Feedback</button>
+      <button class="form-button form-button--submit" type="submit">Create Buttons</button>
+    </div>
+  </form>

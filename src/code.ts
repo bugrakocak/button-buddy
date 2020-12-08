@@ -7,7 +7,7 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
   await figma.loadFontAsync({ family: 'Roboto', style: 'Regular' });
   await figma.loadFontAsync({ family: 'Inter', style: 'Bold' });
 
-  figma.showUI(__html__);
+  figma.showUI(__html__, { height: 560, width: 450 });
 
   const sizeStyles = {
     small: {
@@ -106,28 +106,28 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
 
     const rgbUnit = hexToRgbUnitObject(buttonColor);
 
-    if (style === 'BasicSolid') {
+    if (style === 'basicSolid') {
       buttonComponent.fills = [{type: 'SOLID', color: rgbUnit}];
     }
 
-    if (style === 'BasicOutline') {
+    if (style === 'basicOutline') {
       buttonComponent.fills = [];
       buttonComponent.strokeWeight = strokeWeight;
       buttonComponent.strokes = [{type: 'SOLID', color: rgbUnit}];
     }
 
-    if (style === 'Modern') {
+    if (style === 'modern') {
       buttonComponent.fills = [{type: 'SOLID', color: rgbUnit}];
       buttonComponent.effects = [{type: 'DROP_SHADOW', color: {...rgbUnit, a: .4}, offset: {x: 0, y: 4}, radius: 16, visible: true, blendMode: 'NORMAL'}]
     }
 //TODO// Adjust the shadow brightness based on the original color's threshold. OR work with HSL
-    if (style === 'FlatShadow') {
+    if (style === 'flatShadow') {
       buttonComponent.fills = [{type: 'SOLID', color: rgbUnit}];
       buttonComponent.effects = [{type: 'DROP_SHADOW', color: {...rgbUnit, b: rgbUnit.b * .8 , a: 1}, offset: {x: 0, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }];
     }
 
 //TODO// Gradient is vertical but it's position is off on x axis.
-    if (style === 'SoftGradient') {
+    if (style === 'softGradient') {
 
       buttonComponent.fills = [{type: 'GRADIENT_LINEAR',
       gradientTransform: [
@@ -145,9 +145,10 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
             }
           ],
       }];
+      console.log(buttonComponent.fills);
     }
 
-    if (style === 'Glossy') {
+    if (style === 'glossy') {
       buttonComponent.fills = [{type: 'SOLID', color: rgbUnit}];
       buttonComponent.effects = [
         {type: 'INNER_SHADOW', color: {r: 0/255, g: 0/255, b: 0/255, a: 0.2}, offset: {x: 0, y: -8}, radius: 10, visible: true, blendMode: 'NORMAL' },
@@ -155,14 +156,14 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
       ];
     }
 
-    if (style === 'ComicLight') {
+    if (style === 'comicLight') {
       buttonComponent.fills = [{type: 'SOLID', color: {r: 255/255, g: 255/255, b: 255/255}}];
       buttonComponent.strokeWeight = strokeWeight;
       buttonComponent.strokes = [{type: 'SOLID', color: rgbUnit}];
       buttonComponent.effects = [{type: 'DROP_SHADOW', color: {...rgbUnit, a: 1}, offset: {x: -4, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }]
     }
 
-    if (style === 'ComicBold') {
+    if (style === 'comicBold') {
       buttonComponent.fills = [{type: 'SOLID', color: rgbUnit}];
       buttonComponent.strokeWeight = strokeWeight;
       buttonComponent.strokes = [{type: 'SOLID', color: {r: 255/255, g: 255/255, b: 255/255}}];
