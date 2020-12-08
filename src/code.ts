@@ -78,7 +78,7 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
     const buttonComponent = figma.createComponent();
     const text = createText(textColor);
 
-    buttonComponent.name = `${style} Main`;
+    buttonComponent.name = `${style} Base`;
     buttonComponent.layoutMode = 'VERTICAL';
     buttonComponent.counterAxisSizingMode = 'AUTO';
     buttonComponent.cornerRadius = borderRadius;
@@ -239,7 +239,7 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
   const adjustButtonBySize = (size, msg, sizeIndex) => {
     const nodes: SceneNode[] = [];
     const button = buttonCreator({ size, msg });
-    button.name = `${msg.styleValue} Button Main`;
+    button.name = `${msg.styleValue} Button Base`;
     const baseY = sizeIndex * 900;
     const instanceY = 200 + baseY;
     button.y = baseY;
@@ -248,7 +248,7 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
     layouts.forEach(layout => {
       if (layout === 'withoutIcon') {
         states.forEach((state, i) => {
-          const name = `${msg.styleValue} Button / ${size} / false / ${state}`;
+          const name = `${msg.styleValue} Button / ${size} / ${state} / false`;
           const instanceComponent = createInstanceComponent({ main: button, x: i * 300, y: instanceY, name, layout, state });
           figma.currentPage.appendChild(instanceComponent);
           nodes.push(instanceComponent);
@@ -257,7 +257,7 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
 
       if (layout === 'withIcon') {
         states.forEach((state, i) => {
-          const name = `${msg.styleValue} Button / ${size} / true / ${state}`;
+          const name = `${msg.styleValue} Button / ${size} / ${state} / true `;
           const instanceComponent = createInstanceComponent({ main: button, x: i * 300, y: instanceY + 200, name, layout, state });
           figma.currentPage.appendChild(instanceComponent);
           nodes.push(instanceComponent);
