@@ -256,7 +256,7 @@
         <div class='form-group'>
           <label class="color-input">
             <span class="label-text">Button Color</span>
-            <input class="visually-hidden js-color-input" name="fillColor" type='color' value='#1c4efe'>
+            <input class="visually-hidden js-color-input js-dynamic-input" name="fillColor" type='color' value='#1c4efe'>
             <div class="color-input__mask u-gap-top-8">
               <span class="color-input__preview js-color-preview" style="background-color: #1c4efe;"></span>
               <div class="color-input__hex js-color-hex">#1c4efe</div>
@@ -266,7 +266,7 @@
         <div class='form-group'>
           <label class="color-input">
             <span class="label-text">Text Color</span>
-            <input class="visually-hidden js-color-input" name="textColor" type='color' value='#ffffff'>
+            <input class="visually-hidden js-color-input js-dynamic-input" name="textColor" type='color' value='#ffffff'>
             <div class="color-input__mask u-gap-top-8">
               <span class="color-input__preview js-color-preview" style="background-color: #ffffff;"></span>
               <div class="color-input__hex js-color-hex">#ffffff</div>
@@ -286,56 +286,56 @@
           <label class="button-input">
             <input type="radio" checked name="buttonInput" value="basicSolid" class="button-input__input visually-hidden">
             <div class="button-input__mask">
-              <div class="button basic-button">Button</div>
+              <div class="button basic-button" id="button-basic-mask">Button</div>
             </div>
             <div class="button-input__label-text">Basic</div>
           </label>
           <label class="button-input">
             <input type="radio" name="buttonInput" value="basicOutline" class="button-input__input visually-hidden">
             <div class="button-input__mask">
-              <div class="button basic-outline-button">Button</div>
+              <div class="button basic-outline-button" id="button-basic-outline-mask">Button</div>
             </div>
             <div class="button-input__label-text">Basic Outline</div>
           </label>
           <label class="button-input">
             <input type="radio" name="buttonInput" value="modern" class="button-input__input visually-hidden">
             <div class="button-input__mask">
-              <div class="button modern-button">Button</div>
+              <div class="button modern-button" id="button-modern-mask">Button</div>
             </div>
             <div class="button-input__label-text">Modern</div>
           </label>
           <label class="button-input">
             <input type="radio" name="buttonInput" value="glossy" class="button-input__input visually-hidden">
             <div class="button-input__mask">
-              <div class="button glossy-button">Button</div>
+              <div class="button glossy-button" id="button-glossy-mask">Button</div>
             </div>
             <div class="button-input__label-text">Glossy</div>
           </label>
           <label class="button-input">
             <input type="radio" name="buttonInput" value="comicLight" class="button-input__input visually-hidden">
             <div class="button-input__mask">
-              <div class="button comic-light-button">Button</div>
+              <div class="button comic-light-button" id="button-comic-light-mask">Button</div>
             </div>
             <div class="button-input__label-text">Comic Light</div>
           </label>
           <label class="button-input">
             <input type="radio" name="buttonInput" value="comicBold" class="button-input__input visually-hidden">
             <div class="button-input__mask">
-              <div class="button comic-bold-button">Button</div>
+              <div class="button comic-bold-button" id="button-comic-bold-mask">Button</div>
             </div>
             <div class="button-input__label-text">Comic Bold</div>
           </label>
           <label class="button-input">
             <input type="radio" name="buttonInput" value="fancy" class="button-input__input visually-hidden">
             <div class="button-input__mask">
-              <div class="button fancy-button">Button</div>
+              <div class="button fancy-button" id="button-fancy-mask">Button</div>
             </div>
             <div class="button-input__label-text">Fancy</div>
           </label>
           <label class="button-input">
             <input type="radio" name="buttonInput" value="flatShadow" class="button-input__input visually-hidden">
             <div class="button-input__mask">
-              <div class="button flat-shadow-button">Button</div>
+              <div class="button flat-shadow-button" id="button-flat-shadow-mask">Button</div>
             </div>
             <div class="button-input__label-text">Flat Shadow</div>
           </label>
