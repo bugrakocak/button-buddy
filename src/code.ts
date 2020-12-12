@@ -74,9 +74,9 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
     return text;
   }
 
-  const createButton = ({ borderRadius, style, textColor, size, strokeWeight, buttonColor }) => {
+  const createButton = ({ borderRadius, style, secondaryColor, size, strokeWeight, primaryColor }) => {
     const buttonComponent = figma.createComponent();
-    const text = createText(textColor);
+    const text = createText(secondaryColor);
 
     buttonComponent.name = `${style} Base`;
     buttonComponent.layoutMode = 'VERTICAL';
@@ -98,13 +98,13 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
     frame.itemSpacing = 8;
     frame.fills = [];
 
-    const vector = createSideIcon(textColor, size, 'Icon');
+    const vector = createSideIcon(secondaryColor, size, 'Icon');
     frame.insertChild(0, text);
     frame.insertChild(1, vector);
 
     buttonComponent.insertChild(0, frame);
 
-    const rgbUnit = hexToRgbUnitObject(buttonColor);
+    const rgbUnit = hexToRgbUnitObject(primaryColor);
 
     if (style === 'basicSolid') {
       buttonComponent.fills = [{type: 'SOLID', color: rgbUnit}];
@@ -114,6 +114,8 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
       buttonComponent.fills = [];
       buttonComponent.strokeWeight = 2;
       buttonComponent.strokes = [{type: 'SOLID', color: rgbUnit}];
+      const textNode = (buttonComponent.findAll((node) => node.type === 'TEXT')[0] as any);
+      textNode.fills = [{type: 'SOLID', color: rgbUnit }];
     }
 
     if (style === 'modern') {
@@ -210,7 +212,7 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
     if (state === 'hover' || state === 'active') {
       const color = hexToRgbUnitObject(Color(rgbUnitObjectToHex(rgbUnit)).darken(0.4));
       instance.fills = [{ type: 'SOLID', color: color }];
-      if (instance.effects[0].type === 'DROP_SHADOW') {
+      if (instance.effects && instance.effects[0] && instance.effects[0].type === 'DROP_SHADOW') {
         const effectClone = instance.effects.slice();
         const newEffect = {...effectClone[0], color: {...color, a: 1}};
         instance.effects = [newEffect]
@@ -229,13 +231,14 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
   }
 
   const createInstanceComponent = ({ main, x, y, name, layout, state }) => {
-    let instance = main.createInstance();
+    let instance = (main as ComponentNode).createInstance();
     const instanceComponent = figma.createComponent();
     instanceComponent.layoutMode = 'VERTICAL';
     instanceComponent.counterAxisSizingMode = 'AUTO';
     instanceComponent.fills = [];
     instanceComponent.insertChild(0, instance);
-    setPropertiesByState(instance, state, instance.fills[0].color);
+    const color = instance.fills[0] ? instance.fills[0].color : (instance.findAll((node) => node.type === 'TEXT')[0] as any).fills[0].color;
+    setPropertiesByState(instance, state, color);
     instanceComponent.x = x;
     instanceComponent.y = y;
     instanceComponent.name = name;
@@ -245,9 +248,9 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
   const buttonCreator = ({ size, msg }: { size?: string; msg: any }) => createButton({
     borderRadius: msg.borderRadius,
     style: msg.buttonStyle,
-    textColor: msg.textColor,
+    secondaryColor: msg.secondaryColor,
     strokeWeight: msg.strokeWeight,
-    buttonColor: msg.buttonColor,
+    primaryColor: msg.primaryColor,
     size
   });
 
