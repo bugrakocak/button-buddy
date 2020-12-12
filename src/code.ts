@@ -112,7 +112,7 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
 
     if (style === 'basicOutline') {
       buttonComponent.fills = [];
-      buttonComponent.strokeWeight = strokeWeight;
+      buttonComponent.strokeWeight = 2;
       buttonComponent.strokes = [{type: 'SOLID', color: rgbUnit}];
     }
 
@@ -120,33 +120,32 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
       buttonComponent.fills = [{type: 'SOLID', color: rgbUnit}];
       buttonComponent.effects = [{type: 'DROP_SHADOW', color: {...rgbUnit, a: .4}, offset: {x: 0, y: 4}, radius: 16, visible: true, blendMode: 'NORMAL'}]
     }
-//TODO// Adjust the shadow brightness based on the original color's threshold. OR work with HSL
+//TODO// Shadow should be 0.3 darker than the original color.
     if (style === 'flatShadow') {
       buttonComponent.fills = [{type: 'SOLID', color: rgbUnit}];
       buttonComponent.effects = [{type: 'DROP_SHADOW', color: {...rgbUnit, b: rgbUnit.b * .8 , a: 1}, offset: {x: 0, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }];
     }
 
 //TODO// Gradient is vertical but it's position is off on x axis.
-    if (style === 'softGradient') {
-
-      buttonComponent.fills = [{type: 'GRADIENT_LINEAR',
-      gradientTransform: [
-        [0, 1, -1],
-        [1, 0, 0]
-      ],
-          gradientStops: [
-            {
-              position: 0,
-              color: {...rgbUnit, a: 1},
-            },
-            {
-              position: 1,
-              color: {...rgbUnit, b: rgbUnit.b * .6, a: 1},
-            }
-          ],
-      }];
-      console.log(buttonComponent.fills);
-    }
+    // if (style === 'softGradient') {
+    //   buttonComponent.fills = [{type: 'GRADIENT_LINEAR',
+    //   gradientTransform: [
+    //     [0, 1, -1],
+    //     [1, 0, 0]
+    //   ],
+    //       gradientStops: [
+    //         {
+    //           position: 0,
+    //           color: {...rgbUnit, a: 1},
+    //         },
+    //         {
+    //           position: 1,
+    //           color: {...rgbUnit, b: rgbUnit.b * .6, a: 1},
+    //         }
+    //       ],
+    //   }];
+    //   console.log(buttonComponent.fills);
+    // }
 
     if (style === 'glossy') {
       buttonComponent.fills = [{type: 'SOLID', color: rgbUnit}];
@@ -158,17 +157,25 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
 
     if (style === 'comicLight') {
       buttonComponent.fills = [{type: 'SOLID', color: {r: 255/255, g: 255/255, b: 255/255}}];
-      buttonComponent.strokeWeight = strokeWeight;
+      buttonComponent.strokeWeight = 2;
       buttonComponent.strokes = [{type: 'SOLID', color: rgbUnit}];
       buttonComponent.effects = [{type: 'DROP_SHADOW', color: {...rgbUnit, a: 1}, offset: {x: -4, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }]
     }
 
     if (style === 'comicBold') {
       buttonComponent.fills = [{type: 'SOLID', color: rgbUnit}];
-      buttonComponent.strokeWeight = strokeWeight;
+      buttonComponent.strokeWeight = 2;
       buttonComponent.strokes = [{type: 'SOLID', color: {r: 255/255, g: 255/255, b: 255/255}}];
       buttonComponent.effects = [{type: 'DROP_SHADOW', color: {...rgbUnit, a: 1}, offset: {x: -4, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }]
     }
+
+    if (style === 'fancy') {
+      buttonComponent.fills = [{type: 'SOLID', color: rgbUnit}];
+      buttonComponent.strokeWeight = 2;
+      buttonComponent.strokes = [{type: 'SOLID', color: {r: 255/255, g: 255/255, b: 255/255}}];
+      buttonComponent.effects = [{type: 'DROP_SHADOW', color: {...rgbUnit, a: 0.4}, offset: {x: 0, y: 4}, radius: 16, visible: true, blendMode: 'NORMAL' }]
+    }
+
 
     // ** Couldn't find a way to make the icon color equal to buttonColor
     // if (style === 'Fillet') {
@@ -211,6 +218,12 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
     if (state === 'active') {
       instance.fills = [{ type: 'SOLID', color: hexToRgbUnitObject(Color(rgbUnitObjectToHex(rgbUnit)).darken(0.4)) }];
     }
+
+    if (state === 'focus') {
+      instance.strokes = [{ type: 'SOLID', color: hexToRgbUnitObject(Color(rgbUnitObjectToHex(rgbUnit)).lighten(0.4)) }],
+      instance.strokeWeight = 4,
+      instance.strokeAlign = 'OUTSIDE';
+    }
   }
 
   const createInstanceComponent = ({ main, x, y, name, layout, state }) => {
@@ -220,7 +233,7 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
     instanceComponent.counterAxisSizingMode = 'AUTO';
     instanceComponent.fills = [];
     instanceComponent.insertChild(0, instance);
-    setPropertiesByState(instance, state,instance.fills[0].color);
+    setPropertiesByState(instance, state, instance.fills[0].color);
     instanceComponent.x = x;
     instanceComponent.y = y;
     instanceComponent.name = name;
