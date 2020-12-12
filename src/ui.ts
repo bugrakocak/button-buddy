@@ -1,93 +1,97 @@
 import Color from 'color';
 
-const fillColorInput = (document.getElementsByName('fillColor')[0] as HTMLInputElement)
-const textColorInput = (document.getElementsByName('textColor')[0] as HTMLInputElement);
-document.getElementById('form').addEventListener('submit', () => {
-  const radioButtonInputs = document.querySelectorAll<HTMLInputElement>('input[name="buttonInput"]');
-  const textColor = textColorInput.value;
-  const buttonColor = fillColorInput.value;
-  const styleValue = Array.from(radioButtonInputs).find(radio => radio.checked).value;
-  const borderRadius = parseInt((document.getElementsByName('borderRadius')[0] as HTMLInputElement).value, 10) || 0;
-  parent.postMessage({ pluginMessage: { type: 'button-maker', borderRadius, styleValue, textColor, buttonColor, strokeWeight: 1 } }, '*')
+const formElements = {
+  form: document.getElementById('form'),
+  fillColorInput: (document.getElementsByName('fillColor')[0] as HTMLInputElement),
+  textColorInput: (document.getElementsByName('textColor')[0] as HTMLInputElement),
+  radiusInput: (document.getElementsByName('borderRadius')[0] as HTMLInputElement),
+  radioButtonInputs: (document.getElementsByName('buttonInput') as NodeListOf<HTMLInputElement>),
+  colorInputs: document.getElementsByClassName('js-color-input')
+}
+
+const buttons = {
+  basicMask: document.getElementById('button-basic-mask'),
+  basicOutlineMask: document.getElementById('button-basic-outline-mask'),
+  modernMask: document.getElementById('button-modern-mask'),
+  glossyMask: document.getElementById('button-glossy-mask'),
+  comicLightMask: document.getElementById('button-comic-light-mask'),
+  comicBoldMask: document.getElementById('button-comic-bold-mask'),
+  fancyMask: document.getElementById('button-fancy-mask'),
+  flatShadowMask: document.getElementById('button-flat-shadow-mask'),
+}
+
+formElements.form.addEventListener('submit', () => {
+  const buttonStyle = Array.from(formElements.radioButtonInputs).find(radio => radio.checked).value;
+  const textColor = formElements.textColorInput.value;
+  const buttonColor = formElements.fillColorInput.value;
+  const borderRadius = parseInt(formElements.radiusInput.value, 10) || 0;
+  parent.postMessage({ pluginMessage: { type: 'button-maker', borderRadius, buttonStyle, textColor, buttonColor, strokeWeight: 1 } }, '*')
 })
 
-const colorInputs = document.getElementsByClassName('js-color-input');
 
-const radiusElement = document.getElementById('radiusInput');
+type UIButtonStyleTypes = 'radius' | 'fillColor' | 'textColor';
 
-const buttonBasicMask = document.getElementById('button-basic-mask');
-const buttonBasicOutlineMask = document.getElementById('button-basic-outline-mask');
-const buttonModernMask = document.getElementById('button-modern-mask');
-const buttonGlossyMask = document.getElementById('button-glossy-mask');
-const buttonComicLightMask = document.getElementById('button-comic-light-mask');
-const buttonComicBoldMask = document.getElementById('button-comic-bold-mask');
-const buttonFancyMask = document.getElementById('button-fancy-mask');
-const buttonFlatShadowMask = document.getElementById('button-flat-shadow-mask');
-
-const setStyles = (type, value) => {
+const updateUIButtonStyles = (type: UIButtonStyleTypes, value: string) => {
   if (type === 'radius') {
-    if (!value) {
-      value = 0
-    }
-    buttonBasicMask.style.borderRadius = `${value}px`;
-    buttonBasicOutlineMask.style.borderRadius = `${value}px`;
-    buttonModernMask.style.borderRadius = `${value}px`;
-    buttonGlossyMask.style.borderRadius = `${value}px`;
-    buttonComicLightMask.style.borderRadius = `${value}px`;
-    buttonComicBoldMask.style.borderRadius = `${value}px`;
-    buttonFancyMask.style.borderRadius = `${value}px`;
-    buttonFlatShadowMask.style.borderRadius = `${value}px`;
+    buttons.basicMask.style.borderRadius = `${value}px`;
+    buttons.basicOutlineMask.style.borderRadius = `${value}px`;
+    buttons.modernMask.style.borderRadius = `${value}px`;
+    buttons.glossyMask.style.borderRadius = `${value}px`;
+    buttons.comicLightMask.style.borderRadius = `${value}px`;
+    buttons.comicBoldMask.style.borderRadius = `${value}px`;
+    buttons.fancyMask.style.borderRadius = `${value}px`;
+    buttons.flatShadowMask.style.borderRadius = `${value}px`;
   }
 
   if (type === 'fillColor') {
     const rgb = Color(value).rgb().unitObject();
-    buttonBasicMask.style.backgroundColor = value;
-    buttonBasicOutlineMask.style.borderColor = value;
-    buttonModernMask.style.backgroundColor = value;
-    buttonModernMask.style.boxShadow = `0 5px 10px rgba(${rgb.r * 255}, ${rgb.g * 255}, ${rgb.b * 255}, 0.3)`;
-    buttonGlossyMask.style.backgroundColor = value;
-    buttonComicLightMask.style.boxShadow = `-4px 4px 0 ${value}`;
-    buttonComicLightMask.style.borderColor = value;
-    buttonComicBoldMask.style.backgroundColor = value;
-    buttonComicBoldMask.style.boxShadow = `-4px 4px 0 ${value}`;
-    buttonFancyMask.style.backgroundColor = value;
-    buttonFancyMask.style.boxShadow = `0 4px 16px rgba(${rgb.r * 255}, ${rgb.g * 255}, ${rgb.b * 255}, 0.4)`;
+    buttons.basicMask.style.backgroundColor = value;
+    buttons.basicOutlineMask.style.borderColor = value;
+    buttons.modernMask.style.backgroundColor = value;
+    buttons.modernMask.style.boxShadow = `0 5px 10px rgba(${rgb.r * 255}, ${rgb.g * 255}, ${rgb.b * 255}, 0.3)`;
+    buttons.glossyMask.style.backgroundColor = value;
+    buttons.comicLightMask.style.boxShadow = `-4px 4px 0 ${value}`;
+    buttons.comicLightMask.style.borderColor = value;
+    buttons.comicBoldMask.style.backgroundColor = value;
+    buttons.comicBoldMask.style.boxShadow = `-4px 4px 0 ${value}`;
+    buttons.fancyMask.style.backgroundColor = value;
+    buttons.fancyMask.style.boxShadow = `0 4px 16px rgba(${rgb.r * 255}, ${rgb.g * 255}, ${rgb.b * 255}, 0.4)`;
     const darken = Color(value).darken(0.3).hex();
-    buttonFlatShadowMask.style.boxShadow = `0 4px 0 ${darken}`;
-    buttonFlatShadowMask.style.backgroundColor = value;
+    buttons.flatShadowMask.style.boxShadow = `0 4px 0 ${darken}`;
+    buttons.flatShadowMask.style.backgroundColor = value;
   }
 
   if (type === 'textColor') {
-    buttonBasicMask.style.color = value;
-    buttonBasicOutlineMask.style.color = value;
-    buttonModernMask.style.color = value;
-    buttonGlossyMask.style.color = value;
-    buttonComicLightMask.style.color = value;
-    buttonComicBoldMask.style.color = value;
-    buttonFancyMask.style.color = value;
-    buttonFlatShadowMask.style.color = value;
+    buttons.basicMask.style.color = value;
+    buttons.basicOutlineMask.style.color = value;
+    buttons.modernMask.style.color = value;
+    buttons.glossyMask.style.color = value;
+    buttons.comicLightMask.style.color = value;
+    buttons.comicBoldMask.style.color = value;
+    buttons.fancyMask.style.color = value;
+    buttons.flatShadowMask.style.color = value;
   }
 }
 
-fillColorInput.addEventListener('change', (event) => {
-  const hex = (event.target as any).value;
-  setStyles('fillColor', hex);
+formElements.fillColorInput.addEventListener('change', (event) => {
+  const hexValue = (event.target as any).value;
+  updateUIButtonStyles('fillColor', hexValue);
 })
 
-textColorInput.addEventListener('change', (event) => {
+formElements.textColorInput.addEventListener('change', (event) => {
   const hex = (event.target as any).value;
-  setStyles('textColor', hex);
+  updateUIButtonStyles('textColor', hex);
 })
 
-radiusElement.addEventListener('keyup', (event) => {
+formElements.radiusInput.addEventListener('keyup', (event) => {
   const value = (event.target as HTMLInputElement).value;
-  setStyles('radius', value);
+  updateUIButtonStyles('radius', value);
 })
 
-Array.from(colorInputs).forEach(input => {
+Array.from(formElements.colorInputs).forEach(input => {
   input.addEventListener('change', (event) => {
     const hex = (event.target as any).value;
-    input.parentElement.querySelector('.js-color-hex').textContent = hex.substring(1);
-    input.parentElement.querySelector<HTMLSpanElement>('.js-color-preview').style.backgroundColor = hex;
+    input.parentElement.getElementsByClassName('js-color-hex')[0].textContent = hex.substring(1);
+    (input.parentElement.getElementsByClassName('js-color-preview')[0] as HTMLElement).style.backgroundColor = hex;
   })
 })

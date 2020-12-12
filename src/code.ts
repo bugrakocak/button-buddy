@@ -242,7 +242,7 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
 
   const buttonCreator = ({ size, msg }: { size?: string; msg: any }) => createButton({
     borderRadius: msg.borderRadius,
-    style: msg.styleValue,
+    style: msg.buttonStyle,
     textColor: msg.textColor,
     strokeWeight: msg.strokeWeight,
     buttonColor: msg.buttonColor,
@@ -252,7 +252,7 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
   const adjustButtonBySize = (size, msg, sizeIndex) => {
     const nodes: SceneNode[] = [];
     const button = buttonCreator({ size, msg });
-    button.name = `${msg.styleValue} Button Base`;
+    button.name = `${msg.buttonStyle} Button Base`;
     const baseY = sizeIndex * 900;
     const instanceY = 200 + baseY;
     button.y = baseY;
@@ -261,7 +261,7 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
     layouts.forEach(layout => {
       if (layout === 'withoutIcon') {
         states.forEach((state, i) => {
-          const name = `${msg.styleValue} Button / ${size} / ${state} / false`;
+          const name = `${msg.buttonStyle} Button / ${size} / ${state} / false`;
           const instanceComponent = createInstanceComponent({ main: button, x: i * 300, y: instanceY, name, layout, state });
           figma.currentPage.appendChild(instanceComponent);
           nodes.push(instanceComponent);
@@ -270,7 +270,7 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
 
       if (layout === 'withIcon') {
         states.forEach((state, i) => {
-          const name = `${msg.styleValue} Button / ${size} / ${state} / true `;
+          const name = `${msg.buttonStyle} Button / ${size} / ${state} / true `;
           const instanceComponent = createInstanceComponent({ main: button, x: i * 300, y: instanceY + 200, name, layout, state });
           figma.currentPage.appendChild(instanceComponent);
           nodes.push(instanceComponent);
@@ -295,6 +295,6 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
       figma.viewport.scrollAndZoomIntoView(nodes);
     }
 
-    figma.closePlugin(`Created ${msg.styleValue} buttons 🎉`);
+    figma.closePlugin(`Created ${msg.buttonStyle} buttons 🎉`);
   };
 })();
