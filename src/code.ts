@@ -206,17 +206,19 @@ const rgbUnitObjectToHex = ({r, g, b}) => Color({ r: r * 255, g: g * 255, b: b *
     return component;
   }
 
-  const setPropertiesByState = (instance, state, rgbUnit) => {
-    if (state === 'hover') {
-      instance.fills = [{ type: 'SOLID', color: hexToRgbUnitObject(Color(rgbUnitObjectToHex(rgbUnit)).darken(0.4)) }];
+  const setPropertiesByState = (instance: InstanceNode, state, rgbUnit) => {
+    if (state === 'hover' || state === 'active') {
+      const color = hexToRgbUnitObject(Color(rgbUnitObjectToHex(rgbUnit)).darken(0.4));
+      instance.fills = [{ type: 'SOLID', color: color }];
+      if (instance.effects[0].type === 'DROP_SHADOW') {
+        const effectClone = instance.effects.slice();
+        const newEffect = {...effectClone[0], color: {...color, a: 1}};
+        instance.effects = [newEffect]
+      }
     }
 
     if (state === 'disabled') {
       instance.opacity = 0.4;
-    }
-
-    if (state === 'active') {
-      instance.fills = [{ type: 'SOLID', color: hexToRgbUnitObject(Color(rgbUnitObjectToHex(rgbUnit)).darken(0.4)) }];
     }
 
     if (state === 'focus') {
