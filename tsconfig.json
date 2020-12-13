@@ -5,6 +5,7 @@
       "./node_modules/@types",
       "./node_modules/@figma",
     ],
+    "lib": ["esnext"],
     "allowSyntheticDefaultImports": true,
   },
 }
