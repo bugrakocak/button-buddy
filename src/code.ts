@@ -122,7 +122,7 @@ import { LAYOUTS, SIZES, STATES, GAP_BETWEEN_LAYOUTS, GAP_BETWEEN_MAIN_BUTTON_AN
   const createMainButton = (msg, size, y) => {
     const { borderRadius, buttonStyle, secondaryColor, strokeWeight, primaryColor } = msg;
     const button = createButtonComponent({ size, buttonStyle, primaryColor, secondaryColor, strokeWeight, borderRadius });
-    button.name = `${buttonStyle} Button Base`;
+    button.name = `${buttonStyle} ${size} Base`;
     button.y = y;
     return button;
   }
