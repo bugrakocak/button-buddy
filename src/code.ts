@@ -176,7 +176,7 @@ import { LAYOUTS, SIZES, STATES, GAP_BETWEEN_LAYOUTS, GAP_BETWEEN_MAIN_BUTTON_AN
       const allNodes = [...instanceNodes, ...mainNodes];
 
       figma.currentPage.selection = allNodes;
-      figma.combineAsVariants(instanceNodes, figma.currentPage);
+      figma.combineAsVariants(instanceNodes, figma.currentPage).clipsContent = false;
       figma.viewport.scrollAndZoomIntoView(allNodes);
     }
 
