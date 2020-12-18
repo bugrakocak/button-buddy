@@ -162,7 +162,7 @@ import { LAYOUTS, SIZES, STATES, GAP_BETWEEN_LAYOUTS, GAP_BETWEEN_MAIN_BUTTON_AN
     const instanceNodes: ComponentNode[] = [];
     const mainNodes: ComponentNode[] = [];
 
-    if (msg.type === 'button-maker') {
+    if (msg.type === 'button-buddy') {
       SIZES.forEach((size, i) => {
         const mainButtonY = i * GAP_BETWEEN_LAYOUTS;
         const mainButton = createMainButton(msg, size, mainButtonY);

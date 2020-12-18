@@ -25,7 +25,7 @@ formElements.form.addEventListener('submit', () => {
   const secondaryColor = formElements.secondaryColorInput.value;
   const primaryColor = formElements.primaryColorInput.value;
   const borderRadius = parseInt(formElements.radiusInput.value, 10) || 0;
-  parent.postMessage({ pluginMessage: { type: 'button-maker', borderRadius, buttonStyle, secondaryColor, primaryColor, strokeWeight: 1 } }, '*')
+  parent.postMessage({ pluginMessage: { type: 'button-buddy', borderRadius, buttonStyle, secondaryColor, primaryColor, strokeWeight: 1 } }, '*')
 })
 
 
