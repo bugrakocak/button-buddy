@@ -116,6 +116,14 @@ p {
 	align-items: center;
 }
 
-.hero-right {
-	text-align: right;
+@media screen and (min-width: 992px) {
+	.hero-right {
+		text-align: right;
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.hero-right {
+		margin-top: 64px;
+	}
 }
