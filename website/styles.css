@@ -80,6 +80,11 @@ p {
 	color: #000000;
 }
 
+.disabled {
+	opacity: .4;
+	pointer-events: none;
+}
+
 .button-svg {
 	margin-left: 4px;
 }
