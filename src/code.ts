@@ -122,7 +122,7 @@ import { LAYOUTS, SIZES, STATES, GAP_BETWEEN_LAYOUTS, GAP_BETWEEN_MAIN_BUTTON_AN
   const createMainButton = (msg, size, y) => {
     const { borderRadius, buttonStyle, secondaryColor, strokeWeight, primaryColor } = msg;
     const button = createButtonComponent({ size, buttonStyle, primaryColor, secondaryColor, strokeWeight, borderRadius });
-    button.name = `${buttonStyle} ${size} Base`;
+    button.name = `${buttonStyle} ${size.toLowerCase()} Base`;
     button.y = y;
     return button;
   }
@@ -143,13 +143,13 @@ import { LAYOUTS, SIZES, STATES, GAP_BETWEEN_LAYOUTS, GAP_BETWEEN_MAIN_BUTTON_AN
     const nodes: ComponentNode[] = [];
     LAYOUTS.forEach(layout => {
       if (layout === 'WITHOUT_ICON') {
-        const nameBuilder = (state) => `${buttonStyle} Button / ${size} / ${state} / false`;
+        const nameBuilder = (state) => `${buttonStyle} Button / ${size.toLowerCase()} / ${state} / false`;
         const newNodes = createButtonsByState(mainButton, buttonStyle, layout, secondaryColor, instanceY, instanceX, nameBuilder);
         nodes.push(...newNodes);
       }
 
       if (layout === 'WITH_ICON') {
-        const nameBuilder = (state) => `${buttonStyle} Button / ${size} / ${state} / true`;
+        const nameBuilder = (state) => `${buttonStyle} Button / ${size.toLowerCase()} / ${state} / true`;
         const newNodes = createButtonsByState(mainButton, buttonStyle, layout, secondaryColor, instanceY + 200, instanceX, nameBuilder);
         nodes.push(...newNodes);
       }
