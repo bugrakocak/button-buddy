@@ -42,6 +42,9 @@ h2 {
     max-width: 80%;
     margin-top: 0px;
     margin-bottom: 1rem;
+}
+
+.emphasized {
     background: linear-gradient(270deg, #DB00FF 12.14%, #FF0099 60.19%, #FF8038 100%);
     background-clip: text;
     -webkit-background-clip: text;
