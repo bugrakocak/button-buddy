@@ -12,6 +12,9 @@ body {
 	font-family: 'Inter', sans-serif;
 	background-color: #0E121B;
 	height: 100%;
+	background-color: #0E121B;
+	background-image: radial-gradient(rgba(255, 0, 153, 0.2) 1px, #0E121B 1px);
+	background-size: 20px 20px;
 }
 
 .menu {
@@ -34,6 +37,7 @@ h1 {
 	font-weight: 700;
 	line-height: 4.5rem;
 	color: #ffffff;
+	margin-top: 1.5rem;
 }
 
 p {
@@ -50,15 +54,16 @@ p {
 }
 
 .badge {
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
 	padding: 0.5rem 1.5rem 0.5rem;
-	background: rgba(255, 0, 153, 0.2);
+	background: #3E2225;
 	border-radius: 50px;
 	font-weight: 700;
 	line-height: 2rem;
 	letter-spacing: 0.1rem;
 	text-transform: uppercase;
-	color: #FF0099;
+	color: #FF644E;
 }
 
 .primaryButton {
@@ -114,9 +119,7 @@ p {
 	max-width: 100%;
 }
 
-.left {
-	width: calc(50% - 160px);
-	padding-left: 160px;
+.hero-left {
 	display: flex;
 	align-items: center;
 }
@@ -131,4 +134,40 @@ p {
 	.hero-right {
 		margin-top: 64px;
 	}
+}
+
+footer {
+	background-color: #000000;
+	padding: 1rem 0;
+	
+}
+
+.footer-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #8091B2;
+}
+
+.author-list {
+	list-style-type: none;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	margin-left: 0.25rem;
+}
+
+.author-link {
+	color: #ff0099;
+	text-decoration: none;
+	transition-duration: 200ms;
+	transition-property: color;
+}
+
+.author-link:hover {
+	color: #ff0099;
+}
+
+.amperstamp {
+	margin: 0 0.25rem;
 }
