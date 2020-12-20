@@ -1,7 +1,9 @@
 const sizeStyles = {
   SMALL: {
-    verticalPadding: 8,
-    horizontalPadding: 16,
+    paddingTop: 8,
+    paddingBottom: 8,
+    paddingLeft: 16,
+    paddingRight: 16,
     iconFrameSize: 16,
     fontSize: 14,
     lineHeight: {
@@ -10,8 +12,10 @@ const sizeStyles = {
     },
   },
   MEDIUM: {
-    verticalPadding: 12,
-    horizontalPadding: 24,
+    paddingTop: 12,
+    paddingBottom: 12,
+    paddingLeft: 24,
+    paddingRight: 24,
     iconFrameSize: 24,
     fontSize: 16,
     lineHeight: {
@@ -20,8 +24,10 @@ const sizeStyles = {
     },
   },
   LARGE: {
-    verticalPadding: 16,
-    horizontalPadding: 32,
+    paddingTop: 16,
+    paddingBottom: 16,
+    paddingLeft: 32,
+    paddingRight: 32,
     iconFrameSize: 32,
     fontSize: 24,
     lineHeight: {

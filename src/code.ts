@@ -29,8 +29,10 @@ import { LAYOUTS, SIZES, STATES, GAP_BETWEEN_LAYOUTS, GAP_BETWEEN_MAIN_BUTTON_AN
     button.strokeWeight = strokeWeight;
 
     const sizeStyle = sizeStyles[size];
-    button.verticalPadding = sizeStyle.verticalPadding;
-    button.horizontalPadding = sizeStyle.horizontalPadding;
+    button.paddingTop = sizeStyle.paddingTop
+    button.paddingBottom = sizeStyle.paddingBottom
+    button.paddingLeft = sizeStyle.paddingLeft
+    button.paddingRight = sizeStyle.paddingRight
     text.fontSize = sizeStyle.fontSize;
     text.lineHeight = sizeStyle.lineHeight;
 
@@ -38,7 +40,7 @@ import { LAYOUTS, SIZES, STATES, GAP_BETWEEN_LAYOUTS, GAP_BETWEEN_MAIN_BUTTON_AN
     frame.name = 'Content';
     frame.layoutMode = 'HORIZONTAL';
     frame.counterAxisSizingMode = 'AUTO';
-    frame.layoutAlign = 'CENTER';
+    frame.layoutAlign = 'STRETCH';
     frame.itemSpacing = 8;
     frame.fills = [];
 
@@ -120,8 +122,8 @@ import { LAYOUTS, SIZES, STATES, GAP_BETWEEN_LAYOUTS, GAP_BETWEEN_MAIN_BUTTON_AN
   }
 
   const createMainButton = (msg, size, y) => {
-    const { borderRadius, buttonStyle, secondaryColor, strokeWeight, primaryColor } = msg;
-    const button = createButtonComponent({ size, buttonStyle, primaryColor, secondaryColor, strokeWeight, borderRadius });
+    const { borderRadius, buttonStyle, secondaryColor, strokeWeight, primaryColor} = msg;
+    const button = createButtonComponent({ size, buttonStyle, primaryColor, secondaryColor, strokeWeight, borderRadius});
     button.name = `${buttonStyle} ${size.toLowerCase()} Base`;
     button.y = y;
     return button;
