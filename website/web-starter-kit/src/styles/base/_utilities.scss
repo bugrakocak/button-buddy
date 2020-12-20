@@ -76,6 +76,7 @@ $g-utilities: (
   'color': (
     property: color,
     values: (
+      'white': $color-white,
       'muted': $g-text-muted-color,
       'primary': $color-primary,
       'success': $color-success,
@@ -205,7 +206,12 @@ $g-utilities: (
   ),
   'text-align': (
     property: text-align,
-    values: left right center justify,
+    values: left
+      (
+        value: right,
+        responsive: true,
+      )
+      center justify,
   ),
   'text-transform': (
     property: text-transform,

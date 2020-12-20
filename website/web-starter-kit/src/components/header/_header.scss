@@ -1,4 +1,9 @@
 .header {
+  $z-index: 1;
+  position: absolute;
+  z-index: $z-index;
+  width: 100%;
+
   &__menu {
     @include list-unstyled($margin-bottom: 0, $margin-top: 0);
     display: flex;

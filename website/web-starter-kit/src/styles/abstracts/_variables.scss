@@ -76,6 +76,7 @@ $g-paragraph-margin-top: 1rem !default;
 // medium: 32px
 // large: 40px
 // xlarge:  48px
+// 2xlarge:  64px
 
 $g-base-gap: 1.5rem !default;
 $g-gaps: (
@@ -97,6 +98,9 @@ $g-gaps: (
   ),
   xlarge: (
     $g-base-gap * 2,
+  ),
+  2xlarge: (
+    $g-base-gap * (8 / 3),
   ),
 );
 

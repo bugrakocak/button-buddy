@@ -1,0 +1,37 @@
+.hero {
+  $z-index: 0;
+  position: relative;
+  z-index: $z-index;
+  padding-top: px-to-rem(240px);
+  padding-bottom: px-to-rem(240px);
+  background-image: radial-gradient(rgba(255, 0, 153, 0.2) 1px, $color-vulcan 1px);
+  background-size: px-to-rem(20px) px-to-rem(20px);
+
+  &::after {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    background-color: $color-black;
+
+    @include media-breakpoint-up(lg) {
+      content: '';
+    }
+  }
+
+  &__container {
+    position: relative;
+    z-index: $z-index + 1;
+  }
+
+  &__emphasized {
+    display: inline-block;
+    background: linear-gradient(270deg, #db00ff 12.14%, #f09 60.19%, #ff8038 100%);
+    // stylelint-disable-next-line property-no-vendor-prefix
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
