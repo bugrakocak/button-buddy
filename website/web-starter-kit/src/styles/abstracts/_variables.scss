@@ -19,10 +19,10 @@ $g-link-hover-decoration: underline !default;
 // Typography
 // -------------------------
 
-$g-primary-font: 'Inter';
-$g-secondary-font: 'Metropolis';
+$g-primary-font-family: 'Inter';
+$g-secondary-font-family: 'Metropolis';
 
-$g-font-family-sans-serif: $g-primary-font, 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+$g-font-family-sans-serif: $g-primary-font-family, 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
 $g-font-family-base: $g-font-family-sans-serif !default;
 
 // $g-font-size-root effects the value of `rem`, which is used for as well font sizes, paddings and margins
@@ -39,7 +39,7 @@ $g-font-size-h4: px-to-rem(18px) !default;
 $g-font-size-h5: 1rem !default;
 $g-font-size-h6: px-to-rem(14px) !default;
 
-$g-headings-font-family: $g-secondary-font !default;
+$g-headings-font-family: $g-secondary-font-family !default;
 $g-headings-font-weight: 700 !default;
 $g-headings-line-height: 1.1 !default;
 $g-headings-margin-bottom: 1rem !default;

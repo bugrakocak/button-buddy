@@ -38,8 +38,9 @@ $color-black: #000;
 // Custom Colors
 //
 
-$color-vulcan: #0E121B;
-$color-wild-blue-yonder: #8091B2;;
+$color-vulcan: #0e121b;
+$color-wild-blue-yonder: #8091b2;
+$color-hollywood-cerise: #f09;
 
 //
 // Project Colors
@@ -59,8 +60,8 @@ $color-info: #a0d3e8;
 $g-body-background-color: $color-vulcan !default;
 $g-text-color: $color-wild-blue-yonder !default;
 $g-headings-color: $color-white !default;
-$g-link-color: $color-primary !default;
-$g-link-hover-color: darken($g-link-color, 15%) !default;
+$g-link-color: $color-wild-blue-yonder !default;
+$g-link-hover-color: $color-hollywood-cerise !default;
 $g-border-color: color-palette('gray', 100) !default;
 $g-text-muted-color: color-palette('gray', 600) !default;
 $g-hr-border-color: $g-border-color !default;
