@@ -38,6 +38,9 @@ $color-black: #000;
 // Custom Colors
 //
 
+$color-vulcan: #0E121B;
+$color-wild-blue-yonder: #8091B2;;
+
 //
 // Project Colors
 //
@@ -53,9 +56,9 @@ $color-info: #a0d3e8;
 // Project Color Configs
 // -------------------------
 
-$g-body-background-color: $color-white !default;
-$g-text-color: color-palette('gray', 900) !default;
-$g-headings-color: inherit !default;
+$g-body-background-color: $color-vulcan !default;
+$g-text-color: $color-wild-blue-yonder !default;
+$g-headings-color: $color-white !default;
 $g-link-color: $color-primary !default;
 $g-link-hover-color: darken($g-link-color, 15%) !default;
 $g-border-color: color-palette('gray', 100) !default;
