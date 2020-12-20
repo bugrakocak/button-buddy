@@ -108,6 +108,7 @@ import { LAYOUTS, SIZES, STATES, GAP_BETWEEN_LAYOUTS, GAP_BETWEEN_MAIN_BUTTON_AN
 
   const createInstanceComponent = ({ mainButton, x, y, name, layout, state, buttonStyle, secondaryColor }) => {
     let instance = (mainButton as ComponentNode).createInstance();
+    instance.layoutAlign = 'STRETCH'
     const instanceComponent = figma.createComponent();
     instanceComponent.layoutMode = 'VERTICAL';
     instanceComponent.counterAxisSizingMode = 'AUTO';
