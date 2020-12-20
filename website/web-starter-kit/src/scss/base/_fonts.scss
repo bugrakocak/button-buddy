@@ -19,3 +19,8 @@
 //  Mixin Usage
 //  @include font-face($fontName, $fontFolder, $fontFileName, $fontWeight: normal, $fontStyle: normal);
 //
+
+@include font-face('Metropolis', '../../fonts/Metropolis', 'Metropolis-Bold', 700);
+@include font-face('Inter', '../../fonts/Inter', 'Inter-Regular', 400);
+@include font-face('Inter', '../../fonts/Inter', 'Inter-SemiBold', 600);
+@include font-face('Inter', '../../fonts/Inter', 'Inter-Bold', 700);
