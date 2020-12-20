@@ -21,7 +21,7 @@ export function syncImages() {
   return gulp
     .src('dummy.ext', { allowEmpty: true })
     .pipe(
-      dirSync(`${paths.img}`, `${paths.styleguide.dist}/${paths.styleguide.assets.images}`, {
+      dirSync(`${paths.img}`, `${envPath}/${paths.assets.img}`, {
         ignore: ['.gitkeep'],
         nodelete: `${appConfig.spriteFileBaseName}.svg`,
       }),

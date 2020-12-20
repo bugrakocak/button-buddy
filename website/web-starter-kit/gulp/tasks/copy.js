@@ -4,9 +4,7 @@ import paths from '../../config/paths';
 import { envPath } from '../../config/env';
 
 export function copyImages() {
-  return gulp
-    .src(`${paths.img}/**/*`)
-    .pipe(gulp.dest(`${paths.styleguide.dist}/${paths.styleguide.assets.images}`));
+  return gulp.src(`${paths.img}/**/*`).pipe(gulp.dest(`${envPath}/${paths.assets.img}`));
 }
 
 export function copyFonts() {
