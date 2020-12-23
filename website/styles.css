@@ -32,17 +32,17 @@ body {
 }
 
 h1, h2 {
-	font-size: 3rem;
+	font-size: 3.5rem;
 	font-weight: 700;
-	line-height: 4rem;
+	line-height: 4.5rem;
 	color: #ffffff;
 	margin-top: 1.5rem;
 	margin-bottom: 1rem;
 }
 
 p {
-	font-size: 1.5rem;
-	line-height: 2rem;
+	font-size: 1.125rem;
+	line-height: 1.75rem;
 	color: var(--midnightMoon);
 }
 
@@ -70,10 +70,6 @@ h6 {
 	padding-bottom: 128px;
 }
 
-.content {
-	max-width: 80%;
-}
-
 .emphasized {
 	background: linear-gradient(270deg, #DB00FF 12.14%, var(--pinky) 60.19%, #FF8038 100%);
 	background-clip: text;
@@ -82,15 +78,9 @@ h6 {
 }
 
 .blockquote {
-	font-size: 1.125rem;
-	line-height: 1.75rem;
 	padding: .5rem 1rem;
-	border-left: .25rem solid var(--pinky);
+	border-left: .375rem solid var(--pinky);
 	margin: 1rem 0 2rem;
-	border-top-left-radius: 0;
-	border-top-right-radius: 4px;
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 4px;
 }
 
 .badge {
@@ -166,7 +156,7 @@ h6 {
 
 @media screen and (min-width: 992px) {
 	.hero-right {
-		text-align: right;
+		text-align: left;
 	}
 }
 
