@@ -1,7 +1,8 @@
 import { hexToRgbUnitObject } from "./utils";
 
-const setButtonStyles = (button, buttonStyle, primaryColor) => {
+const setButtonStyles = (button, buttonStyle, primaryColor, secondaryColor) => {
   const primaryColorAsRgbUnit = hexToRgbUnitObject(primaryColor);
+  const secondaryColorAsRgbUnit = hexToRgbUnitObject(secondaryColor);
 
   if (buttonStyle === 'basicSolid') {
     button.fills = [{type: 'SOLID', color: primaryColorAsRgbUnit}];
@@ -37,7 +38,7 @@ const setButtonStyles = (button, buttonStyle, primaryColor) => {
   }
 
   if (buttonStyle === 'comicLight') {
-    button.fills = [{type: 'SOLID', color: {r: 255/255, g: 255/255, b: 255/255}}];
+    button.fills = [{type: 'SOLID', color: secondaryColorAsRgbUnit}];
     button.strokeWeight = 2;
     button.strokes = [{type: 'SOLID', color: primaryColorAsRgbUnit}];
     button.effects = [{type: 'DROP_SHADOW', color: {...primaryColorAsRgbUnit, a: 1}, offset: {x: -4, y: 4}, radius: 0, visible: true, blendMode: 'NORMAL' }]

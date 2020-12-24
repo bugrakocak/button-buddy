@@ -60,7 +60,7 @@ import { LAYOUTS, SIZES, STATES, GAP_BETWEEN_LAYOUTS, GAP_BETWEEN_MAIN_BUTTON_AN
     button.insertChild(0, frame);
 
     return {
-      mainComponent: setButtonStyles(button, buttonStyle, primaryColor),
+      mainComponent: setButtonStyles(button, buttonStyle, primaryColor, secondaryColor),
       iconComponent: sideIcon,
     };
   }
