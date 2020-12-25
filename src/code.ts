@@ -1,10 +1,10 @@
 import Color from 'color';
-import setButtonStyles from './setButtonStyles';
+import styleByButtonType from './styleByButtonType';
 import sizeStyles from './sizeStyles';
 import iconsBySize from './iconsBySize';
 import createText from './createText';
 import { hexToRgbUnitObject, rgbUnitObjectToHex } from './utils';
-import { LAYOUTS, SIZES, STATES, GAP_BETWEEN_LAYOUTS, GAP_BETWEEN_MAIN_BUTTON_AND_INSTANCE } from './constants';
+import { LAYOUTS, SIZES, STATES, SIZE_GROUP_DISTANCE, MAIN_BUTTON_AND_INSTANCE_HORIZONTAL_OFFSET, ICON_TOP_OFFSET } from './constants';
 
 (async () => {
   await figma.loadFontAsync({ family: 'Roboto', style: 'Regular' });
@@ -12,7 +12,7 @@ import { LAYOUTS, SIZES, STATES, GAP_BETWEEN_LAYOUTS, GAP_BETWEEN_MAIN_BUTTON_AN
 
   figma.showUI(__html__, { height: 560, width: 450 });
 
-  const createSideIcon = (color, size, name, y) => {
+  const createIcon = ({ color, size, name, y }) => {
     const iconNode = figma.createNodeFromSvg(iconsBySize[size](color));
     iconNode.name = name;
     const component = figma.createComponent();
@@ -24,25 +24,25 @@ import { LAYOUTS, SIZES, STATES, GAP_BETWEEN_LAYOUTS, GAP_BETWEEN_MAIN_BUTTON_AN
     return component;
   };
 
-  const createButtonComponent = ({ y, size, buttonStyle, primaryColor, secondaryColor, strokeWeight, borderRadius  }) => {
+  const createBaseButton = ({ styles, size, y }) => {
+    const { buttonStyle, strokeWeight, borderRadius  } = styles;
     const button = figma.createComponent();
-
     const sizeStyle = sizeStyles[size];
     button.layoutMode = 'VERTICAL';
     button.counterAxisSizingMode = 'AUTO';
     button.cornerRadius = borderRadius;
     button.strokeWeight = strokeWeight;
-    button.name = `${buttonStyle} ${size.toLowerCase()} Base`;
-    button.y = y;
     button.paddingTop = sizeStyle.paddingTop
     button.paddingBottom = sizeStyle.paddingBottom
     button.paddingLeft = sizeStyle.paddingLeft
     button.paddingRight = sizeStyle.paddingRight
+    button.y = y;
+    button.name = `${buttonStyle} ${size.toLowerCase()} Base`;
 
-    const text = createText(secondaryColor);
-    text.fontSize = sizeStyle.fontSize;
-    text.lineHeight = sizeStyle.lineHeight;
+    return button;
+  }
 
+  const createButtonFrame = () => {
     const frame = figma.createFrame();
     frame.name = 'Content';
     frame.layoutMode = 'HORIZONTAL';
@@ -50,19 +50,29 @@ import { LAYOUTS, SIZES, STATES, GAP_BETWEEN_LAYOUTS, GAP_BETWEEN_MAIN_BUTTON_AN
     frame.layoutAlign = 'STRETCH';
     frame.itemSpacing = 8;
     frame.fills = [];
+    return frame;
+  }
 
-    const sideIcon = createSideIcon(secondaryColor, size, 'Icon', y + 100);
-    const sideIconInstance = sideIcon.createInstance();
+  const createMainComponents = ({ styles, size, buttonY, iconY }) => {
+    const { buttonStyle, primaryColor, secondaryColor } = styles;
 
-    frame.insertChild(0, text);
-    frame.insertChild(1, sideIconInstance);
+    const button = createBaseButton({ styles, size, y: buttonY });
 
-    button.insertChild(0, frame);
+    const icon = createIcon({ color: secondaryColor, size, name: 'Icon', y: iconY });
+    const iconInstance = icon.createInstance();
 
-    return {
-      mainComponent: setButtonStyles(button, buttonStyle, primaryColor),
-      iconComponent: sideIcon,
-    };
+    const { fontSize, lineHeight} = sizeStyles[size];
+    const text = createText({ fontSize, lineHeight, color: secondaryColor });
+
+    const buttonFrame = createButtonFrame();
+    buttonFrame.insertChild(0, text);
+    buttonFrame.insertChild(1, iconInstance);
+
+    button.insertChild(0, buttonFrame);
+
+    const styledButton = styleByButtonType(button, buttonStyle, primaryColor);
+
+    return [styledButton, icon];
   }
 
   const hideIconByLayout = (layout, component: ComponentNode) => {
@@ -146,19 +156,21 @@ import { LAYOUTS, SIZES, STATES, GAP_BETWEEN_LAYOUTS, GAP_BETWEEN_MAIN_BUTTON_AN
     return nodes;
   }
 
-  const createButtonsByLayout = (mainButton, size, buttonStyle, secondaryColor, instanceY, instanceX) => {
+  const createButtonsByLayout = ({ button, size, yOffset, xOffset, styles }) => {
+    const { style, secondaryColor } =  styles;
     const nodes: ComponentNode[] = [];
+
     LAYOUTS.forEach(layout => {
       if (layout === 'WITHOUT_ICON') {
-        const nameBuilder = (state) => `${buttonStyle} Button / ${size.toLowerCase()} / ${state} / false`;
-        const newNodes = createButtonsByState(mainButton, buttonStyle, layout, secondaryColor, instanceY, instanceX, nameBuilder);
-        nodes.push(...newNodes);
+        const nameBuilder = (state) => `${style} Button / ${size.toLowerCase()} / ${state} / false`;
+        const buttons = createButtonsByState(button, style, layout, secondaryColor, yOffset, xOffset, nameBuilder);
+        nodes.push(...buttons);
       }
 
       if (layout === 'WITH_ICON') {
-        const nameBuilder = (state) => `${buttonStyle} Button / ${size.toLowerCase()} / ${state} / true`;
-        const newNodes = createButtonsByState(mainButton, buttonStyle, layout, secondaryColor, instanceY + 200, instanceX, nameBuilder);
-        nodes.push(...newNodes);
+        const nameBuilder = (state) => `${style} Button / ${size.toLowerCase()} / ${state} / true`;
+        const buttons = createButtonsByState(button, style, layout, secondaryColor, yOffset + 200, xOffset, nameBuilder);
+        nodes.push(...buttons);
       }
     })
 
@@ -172,21 +184,28 @@ import { LAYOUTS, SIZES, STATES, GAP_BETWEEN_LAYOUTS, GAP_BETWEEN_MAIN_BUTTON_AN
 
     if (msg.type === 'button-buddy') {
       SIZES.forEach((size, i) => {
-        const mainButtonY = i * GAP_BETWEEN_LAYOUTS;
-        const { borderRadius, buttonStyle, secondaryColor, strokeWeight, primaryColor} = msg;
-        const { mainComponent, iconComponent } = createButtonComponent({ y: mainButtonY, size, buttonStyle, primaryColor, secondaryColor, strokeWeight, borderRadius });
-        const instanceY = mainButtonY;
-        const instanceX = GAP_BETWEEN_MAIN_BUTTON_AND_INSTANCE;
-        const buttons = createButtonsByLayout(mainComponent, size, msg.buttonStyle, msg.secondaryColor, instanceY, instanceX);
-        mainNodes.push(mainComponent);
+        const sizeGroupYOffset = i * SIZE_GROUP_DISTANCE;
+        const iconY = sizeGroupYOffset + ICON_TOP_OFFSET;
+
+        const [buttonComponent, iconComponent] = createMainComponents({ styles: msg, size, buttonY: sizeGroupYOffset, iconY });
+
+        const buttons = createButtonsByLayout({
+          button: buttonComponent,
+          size,
+          xOffset: MAIN_BUTTON_AND_INSTANCE_HORIZONTAL_OFFSET,
+          yOffset: sizeGroupYOffset,
+          styles: { style: msg.buttonStyle, secondaryColor: msg.secondaryColor }
+        });
+
+        mainNodes.push(buttonComponent);
         iconNodes.push(iconComponent);
         instanceNodes.push(...buttons);
       })
 
       const allNodes = [...instanceNodes, ...mainNodes];
-
       const variants = figma.combineAsVariants(instanceNodes, figma.currentPage);
       variants.clipsContent = false;
+
       figma.currentPage.selection = [...mainNodes, ...iconNodes, variants];
       figma.viewport.scrollAndZoomIntoView(allNodes);
     }

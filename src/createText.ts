@@ -1,18 +1,15 @@
 import { hexToRgbUnitObject } from './utils';
 
-const createText = (hex) => {
+const createText = ({ fontSize, lineHeight, color }) => {
   const text = figma.createText();
-  text.fontSize = 16;
-  text.lineHeight = {
-    unit: 'PIXELS',
-    value: 24
-  };
+  text.fontSize = fontSize;
+  text.lineHeight = lineHeight;
   text.characters = 'BUTTON';
   text.fontName = {
     family: 'Inter',
     style: 'Bold',
   };
-  text.fills = [{type: 'SOLID', color: hexToRgbUnitObject(hex)}];
+  text.fills = [{type: 'SOLID', color: hexToRgbUnitObject(color)}];
 
   return text;
 }

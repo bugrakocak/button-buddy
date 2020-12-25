@@ -1,6 +1,6 @@
 import { hexToRgbUnitObject } from "./utils";
 
-const setButtonStyles = (button, buttonStyle, primaryColor) => {
+const styleByButtonType = (button, buttonStyle, primaryColor) => {
   const primaryColorAsRgbUnit = hexToRgbUnitObject(primaryColor);
 
   if (buttonStyle === 'basicSolid') {
@@ -65,4 +65,4 @@ const setButtonStyles = (button, buttonStyle, primaryColor) => {
   return button;
 }
 
-export default setButtonStyles;
+export default styleByButtonType;
