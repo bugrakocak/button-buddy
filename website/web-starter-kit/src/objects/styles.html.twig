@@ -1,0 +1,100 @@
+<section class="u-padding-ends-xlarge">
+  <div class="container">
+    <div class="row">
+      <div class="col col--lg-6">
+        <h2 class="h1 u-margin-bottom-0">8 Styles</h2>
+        <p>Button Buddy provides 3 pre-defined most used button sizes!</p>
+      </div>
+    </div>
+    <div class="row u-margin-top-small">
+      <div class="col col--lg-4 u-margin-top-medium">
+        {% embed "@components/card/card.html.twig" with {
+          className: 'card--large',
+          title: 'Small',
+          info: 'Solid BG'
+        } only %}
+          {% block content %}
+            <button class="style-button style-button--basic">Basic</button>
+          {% endblock %}
+        {% endembed %}
+      </div>
+      <div class="col col--lg-4 u-margin-top-medium">
+        {% embed "@components/card/card.html.twig" with {
+          className: 'card--large',
+          title: 'Basic Outline',
+          info: 'Stroke'
+        } only %}
+          {% block content %}
+            <button class="style-button style-button--basic-outline">Basic Outline</button>
+          {% endblock %}
+        {% endembed %}
+      </div>
+      <div class="col col--lg-4 u-margin-top-medium">
+        {% embed "@components/card/card.html.twig" with {
+          className: 'card--large',
+          title: 'Modern',
+          info: 'Solid BG – Soft Drop Shadow'
+        } only %}
+          {% block content %}
+            <button class="style-button style-button--modern">Modern</button>
+          {% endblock %}
+        {% endembed %}
+      </div>
+      <div class="col col--lg-4 u-margin-top-medium">
+        {% embed "@components/card/card.html.twig" with {
+          className: 'card--large',
+          title: 'Glossy',
+          info: 'Black & White Inner Shadows'
+        } only %}
+          {% block content %}
+            <button class="style-button style-button--glossy">Glossy</button>
+          {% endblock %}
+        {% endembed %}
+      </div>
+      <div class="col col--lg-4 u-margin-top-medium">
+        {% embed "@components/card/card.html.twig" with {
+          className: 'card--large',
+          title: 'Comic Light',
+          info: 'Solid BG – Stroke – Sharp Drop Shadow'
+        } only %}
+          {% block content %}
+            <button class="style-button style-button--comic-light">Comic Light</button>
+          {% endblock %}
+        {% endembed %}
+      </div>
+      <div class="col col--lg-4 u-margin-top-medium">
+        {% embed "@components/card/card.html.twig" with {
+          className: 'card--large',
+          title: 'Comic Bold',
+          info: 'Solid BG – Stroke – Sharp Drop Shadow'
+        } only %}
+          {% block content %}
+            <button class="style-button style-button--comic-bold">Comic Bold</button>
+          {% endblock %}
+        {% endembed %}
+      </div>
+      <div class="col col--lg-4 u-margin-top-medium">
+        {% embed "@components/card/card.html.twig" with {
+          className: 'card--large',
+          title: 'Fancy',
+          info: 'Solid BG – Stroke – Soft Drop Shadow'
+        } only %}
+          {% block content %}
+            <button class="style-button style-button--fancy">Fancy</button>
+          {% endblock %}
+        {% endembed %}
+      </div>
+      <div class="col col--lg-4 u-margin-top-medium">
+        {% embed "@components/card/card.html.twig" with {
+          className: 'card--large',
+          title: 'Flat Shadow',
+          info: 'Solid BG – Sharp Drop Shadow'
+        } only %}
+          {% block content %}
+            <button class="style-button style-button--flat-shadow">Flat Shadow</button>
+          {% endblock %}
+        {% endembed %}
+      </div>
+    </div>
+  </div>
+</section>

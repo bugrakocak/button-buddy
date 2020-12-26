@@ -1,0 +1,9 @@
+<div class="{{ html_classes('card', className) }}">
+  <div class="card__title">{{ title }}</div>
+  <div class="card__content">
+    {% block content %}{% endblock %}
+  </div>
+  {% if info is defined %}
+  <div class="card__info">{{ info }}</div>
+  {% endif %}
+</div>

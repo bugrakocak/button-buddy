@@ -1,0 +1,8 @@
+.emphasized {
+  display: inline-block;
+  background: linear-gradient(270deg, #db00ff 12.14%, #f09 60.19%, #ff8038 100%);
+  // stylelint-disable-next-line property-no-vendor-prefix
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
