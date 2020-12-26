@@ -33,7 +33,7 @@ export default function html() {
         },
         onError: errorHandler,
         twigParameters: {
-          strict_variables: true,
+          strict_variables: false,
           namespaces,
         },
       }),

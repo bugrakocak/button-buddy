@@ -33,8 +33,8 @@ $g-font-size-base: 1rem !default;
 $g-line-height-base: 1.5 !default;
 
 $g-font-size-h1: px-to-rem(64px) !default;
-$g-font-size-h2: px-to-rem(30px) !default;
-$g-font-size-h3: px-to-rem(24px) !default;
+$g-font-size-h2: px-to-rem(48px) !default;
+$g-font-size-h3: px-to-rem(32px) !default;
 $g-font-size-h4: px-to-rem(18px) !default;
 $g-font-size-h5: 1rem !default;
 $g-font-size-h6: px-to-rem(14px) !default;
@@ -173,7 +173,7 @@ $container-max-widths: (
 // Set the number of columns and specify the width of the gutters.
 
 $grid-columns: 12 !default;
-$grid-gutter-width: px-to-rem(32px) !default;
+$grid-gutter-width: px-to-rem(24px) !default;
 
 // `z-index` values
 //

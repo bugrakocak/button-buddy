@@ -162,4 +162,6 @@ h6,
 p {
   margin-top: $g-paragraph-margin-top;
   margin-bottom: 0;
+  font-size: px-to-rem(24);
+  font-weight: 500;
 }
