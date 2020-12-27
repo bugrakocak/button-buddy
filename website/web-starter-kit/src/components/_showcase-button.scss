@@ -2,9 +2,6 @@
   padding: var(--showcase-button-v-padding, #{px-to-rem(12)})
     var(--showcase-button-h-padding, #{pad(small)});
   border: 0;
-  background-color: var(--showcase-button-background-color, #{$color-blue-ribbon});
-  border-radius: var(--showcase-button-border-radius, #{px-to-rem(8)});
-  color: var(--showcase-button-color, #{$color-white});
   cursor: pointer;
   font-size: var(--showcase-button-font-size, #{px-to-rem(16)});
   font-weight: 700;

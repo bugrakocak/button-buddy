@@ -1,0 +1,113 @@
+// stylelint-disable
+
+.plugin-button {
+  --plugin-button-border-radius-default: 8px;
+
+  --plugin-button-primary-color-default: #1c4efe;
+  --plugin-button-secondary-color-default: #ffffff;
+
+  --plugin-button-modern-box-shadow-color-default: rgba(28, 78, 254, 0.3);
+
+  --plugin-button-glossy-box-shadow-color-1-default: rgba(0, 0, 0, 0.2);
+  --plugin-button-glossy-box-shadow-color-2-default: rgba(255, 255, 255, 0.5);
+
+  --plugin-button-fancy-box-shadow-color-default: rgba(28, 78, 254, 0.4);
+
+  --plugin-button-flat-shadow-box-shadow-color-default: #1338bd;
+
+  border-radius: var(--plugin-button-border-radius, var(--plugin-button-border-radius-default));
+
+  &--basic {
+    background-color: var(
+      --plugin-button-primary-color,
+      var(--plugin-button-primary-color-default)
+    );
+    color: var(--plugin-button-secondary-color, var(--plugin-button-secondary-color-default));
+  }
+
+  &--basic-outline {
+    background-color: transparent;
+    border: 2px solid var(--plugin-button-primary-color, var(--plugin-button-primary-color-default));
+    color: var(--plugin-button-primary-color, var(--plugin-button-primary-color-default));
+  }
+
+  &--modern {
+    background-color: var(
+      --plugin-button-primary-color,
+      var(--plugin-button-primary-color-default)
+    );
+    color: var(--plugin-button-secondary-color, var(--plugin-button-secondary-color-default));
+    box-shadow: 0 5px 10px
+      var(
+        --plugin-button-modern-box-shadow-color,
+        var(--plugin-button-modern-box-shadow-color-default)
+      );
+  }
+
+  &--glossy {
+    background-color: var(
+      --plugin-button-primary-color,
+      var(--plugin-button-primary-color-default)
+    );
+    color: var(--plugin-button-secondary-color, var(--plugin-button-secondary-color-default));
+    box-shadow: inset 0 -8px 10px var(--plugin-button-glossy-box-shadow-color-1, var(--plugin-button-glossy-box-shadow-color-1-default)),
+      inset 0 4px 4px
+        var(
+          --plugin-button-glossy-box-shadow-color-2,
+          var(--plugin-button-glossy-box-shadow-color-2-default)
+        );
+  }
+
+  &--comic-light {
+    background-color: var(
+      --plugin-button-secondary-color,
+      var(--plugin-button-secondary-color-default)
+    );
+    border: 2px solid var(--plugin-button-primary-color, var(--plugin-button-primary-color-default));
+    color: var(--plugin-button-primary-color, var(--plugin-button-primary-color-default));
+    box-shadow: -4px 4px 0
+      var(--plugin-button-primary-color, var(--plugin-button-primary-color-default));
+  }
+
+  &--comic-bold {
+    background-color: var(
+      --plugin-button-primary-color,
+      var(--plugin-button-primary-color-default)
+    );
+    border: 2px solid
+      var(--plugin-button-secondary-color, var(--plugin-button-secondary-color-default));
+    color: var(--plugin-button-secondary-color, var(--plugin-button-secondary-color-default));
+    box-shadow: -4px 4px 0
+      var(--plugin-button-primary-color, var(--plugin-button-primary-color-default));
+  }
+
+  &--fancy {
+    background-color: var(
+      --plugin-button-primary-color,
+      var(--plugin-button-primary-color-default)
+    );
+    border: 1px solid
+      var(--plugin-button-secondary-color, var(--plugin-button-secondary-color-default));
+    color: var(--plugin-button-secondary-color, var(--plugin-button-secondary-color-default));
+    box-shadow: 0 4px 16px
+      var(
+        --plugin-button-fancy-box-shadow-color,
+        var(--plugin-button-fancy-box-shadow-color-default)
+      );
+  }
+
+  &--flat-shadow {
+    background-color: var(
+      --plugin-button-primary-color,
+      var(--plugin-button-primary-color-default)
+    );
+    color: var(--plugin-button-secondary-color, var(--plugin-button-secondary-color-default));
+    box-shadow: 0 4px 0
+      var(
+        --plugin-button-flat-shadow-box-shadow-color,
+        var(--plugin-button-flat-shadow-box-shadow-color-default)
+      );
+  }
+}
+
+// stylelint-enable
