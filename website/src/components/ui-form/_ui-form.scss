@@ -1,0 +1,279 @@
+// stylelint-disable
+
+.ui-form {
+  --ui-form-default-color: #{$color-hollywood-cerise};
+
+  transform: translate(0);
+  width: px-to-rem(450);
+  border-radius: px-to-rem(24);
+  border: 2px solid #ffffff;
+  overflow: hidden;
+  box-shadow: -6px 6px 0 $color-hollywood-cerise;
+
+  &__header {
+    background-color: $color-black;
+    color: $color-white;
+    font-family: 'Metropolis';
+    padding: px-to-rem(20) px-to-rem(24);
+  }
+
+  &__customize {
+    padding: 16px 24px;
+    border-bottom: 1px solid $color-vulcan;
+    background-color: $color-vulcan;
+  }
+
+  &__title {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  &__form-group:not(:first-child) {
+    margin-left: 24px;
+  }
+
+  &__customize-inputs {
+    display: flex;
+    align-items: center;
+  }
+
+  &__label-text {
+    font-size: 12px;
+    line-height: 14px;
+    color: $color-wild-blue-yonder;
+    font-weight: 600;
+    display: block;
+  }
+
+  &__visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  &__color-input__input:focus + &__color-input__mask {
+    outline: 1px dotted #212121;
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+
+  &__color-input__mask {
+    width: 104px;
+    height: 32px;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    color: #1f2c37;
+    border-radius: 8px;
+    border: 1px solid $color-black;
+    display: flex;
+    overflow: hidden;
+  }
+
+  &__color-input__preview {
+    width: 32px;
+    flex-shrink: 0;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  &__color-input__hex {
+    padding: 8px 16px 8px 12px;
+    font-weight: 600;
+    color: $color-wild-blue-yonder;
+    background-color: $color-black;
+    text-align: center;
+    flex-grow: 1;
+    text-transform: uppercase;
+  }
+
+  &__form {
+    background-color: #ffffff;
+    height: 100%;
+  }
+
+  &__header-inputs {
+    display: flex;
+    align-items: center;
+  }
+
+  &__text-input {
+    background-color: $color-black;
+    border-radius: 8px;
+    text-align: center;
+    padding: 8px 4px;
+    width: 56px;
+    border: none;
+    color: $color-wild-blue-yonder;
+    font-family: inherit;
+    font-size: px-to-rem(12);
+    line-height: px-to-rem(16px);
+    font-weight: 600;
+  }
+
+  &__u-gap-top-8 {
+    margin-top: 8px;
+  }
+
+  &__u-pad-bottom-16 {
+    padding-bottom: 16px;
+  }
+
+  &__body {
+    background-color: $color-vulcan;
+    padding: 24px;
+  }
+
+  &__button-container {
+    padding-bottom: 40px;
+  }
+
+  &__buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 16px;
+    row-gap: 16px;
+    padding-bottom: 32px;
+    padding-right: 24px;
+  }
+
+  &__button {
+    padding: 8px 16px;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+    font-weight: 800;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  &__button-input__mask {
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: $color-black;
+    border: 1px solid transparent;
+  }
+
+  &__button-input__mask:hover {
+    border: 1px solid $color-hollywood-cerise;
+  }
+
+  &__button-input__label-text {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    text-align: center;
+    color: $color-wild-blue-yonder;
+    margin-top: 8px;
+  }
+
+  &__basic-button {
+    background-color: var(--ui-form-default-color);
+    color: #ffffff;
+  }
+
+  &__basic-outline-button {
+    border: 2px solid var(--ui-form-default-color);
+    color: var(--ui-form-default-color);
+  }
+
+  &__modern-button {
+    background-color: var(--ui-form-default-color);
+    color: #ffffff;
+    box-shadow: 0 5px 10px rgba(28, 78, 254, 0.3);
+  }
+
+  &__glossy-button {
+    background-color: var(--ui-form-default-color);
+    color: #ffffff;
+    box-shadow: inset 0 -8px 10px rgba(0, 0, 0, 0.2), inset 0 4px 4px rgba(255, 255, 255, 0.5);
+  }
+
+  &__comic-light-button {
+    background-color: #ffffff;
+    border: 2px solid var(--ui-form-default-color);
+    color: var(--ui-form-default-color);
+    box-shadow: -4px 4px 0 var(--ui-form-default-color);
+  }
+
+  &__comic-bold-button {
+    background-color: var(--ui-form-default-color);
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    box-shadow: -4px 4px 0 var(--ui-form-default-color);
+  }
+
+  &__fancy-button {
+    background-color: var(--ui-form-default-color);
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(28, 78, 254, 0.4);
+  }
+
+  &__flat-shadow-button {
+    background-color: var(--ui-form-default-color);
+    color: #ffffff;
+    box-shadow: 0 4px 0 #1338bd;
+  }
+
+  label:not(.ui-form__button-input) {
+    cursor: pointer;
+  }
+
+  &__button-input__input:checked + &__button-input__mask {
+    border-color: $color-hollywood-cerise;
+  }
+
+  &__button-input__input:focus + &__button-input__mask {
+    border-color: $color-hollywood-cerise;
+  }
+
+  &__form-footer {
+    background-color: $color-vulcan;
+    padding: 8px 24px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid $color-vulcan;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &__form-button {
+    width: 100%;
+    border-radius: 50px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  &__form-button--submit {
+    background-color: $color-white;
+    color: $color-black;
+    font-weight: 700;
+    letter-spacing: px-to-em(1.5, 16);
+    text-transform: uppercase;
+    font-size: px-to-rem(16);
+    line-height: px-to-rem(24);
+  }
+
+  &__form-button--feedback {
+    background-color: #e6ebf1;
+    color: #000000;
+  }
+}
+
+// stylelint-enable

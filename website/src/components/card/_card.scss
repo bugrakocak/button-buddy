@@ -1,0 +1,28 @@
+.card {
+  padding: pad(small);
+  background-color: $color-black;
+  border-radius: px-to-rem(12);
+  color: $color-wild-blue-yonder;
+
+  &--large {
+    --card-content-v-padding: #{pad(large)};
+  }
+
+  &__title {
+    font-size: px-to-rem(12);
+    font-weight: 700;
+    letter-spacing: px-to-em(4, 12);
+    line-height: px-to-rem(16);
+    text-transform: uppercase;
+  }
+
+  &__content {
+    padding: var(--card-content-v-padding, #{pad(xsmall)}) 0;
+    text-align: center;
+  }
+
+  &__info {
+    font-size: px-to-rem(12);
+    line-height: px-to-rem(16);
+  }
+}

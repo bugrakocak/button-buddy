@@ -1,0 +1,11 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "path-intellisense.mappings": {
+    "@components": "${workspaceRoot}/src/components",
+    "@objects": "${workspaceRoot}/src/objects",
+    "@templates": "${workspaceRoot}/src/templates"
+  }
+}

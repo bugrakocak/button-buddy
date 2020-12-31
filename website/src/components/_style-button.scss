@@ -1,0 +1,117 @@
+.style-button {
+  padding: pad(xsmall) pad();
+  border: 0;
+  border-radius: px-to-rem(50px);
+  cursor: pointer;
+  font-size: px-to-rem(24px);
+  font-weight: 700;
+  line-height: px-to-rem(32px);
+  text-align: center;
+  transition-duration: 300ms;
+  transition-property: none;
+
+  &--basic {
+    background-color: $color-hollywood-cerise;
+    color: $color-white;
+  }
+
+  &--basic:hover,
+  &--basic:active {
+    background-color: $color-hollywood-cerise-2;
+    transition-property: background-color;
+  }
+
+  &--basic-outline {
+    border: px-to-rem(2) solid $color-hollywood-cerise;
+    background-color: transparent;
+    color: $color-hollywood-cerise;
+  }
+
+  &--basic-outline:hover,
+  &--basic-outline:active {
+    background-color: $color-hollywood-cerise;
+    color: $color-white;
+    transition-property: color, background-color;
+  }
+
+  &--modern {
+    background-color: $color-hollywood-cerise;
+    box-shadow: 0 px-to-rem(4) px-to-rem(16) rgba(255, 0, 153, 0.4);
+    color: $color-white;
+  }
+
+  &--modern:hover,
+  &--modern:active {
+    background-color: $color-hollywood-cerise-2;
+    box-shadow: 0 px-to-rem(4) px-to-rem(16) rgba(220, 1, 132, 0.4);
+    transition-property: background-color, box-shadow;
+  }
+
+  &--glossy {
+    background-color: $color-hollywood-cerise;
+    box-shadow: inset 0 px-to-rem(-8) px-to-rem(10) rgba(0, 0, 0, 0.2),
+      inset 0 px-to-rem(4) px-to-rem(4) rgba(255, 255, 255, 0.5);
+    color: $color-white;
+  }
+
+  &--glossy:hover,
+  &--glossy:active {
+    background-color: $color-hollywood-cerise-2;
+    transition-property: background-color;
+  }
+
+  &--comic-light {
+    border: px-to-rem(2) solid $color-hollywood-cerise;
+    background-color: $color-white;
+    box-shadow: px-to-rem(-4) px-to-rem(4) 0 $color-hollywood-cerise;
+    color: $color-hollywood-cerise;
+  }
+
+  &--comic-light:hover,
+  &--comic-light:active {
+    box-shadow: none;
+    transform: translate(px-to-rem(-4), px-to-rem(4));
+    transition-property: transform, box-shadow;
+  }
+
+  &--comic-bold {
+    border: px-to-rem(2) solid $color-white;
+    background-color: $color-hollywood-cerise;
+    box-shadow: px-to-rem(-4) px-to-rem(4) 0 $color-hollywood-cerise;
+    color: $color-white;
+  }
+
+  &--comic-bold:hover,
+  &--comic-bold:active {
+    box-shadow: none;
+    transform: translate(px-to-rem(-4), px-to-rem(4));
+    transition-property: transform, box-shadow;
+  }
+
+  &--fancy {
+    border: px-to-rem(2) solid $color-white;
+    background-color: $color-hollywood-cerise;
+    box-shadow: 0 px-to-rem(4) px-to-rem(16) rgba(255, 0, 153, 0.4);
+    color: $color-white;
+  }
+
+  &--fancy:hover,
+  &--fancy:active {
+    background-color: $color-hollywood-cerise-2;
+    box-shadow: 0 px-to-rem(4) px-to-rem(16) rgba(220, 1, 132, 0.4);
+    transition-property: background-color, box-shadow;
+  }
+
+  &--flat-shadow {
+    background-color: $color-hollywood-cerise;
+    box-shadow: 0 px-to-rem(4) 0 $color-fresh-eggplant;
+    color: $color-white;
+  }
+
+  &--flat-shadow:hover,
+  &--flat-shadow:active {
+    background-color: $color-hollywood-cerise-2;
+    box-shadow: 0 px-to-rem(4) 0 $color-pompadour;
+    transition-property: background-color, box-shadow;
+  }
+}

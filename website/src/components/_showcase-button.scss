@@ -1,0 +1,26 @@
+.showcase-button {
+  padding: var(--showcase-button-v-padding, #{px-to-rem(12)})
+    var(--showcase-button-h-padding, #{pad(small)});
+  border: 0;
+  cursor: pointer;
+  font-size: var(--showcase-button-font-size, #{px-to-rem(16)});
+  font-weight: 700;
+  line-height: var(--showcase-button-line-height, #{px-to-rem(24)});
+  text-align: center;
+  transition-duration: 300ms;
+  transition-property: none;
+
+  &--small {
+    --showcase-button-v-padding: #{pad(2xsmall)};
+    --showcase-button-h-padding: #{pad(xsmall)};
+    --showcase-button-font-size: #{px-to-rem(14)};
+    --showcase-button-line-height: #{px-to-rem(16)};
+  }
+
+  &--large {
+    --showcase-button-v-padding: #{pad(xsmall)};
+    --showcase-button-h-padding: #{pad()};
+    --showcase-button-font-size: #{px-to-rem(24)};
+    --showcase-button-line-height: #{px-to-rem(32)};
+  }
+}
