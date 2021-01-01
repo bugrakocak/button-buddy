@@ -39,6 +39,12 @@ $g-font-size-h4: px-to-rem(18px) !default;
 $g-font-size-h5: 1rem !default;
 $g-font-size-h6: px-to-rem(14px) !default;
 
+$g-line-height-h1: px-to-rem(72px);
+$g-line-height-h2: px-to-rem(64px);
+$g-line-height-h3: px-to-rem(48px);
+$g-line-height-h4: px-to-rem(28px);
+$g-line-height-h5: px-to-rem(24px);
+
 $g-headings-font-family: $g-secondary-font-family !default;
 $g-headings-font-weight: 700 !default;
 $g-headings-line-height: 1.2 !default;
