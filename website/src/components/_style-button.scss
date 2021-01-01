@@ -1,11 +1,11 @@
 .style-button {
-  padding: pad(xsmall) pad();
+  padding: px-to-rem(12) px-to-rem(24);
   border: 0;
   border-radius: px-to-rem(50px);
   cursor: pointer;
-  font-size: px-to-rem(24px);
+  font-size: px-to-rem(16px);
   font-weight: 700;
-  line-height: px-to-rem(32px);
+  line-height: px-to-rem(24px);
   text-align: center;
   transition-duration: 300ms;
   transition-property: none;
