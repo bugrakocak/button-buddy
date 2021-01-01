@@ -11,7 +11,7 @@
   transition-property: none;
 
   &--small {
-    --showcase-button-v-padding: #{pad(2xsmall)};
+    --showcase-button-v-padding: #{px-to-rem(12)};
     --showcase-button-h-padding: #{pad(xsmall)};
     --showcase-button-font-size: #{px-to-rem(14)};
     --showcase-button-line-height: #{px-to-rem(16)};
