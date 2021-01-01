@@ -21,6 +21,16 @@
     }
   }
 
+  &__headline {
+    color: $color-hollywood-cerise;
+    font-family: $g-secondary-font-family;
+    font-size: px-to-rem(18px);
+    font-weight: 700;
+    letter-spacing: px-to-rem(4px);
+    line-height: px-to-rem(28px);
+    text-transform: uppercase;
+  }
+
   &__container {
     position: relative;
     z-index: $z-index + 1;
