@@ -45,8 +45,6 @@ const styleButton = (element) => {
 const primaryColorChangeHandler = (styler, color) => {
   const { r, g, b } = Color(color).rgb().unitObject();
   styler.setPrimaryColor(color);
-  console.log(Color(color).lightness(0.3).rgb());
-  console.log(`rgba(${r * 255}, ${g * 255}, ${b * 255}, 0.3)`);
   styler.setModernStyleBoxShadowColor(`rgba(${r * 255}, ${g * 255}, ${b * 255}, 0.3)`);
   styler.setFancyStyleBoxShadowColor(`rgba(${r * 255}, ${g * 255}, ${b * 255}, 0.4)`);
   styler.setFlatShadowStyleBoxShadowColor(Color(color).darken(0.3).hex());

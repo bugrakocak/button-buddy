@@ -1,0 +1,71 @@
+.tutorial {
+  padding-top: px-to-rem(164);
+  padding-bottom: px-to-rem(164);
+
+  &__no {
+    color: $color-white;
+    font-size: px-to-rem(64);
+    font-weight: 700;
+    line-height: px-to-rem(72);
+  }
+
+  &__title {
+    color: $color-white;
+    font-size: px-to-rem(40);
+    font-weight: 700;
+    line-height: px-to-rem(48);
+  }
+
+  &__blockquote {
+    position: relative;
+    padding: 0;
+    padding-left: pad(xsmall);
+    margin: 0;
+    color: $color-wild-blue-yonder;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: px-to-rem(4);
+      height: calc(100% - #{px-to-rem(16)});
+      background-color: $color-hollywood-cerise;
+      border-radius: px-to-rem(50);
+      content: '';
+      transform: translateY(px-to-rem(8));
+    }
+  }
+
+  &__video {
+    position: relative;
+    overflow: hidden;
+    background-color: $color-info;
+    border-radius: px-to-rem(32);
+
+    &::before {
+      display: block;
+      padding-top: 100% * (9 / 16);
+      content: '';
+    }
+  }
+
+  &__frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% + #{px-to-rem(8)});
+    height: calc(100% + #{px-to-rem(8)});
+    transform: translate(px-to-rem(-4), px-to-rem(-4));
+  }
+
+  &__content-wrapper {
+    position: relative;
+  }
+
+  &__content-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
