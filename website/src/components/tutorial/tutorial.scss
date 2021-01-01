@@ -31,7 +31,10 @@
       width: px-to-rem(4);
       height: calc(100% - #{px-to-rem(16)});
       background-color: $color-hollywood-cerise;
-      border-radius: px-to-rem(50);
+      border-top-left-radius: 0;
+      border-top-right-radius: px-to-rem(50);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: px-to-rem(50);
       content: '';
       transform: translateY(px-to-rem(8));
     }
@@ -40,7 +43,7 @@
   &__video {
     position: relative;
     overflow: hidden;
-    background-color: $color-info;
+    background-color: $color-vulcan;
     border-radius: px-to-rem(32);
 
     &::before {
