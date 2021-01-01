@@ -11,7 +11,7 @@ const tl = gsap.timeline({
     trigger: '.tutorial',
     pin: true,
     start: 'top top',
-    end: '+=1400',
+    end: '+=5000',
     scrub: 0.5,
   },
 });
