@@ -13,13 +13,14 @@ const tl = gsap.timeline({
     start: '-30% top',
     end: '+=2500',
     scrub: 0.5,
+    markers: true,
   },
 });
 
 const timingFunction = 'power3.out';
 
 function changeVideo(videoName) {
-  videoSource.src = `img/${videoName}.mp4`;
+  videoSource.src = `img/${videoName}.webm`;
   video.load();
 }
 
