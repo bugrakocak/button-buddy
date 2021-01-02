@@ -13,7 +13,7 @@ const tl = gsap.timeline({
     start: '-30% top',
     end: '+=2500',
     scrub: 0.5,
-    markers: true,
+    // markers: true,
   },
 });
 
