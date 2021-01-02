@@ -10,13 +10,13 @@ const tl = gsap.timeline({
   scrollTrigger: {
     trigger: '.tutorial',
     pin: true,
-    start: 'top top',
-    end: '+=5000',
+    start: '-30% top',
+    end: '+=2500',
     scrub: 0.5,
   },
 });
 
-const timingFunction = "power1.out"
+const timingFunction = 'power3.out';
 
 function changeVideo(videoName) {
   videoSource.src = `img/${videoName}.mp4`;
@@ -44,16 +44,16 @@ tl.addLabel('s1')
     opacity: 0,
     y: 50,
     duration: 0.2,
-    ease: timingFunction
+    ease: timingFunction,
   })
-  .to('.js-tutorial-s1', { opacity: 0, y: -100, duration: 0.2, ease: timingFunction}, '+=0.2')
+  .to('.js-tutorial-s1', { opacity: 0, y: -100, duration: 0.2, ease: timingFunction }, '+=0.2')
   .call(videoController)
   .addLabel('s2')
   .from('.js-tutorial-s2', {
     opacity: 0,
     y: 50,
     duration: 0.2,
-    ease: timingFunction
+    ease: timingFunction,
   })
   .to(
     '.js-tutorial-s2',
@@ -61,7 +61,7 @@ tl.addLabel('s1')
       opacity: 0,
       y: -100,
       duration: 0.2,
-      ease: timingFunction
+      ease: timingFunction,
     },
     '+=0.2',
   )
@@ -71,7 +71,7 @@ tl.addLabel('s1')
     opacity: 0,
     y: 50,
     duration: 0.2,
-    ease: timingFunction
+    ease: timingFunction,
   })
   .to('.js-tutorial-s3', { opacity: 0, y: -100, duration: 0.2, ease: timingFunction }, '+=0.2')
   .call(videoController);
