@@ -6,16 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 const video = document.getElementsByClassName('js-tutorial-video')[0];
 const videoSource = video.getElementsByTagName('source')[0];
 
-const tl = gsap.timeline({
-  scrollTrigger: {
-    trigger: '.tutorial',
-    pin: true,
-    start: '-30% top',
-    end: '+=2500',
-    scrub: 0.5,
-    // markers: true,
-  },
-});
+const tl = gsap.timeline();
 
 const timingFunction = 'power3.out';
 
@@ -44,7 +35,7 @@ tl.addLabel('s1')
   .from('.js-tutorial-s1', {
     opacity: 0,
     y: 50,
-    duration: 0.2,
+    duration: 0.4,
     ease: timingFunction,
   })
   .to('.js-tutorial-s1', { opacity: 0, y: -100, duration: 0.2, ease: timingFunction }, '+=0.2')
@@ -76,3 +67,19 @@ tl.addLabel('s1')
   })
   .to('.js-tutorial-s3', { opacity: 0, y: -100, duration: 0.2, ease: timingFunction }, '+=0.2')
   .call(videoController);
+
+ScrollTrigger.create({
+  animation: tl,
+  trigger: '.tutorial',
+  start: '-30% top',
+  end: '+=2500',
+  scrub: 0.5,
+});
+
+ScrollTrigger.create({
+  trigger: '.tutorial',
+  pin: true,
+  start: 'top top',
+  end: '+=2000',
+  scrub: 0.5,
+});
