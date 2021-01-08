@@ -144,6 +144,10 @@ formElements.form.addEventListener('submit', (e) => {
     const state = button.getAttribute('data-button-state');
     showcaseButtonsStateHandler(styler, state, buttonStyle, primaryColor, secondaryColor);
   });
+
+  document.getElementById('showcase').scrollIntoView({
+    behavior: 'smooth',
+  });
 });
 
 const uiButtonStyler = styleButton(formElements.form);
