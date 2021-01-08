@@ -19,6 +19,8 @@
   &:hover,
   :active {
     background-color: $color-hollywood-cerise;
+    color: $color-white;
+    text-decoration: none;
   }
 
   &:disabled {
