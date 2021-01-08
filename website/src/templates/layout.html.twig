@@ -5,23 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name=viewport content="width=device-width, initial-scale=1">
     {% block meta %}
+
     <title>Button Buddy | Figma Plugin</title>
     <meta name="title" content="Button Buddy | Figma Plugin">
     <meta name="description" content="Button Buddy is a Figma plugin that generates dev-ready button components. All you need to do is set your colors and pick one style from pre-defined styles!">
-    <!-- 
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://buttonbuddy.app/">
     <meta property="og:title" content="Button Buddy | Figma Plugin">
     <meta property="og:description" content="Button Buddy is a Figma plugin that generates dev-ready button components. All you need to do is set your colors and pick one style from pre-defined styles!">
-    <meta property="og:image" content="">
+    <meta property="og:image" content="https://buttonbuddy.app/img/og-image.png">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://buttonbuddy.app/">
     <meta property="twitter:title" content="Button Buddy | Figma Plugin">
     <meta property="twitter:description" content="Button Buddy is a Figma plugin that generates dev-ready button components. All you need to do is set your colors and pick one style from pre-defined styles!">
-    <meta property="twitter:image" content=""> -->
+    <meta property="twitter:image" content="https://buttonbuddy.app/img/og-image.png">
 
-      
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/site.webmanifest">
+
     {% endblock %}
     <link rel=stylesheet href="css/app{% if is_production() %}.min{% endif %}.css">
     {% block headerStylesheets %}{% endblock %}
