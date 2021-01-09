@@ -27,6 +27,8 @@
     padding-left: pad(xsmall);
     margin: 0;
     color: $color-wild-blue-yonder;
+    font-size: px-to-rem(18px);
+    line-height: px-to-rem(28px);
 
     &::before {
       position: absolute;
