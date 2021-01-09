@@ -70,7 +70,7 @@ import { LAYOUTS, SIZES, STATES, SIZE_GROUP_DISTANCE, MAIN_BUTTON_AND_INSTANCE_H
 
     button.insertChild(0, buttonFrame);
 
-    const styledButton = styleByButtonType(button, buttonStyle, primaryColor);
+    const styledButton = styleByButtonType(button, buttonStyle, primaryColor, secondaryColor);
 
     return [styledButton, icon];
   }
