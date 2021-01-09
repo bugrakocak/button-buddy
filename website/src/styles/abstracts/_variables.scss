@@ -32,23 +32,22 @@ $g-font-size-base: 1rem !default;
 
 $g-line-height-base: 1.5 !default;
 
-$g-font-size-h1: px-to-rem(56px) !default;
-$g-font-size-h2: px-to-rem(48px) !default;
-$g-font-size-h3: px-to-rem(40px) !default;
-$g-font-size-h4: px-to-rem(32px) !default;
+$g-font-size-h1: px-to-rem(44px) !default;
+$g-font-size-h2: px-to-rem(40px) !default;
+$g-font-size-h3: px-to-rem(32px) !default;
+$g-font-size-h4: px-to-rem(24px) !default;
 $g-font-size-h5: 1rem !default;
 $g-font-size-h6: px-to-rem(14px) !default;
 
-$g-line-height-h1: px-to-rem(72px);
-$g-line-height-h2: px-to-rem(64px);
-$g-line-height-h3: px-to-rem(48px);
-$g-line-height-h4: px-to-rem(40px);
+$g-line-height-h1: px-to-rem(56px);
+$g-line-height-h2: px-to-rem(48px);
+$g-line-height-h3: px-to-rem(40px);
+$g-line-height-h4: px-to-rem(32px);
 $g-line-height-h5: px-to-rem(24px);
 $g-line-height-h6: px-to-rem(18px);
 
 $g-headings-font-family: $g-secondary-font-family !default;
 $g-headings-font-weight: 700 !default;
-$g-headings-line-height: 1.2 !default;
 $g-headings-margin-bottom: 1rem !default;
 
 //
@@ -172,7 +171,7 @@ $container-max-widths: (
   sm: 576px,
   md: 720px,
   lg: 940px,
-  xl: 1140px,
+  xl: 1280px,
 ) !default;
 
 // Grid columns
