@@ -35,7 +35,7 @@ tl.addLabel('s1')
   .from('.js-tutorial-s1', {
     opacity: 0,
     y: 50,
-    duration: 0.4,
+    duration: 0.2,
     ease: timingFunction,
   })
   .to('.js-tutorial-s1', { opacity: 0, y: -100, duration: 0.2, ease: timingFunction }, '+=0.2')
