@@ -37,7 +37,7 @@ import { LAYOUTS, SIZES, STATES, SIZE_GROUP_DISTANCE, MAIN_BUTTON_AND_INSTANCE_H
     button.paddingLeft = sizeStyle.paddingLeft
     button.paddingRight = sizeStyle.paddingRight
     button.y = y;
-    button.name = `${buttonStyle} ${size.toLowerCase()} Base`;
+    button.name = `_${buttonStyle} ${size.toLowerCase()} Base`;
 
     return button;
   }
