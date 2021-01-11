@@ -162,13 +162,13 @@ import { LAYOUTS, SIZES, STATES, SIZE_GROUP_DISTANCE, MAIN_BUTTON_AND_INSTANCE_H
 
     LAYOUTS.forEach(layout => {
       if (layout === 'WITHOUT_ICON') {
-        const nameBuilder = (state) => `${style} Button / ${size.toLowerCase()} / ${state} / false`;
+        const nameBuilder = (state) => `Size=${size.toLowerCase()}, State=${state}, Icon=false`;
         const buttons = createButtonsByState(button, style, layout, secondaryColor, yOffset, xOffset, nameBuilder);
         nodes.push(...buttons);
       }
 
       if (layout === 'WITH_ICON') {
-        const nameBuilder = (state) => `${style} Button / ${size.toLowerCase()} / ${state} / true`;
+        const nameBuilder = (state) => `Size=${size.toLowerCase()}, State=${state}, Icon=true`;
         const buttons = createButtonsByState(button, style, layout, secondaryColor, yOffset + 200, xOffset, nameBuilder);
         nodes.push(...buttons);
       }
@@ -204,6 +204,7 @@ import { LAYOUTS, SIZES, STATES, SIZE_GROUP_DISTANCE, MAIN_BUTTON_AND_INSTANCE_H
 
       const allNodes = [...instanceNodes, ...mainNodes];
       const variants = figma.combineAsVariants(instanceNodes, figma.currentPage);
+      variants.name = `${msg.buttonStyle} Button`;
       variants.clipsContent = false;
 
       figma.currentPage.selection = [...mainNodes, ...iconNodes, variants];
