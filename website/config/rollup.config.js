@@ -20,6 +20,7 @@ export default {
     commonjs(),
     babel({
       exclude: 'node_modules/**', // only transpile our source code
+      runtimeHelpers: true,
     }),
     isProduction && terser(),
   ],

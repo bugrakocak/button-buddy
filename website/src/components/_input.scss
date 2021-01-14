@@ -1,0 +1,12 @@
+.input {
+  padding: pad(small) pad();
+  border: px-to-rem(4) solid $color-black;
+  background-color: $color-white;
+  border-radius: px-to-rem(16);
+  box-shadow: px-to-rem(-4) px-to-rem(4) 0 $color-hollywood-cerise;
+  color: $color-wild-blue-yonder;
+  font-family: $g-primary-font-family;
+  font-size: px-to-rem(24);
+  font-weight: 600;
+  line-height: px-to-rem(32);
+}

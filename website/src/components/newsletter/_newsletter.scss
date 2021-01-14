@@ -1,0 +1,8 @@
+.newsletter {
+  &__title {
+    color: $color-white;
+    font-size: px-to-rem(40);
+    font-weight: 700;
+    line-height: px-to-rem(48);
+  }
+}
