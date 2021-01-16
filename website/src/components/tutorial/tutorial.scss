@@ -3,6 +3,28 @@
   min-height: 100vh;
   align-items: center;
 
+  &::before {
+    position: absolute;
+    bottom: 5vh;
+    left: 0;
+    width: px-to-rem(126);
+    height: px-to-rem(256);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    content: '';
+  }
+
+  &::after {
+    position: absolute;
+    top: 5vh;
+    right: gap(medium);
+    width: px-to-rem(64);
+    height: px-to-rem(64);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    content: '';
+  }
+
   &__container {
     flex-grow: 1;
   }
@@ -77,5 +99,35 @@
     position: absolute;
     top: 0;
     left: 0;
+  }
+
+  &--figures-1 {
+    &::before {
+      background-image: url('../img/tutorial-1-left-figure.svg');
+    }
+
+    &::after {
+      background-image: url('../img/tutorial-1-right-figure.svg');
+    }
+  }
+
+  &--figures-2 {
+    &::before {
+      background-image: url('../img/tutorial-2-left-figure.svg');
+    }
+
+    &::after {
+      background-image: url('../img/tutorial-2-right-figure.svg');
+    }
+  }
+
+  &--figures-3 {
+    &::before {
+      background-image: url('../img/tutorial-3-left-figure.svg');
+    }
+
+    &::after {
+      background-image: url('../img/tutorial-3-right-figure.svg');
+    }
   }
 }
