@@ -13,6 +13,9 @@
   }
 
   &__menu-link {
+    display: flex;
+    align-items: center;
+    color: $color-white;
     font-family: $g-secondary-font-family;
     font-size: px-to-rem(24px);
     font-weight: 700;
