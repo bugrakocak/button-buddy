@@ -60,8 +60,10 @@
   &__sub-title {
     color: $color-california;
     font-size: px-to-rem(18);
+    font-weight: 700;
     letter-spacing: px-to-rem(3);
     line-height: px-to-rem(28);
+    text-transform: uppercase;
   }
 
   &__pattern {
