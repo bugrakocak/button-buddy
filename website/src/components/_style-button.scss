@@ -8,7 +8,7 @@
   line-height: px-to-rem(24px);
   text-align: center;
   transition-duration: 300ms;
-  transition-property: none;
+  transition-property: background-color, color, box-shadow, transform;
 
   &--basic {
     background-color: $color-hollywood-cerise;
