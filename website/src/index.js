@@ -1,4 +1,4 @@
+import 'focus-visible';
 import './components/ui-form/uiForm';
-import './components/ui-form/setShowcaseButtonByStyle';
 import './components/tutorial/tutorial';
 import './components/newsletter/subscribe';

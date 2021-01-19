@@ -1,7 +1,13 @@
+/* purgecss start ignore */
+
 .tutorial {
   display: flex;
   min-height: 100vh;
   align-items: center;
+
+  @include media-breakpoint-down(md) {
+    padding-top: pad(large);
+  }
 
   &::before {
     position: absolute;
@@ -11,7 +17,15 @@
     height: px-to-rem(256);
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    content: '';
+
+    @include media-breakpoint-up(lg) {
+      content: '';
+    }
+
+    @include media-breakpoint-down(xl) {
+      width: px-to-rem(90);
+      height: px-to-rem(180);
+    }
   }
 
   &::after {
@@ -22,7 +36,10 @@
     height: px-to-rem(64);
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    content: '';
+
+    @include media-breakpoint-up(lg) {
+      content: '';
+    }
   }
 
   &__container {
@@ -93,6 +110,10 @@
 
   &__content-wrapper {
     position: relative;
+
+    @include media-breakpoint-down(md) {
+      min-height: px-to-rem(280);
+    }
   }
 
   &__content-item {
@@ -131,3 +152,5 @@
     }
   }
 }
+
+/* purgecss start ignore */
