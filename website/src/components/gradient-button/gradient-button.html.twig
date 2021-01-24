@@ -1,0 +1,8 @@
+{% set tag = tag|default('button') %}
+
+<div class="{{ html_classes('gradient-button', className) }}">
+  <{{tag}} class="gradient-button__button" type="button" {{ html_attributes(attributes|default({})) }}>
+    {% block children %}{% endblock %}
+  </{{tag}}>
+  <div class="gradient-button__bg"></div>
+</div>
