@@ -2,7 +2,7 @@ import paths from './paths';
 
 export default {
   content: [`${paths.dist}/*.html`],
-  keyframes: true,
+  keyframes: false,
   variables: true,
   whitelistPatterns: [/is-[\S]*/g, /has-[\S]*/g],
   // Allow to use special characters in class names like `@, :, %`
