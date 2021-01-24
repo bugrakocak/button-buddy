@@ -2,6 +2,17 @@
   padding: px-to-rem(128) 0 px-to-rem(192);
   text-align: center;
 
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
+
+  &__container {
+    @include media-breakpoint-up(lg) {
+      @include make-grid-container();
+      @include make-grid-container-max-widths();
+    }
+  }
+
   &__label {
     font-weight: 700;
     letter-spacing: px-to-em(4, 16);
