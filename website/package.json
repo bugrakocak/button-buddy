@@ -64,6 +64,7 @@
     "email-validator": "^2.0.4",
     "focus-visible": "^5.2.0",
     "gsap": "^3.5.1",
-    "mailchimp-api-v3": "^1.14.0"
+    "mailchimp-api-v3": "^1.14.0",
+    "vanilla-tilt": "^1.7.0"
   }
 }

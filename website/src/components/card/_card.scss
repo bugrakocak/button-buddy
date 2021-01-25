@@ -3,6 +3,7 @@
   background-color: $color-black;
   border-radius: px-to-rem(12);
   color: $color-wild-blue-yonder;
+  transform-style: preserve-3d;
 
   &--large {
     --card-content-v-padding: #{pad(large)};
@@ -19,6 +20,7 @@
   &__content {
     padding: var(--card-content-v-padding, #{pad(xsmall)}) 0;
     text-align: center;
+    transform: translateZ(50px);
   }
 
   &__info {
