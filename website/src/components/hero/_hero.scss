@@ -20,6 +20,10 @@
     }
   }
 
+  &__right-col {
+    margin-top: px-to-rem(128);
+  }
+
   &__headline {
     color: $color-warning;
     font-family: $g-secondary-font-family;
