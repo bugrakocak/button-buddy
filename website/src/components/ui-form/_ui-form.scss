@@ -1,14 +1,51 @@
 // stylelint-disable
 
+.ui-form-wrapper {
+  display: flex;
+  position: relative;
+  padding: px-to-rem(2px);
+  justify-content: center;
+}
+
+.ui-form-backdrop {
+  position: absolute;
+  top: 48px;
+  left: 48px;
+  height: calc(100% - 96px);
+  width: calc(100% - 96px);
+  animation: backgroundGradient 4s ease infinite;
+  background-size: 200% 200%;
+  transform: translate3d(0, 0, 0);
+  background-image: conic-gradient(
+    from 180deg at 50% 50%,
+    #00b2ff 0deg,
+    #8f00ff 125deg,
+    #fa56b8 225deg,
+    #ff00f5 360deg
+  );
+  filter: blur(80px);
+  z-index: -1;
+}
+
+@keyframes backgroundGradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
 .ui-form {
   --ui-form-default-color: #{$color-hollywood-cerise};
 
   transform: translate(0);
   width: px-to-rem(450);
   border-radius: px-to-rem(24);
-  border: 2px solid #ffffff;
   overflow: hidden;
-  box-shadow: -6px 6px 0 $color-hollywood-cerise;
 
   &__header {
     background-color: $color-black;
