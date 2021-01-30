@@ -5,4 +5,13 @@
     font-weight: 700;
     line-height: px-to-rem(48);
   }
+
+  &__subtitle {
+    color: $color-wild-blue-yonder;
+    font-size: px-to-rem(18);
+    font-weight: 700;
+    letter-spacing: px-to-rem(3);
+    line-height: px-to-rem(28);
+    text-transform: uppercase;
+  }
 }

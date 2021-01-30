@@ -13,18 +13,10 @@
   }
 
   &__menu-link {
-    display: flex;
-    align-items: center;
     color: $color-white;
-    font-family: $g-secondary-font-family;
-    font-size: px-to-rem(24px);
-    font-weight: 700;
-    letter-spacing: px-to-rem(1.5);
-    line-height: px-to-rem(32px);
-    text-transform: uppercase;
 
     &:hover {
-      text-decoration: none;
+      transition: color 0.4s ease;
     }
   }
 }
