@@ -48,15 +48,17 @@
 
   &__no {
     color: $color-white;
+    font-family: $g-secondary-font-family;
     font-size: px-to-rem(64);
-    font-weight: 700;
+    font-weight: 800;
     line-height: px-to-rem(72);
   }
 
   &__title {
     color: $color-white;
+    font-family: $g-secondary-font-family;
     font-size: px-to-rem(40);
-    font-weight: 700;
+    font-weight: 800;
     line-height: px-to-rem(48);
   }
 

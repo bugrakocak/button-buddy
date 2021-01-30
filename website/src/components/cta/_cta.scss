@@ -44,7 +44,8 @@
 
   &__title {
     color: $color-white;
-    font-weight: 700;
+    font-family: $g-secondary-font-family;
+    font-weight: 800;
 
     @include media-breakpoint-up(lg) {
       font-size: px-to-rem(40);
