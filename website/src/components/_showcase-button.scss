@@ -1,8 +1,6 @@
 .showcase-button {
   padding: var(--showcase-button-v-padding, #{px-to-rem(12)})
     var(--showcase-button-h-padding, #{pad(small)});
-  border: 0;
-  cursor: pointer;
   font-size: var(--showcase-button-font-size, #{px-to-rem(16)});
   font-weight: 700;
   line-height: var(--showcase-button-line-height, #{px-to-rem(24)});

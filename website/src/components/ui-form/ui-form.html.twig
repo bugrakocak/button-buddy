@@ -1,102 +1,101 @@
-<div class ="ui-form-wrapper">
 <div class="{{ html_classes('ui-form', className) }}">
-  <form class="ui-form__form" id="form" action="">
-    <div class="ui-form__header">Button Buddy</div>
-    <div class="ui-form__customize">
-      <div class="ui-form__customize-inputs">
-        <div class='ui-form__form-group'>
-          <label class="ui-form__color-input">
-            <span class="ui-form__label-text">Primary Color</span>
-            <input class="ui-form__visually-hidden ui-form__color-input__input js-color-input" name="primaryColor" type='color' value='#ff0099'>
-            <div class="ui-form__color-input__mask ui-form__u-gap-top-8">
-              <span class="ui-form__color-input__preview js-color-preview" style="background-color: #ff0099;"></span>
-              <div class="ui-form__color-input__hex js-color-hex">#ff0099</div>
-            </div>
-          </label>
-        </div>
-        <div class='ui-form__form-group'>
-          <label class="ui-form__color-input">
-            <span class="ui-form__label-text">Secondary Color</span>
-            <input class="ui-form__visually-hidden ui-form__color-input__input js-color-input" name="secondaryColor" type='color' value='#ffffff'>
-            <div class="ui-form__color-input__mask ui-form__u-gap-top-8">
-              <span class="ui-form__color-input__preview js-color-preview" style="background-color: #ffffff;"></span>
-              <div class="ui-form__color-input__hex js-color-hex">#ffffff</div>
-            </div>
-          </label>
-        </div>
-        <div class="ui-form__form-group">
-          <label class="ui-form__label-text" for="radiusInput">Radius</label>
-          <input class="ui-form__text-input ui-form__u-gap-top-8" name="borderRadius" type="text" value="8">
-        </div>
-      </div>
-    </div>
-    <div class="ui-form__body">
-      <h2 class="ui-form__title ui-form__u-pad-bottom-16">Pick Your Style</h2>
-      <div class="ui-form__button-container">
-        <div class="ui-form__buttons">
-          <label class="ui-form__button-input">
-            <input type="radio" checked name="buttonInput" value="basicSolid" class="ui-form__button-input__input ui-form__visually-hidden">
-            <div class="ui-form__button-input__mask">
-              <div class="ui-form__button plugin-button plugin-button--basic" id="button-basic-mask">Button</div>
-            </div>
-            <div class="ui-form__button-input__label-text">Basic</div>
-          </label>
-          <label class="ui-form__button-input">
-            <input type="radio" name="buttonInput" value="basicOutline" class="ui-form__button-input__input ui-form__visually-hidden">
-            <div class="ui-form__button-input__mask">
-              <div class="ui-form__button plugin-button plugin-button--basic-outline" id="button-basic-outline-mask">Button</div>
-            </div>
-            <div class="ui-form__button-input__label-text">Basic Outline</div>
-          </label>
-          <label class="ui-form__button-input">
-            <input type="radio" name="buttonInput" value="modern" class="ui-form__button-input__input ui-form__visually-hidden">
-            <div class="ui-form__button-input__mask">
-              <div class="ui-form__button plugin-button plugin-button--modern" id="button-modern-mask">Button</div>
-            </div>
-            <div class="ui-form__button-input__label-text">Modern</div>
-          </label>
-          <label class="ui-form__button-input">
-            <input type="radio" name="buttonInput" value="glossy" class="ui-form__button-input__input ui-form__visually-hidden">
-            <div class="ui-form__button-input__mask">
-              <div class="ui-form__button plugin-button plugin-button--glossy" id="button-glossy-mask">Button</div>
-            </div>
-            <div class="ui-form__button-input__label-text">Glossy</div>
-          </label>
-          <label class="ui-form__button-input">
-            <input type="radio" name="buttonInput" value="comicLight" class="ui-form__button-input__input ui-form__visually-hidden">
-            <div class="ui-form__button-input__mask">
-              <div class="ui-form__button plugin-button plugin-button--comic-light" id="button-comic-light-mask">Button</div>
-            </div>
-            <div class="ui-form__button-input__label-text">Comic Light</div>
-          </label>
-          <label class="ui-form__button-input">
-            <input type="radio" name="buttonInput" value="comicBold" class="ui-form__button-input__input ui-form__visually-hidden">
-            <div class="ui-form__button-input__mask">
-              <div class="ui-form__button plugin-button plugin-button--comic-bold" id="button-comic-bold-mask">Button</div>
-            </div>
-            <div class="ui-form__button-input__label-text">Comic Bold</div>
-          </label>
-          <label class="ui-form__button-input">
-            <input type="radio" name="buttonInput" value="fancy" class="ui-form__button-input__input ui-form__visually-hidden">
-            <div class="ui-form__button-input__mask">
-              <div class="ui-form__button plugin-button plugin-button--fancy" id="button-fancy-mask">Button</div>
-            </div>
-            <div class="ui-form__button-input__label-text">Fancy</div>
-          </label>
-          <label class="ui-form__button-input">
-            <input type="radio" name="buttonInput" value="flatShadow" class="ui-form__button-input__input ui-form__visually-hidden">
-            <div class="ui-form__button-input__mask">
-              <div class="ui-form__button plugin-button plugin-button--flat-shadow" id="button-flat-shadow-mask">Button</div>
-            </div>
-            <div class="ui-form__button-input__label-text">Flat Shadow</div>
-          </label>
+  <div class="tooltip ui-form__tooltip">Give it a try!</div>
+    <form class="ui-form__form" id="form" action="">
+      <div class="ui-form__header">Button Buddy</div>
+      <div class="ui-form__customize">
+        <div class="ui-form__customize-inputs">
+          <div class='ui-form__form-group'>
+            <label class="ui-form__color-input">
+              <span class="ui-form__label-text">Primary Color</span>
+              <input class="u-visually-hidden ui-form__color-input__input js-color-input" name="primaryColor" type='color' value='#ff0099'>
+              <div class="ui-form__color-input__mask ui-form__u-gap-top-8">
+                <span class="ui-form__color-input__preview js-color-preview" style="background-color: #ff0099;"></span>
+                <div class="ui-form__color-input__hex js-color-hex">#ff0099</div>
+              </div>
+            </label>
+          </div>
+          <div class='ui-form__form-group'>
+            <label class="ui-form__color-input">
+              <span class="ui-form__label-text">Secondary Color</span>
+              <input class="u-visually-hidden ui-form__color-input__input js-color-input" name="secondaryColor" type='color' value='#ffffff'>
+              <div class="ui-form__color-input__mask ui-form__u-gap-top-8">
+                <span class="ui-form__color-input__preview js-color-preview" style="background-color: #ffffff;"></span>
+                <div class="ui-form__color-input__hex js-color-hex">#ffffff</div>
+              </div>
+            </label>
+          </div>
+          <div class="ui-form__form-group">
+            <label class="ui-form__label-text" for="radiusInput">Radius</label>
+            <input class="ui-form__text-input ui-form__u-gap-top-8" name="borderRadius" type="text" value="8">
+          </div>
         </div>
       </div>
-    </div>
-    <div class="ui-form__form-footer">
-      <button class="ui-form__form-button ui-form__form-button--submit" type="submit">Create Buttons</button>
-    </div>
-  </form>
-</div>
-<div class ="ui-form-backdrop"></div>
+      <div class="ui-form__body">
+        <h2 class="ui-form__title ui-form__u-pad-bottom-16">Pick Your Style</h2>
+        <div class="ui-form__button-container">
+          <div class="ui-form__buttons">
+            <label class="ui-form__button-input">
+              <input type="radio" checked name="buttonInput" value="basicSolid" class="ui-form__button-input__input u-visually-hidden">
+              <div class="ui-form__button-input__mask">
+                <div class="ui-form__button plugin-button plugin-button--basic" id="button-basic-mask">Button</div>
+              </div>
+              <div class="ui-form__button-input__label-text">Basic</div>
+            </label>
+            <label class="ui-form__button-input">
+              <input type="radio" name="buttonInput" value="basicOutline" class="ui-form__button-input__input u-visually-hidden">
+              <div class="ui-form__button-input__mask">
+                <div class="ui-form__button plugin-button plugin-button--basic-outline" id="button-basic-outline-mask">Button</div>
+              </div>
+              <div class="ui-form__button-input__label-text">Basic Outline</div>
+            </label>
+            <label class="ui-form__button-input">
+              <input type="radio" name="buttonInput" value="modern" class="ui-form__button-input__input u-visually-hidden">
+              <div class="ui-form__button-input__mask">
+                <div class="ui-form__button plugin-button plugin-button--modern" id="button-modern-mask">Button</div>
+              </div>
+              <div class="ui-form__button-input__label-text">Modern</div>
+            </label>
+            <label class="ui-form__button-input">
+              <input type="radio" name="buttonInput" value="glossy" class="ui-form__button-input__input u-visually-hidden">
+              <div class="ui-form__button-input__mask">
+                <div class="ui-form__button plugin-button plugin-button--glossy" id="button-glossy-mask">Button</div>
+              </div>
+              <div class="ui-form__button-input__label-text">Glossy</div>
+            </label>
+            <label class="ui-form__button-input">
+              <input type="radio" name="buttonInput" value="comicLight" class="ui-form__button-input__input u-visually-hidden">
+              <div class="ui-form__button-input__mask">
+                <div class="ui-form__button plugin-button plugin-button--comic-light" id="button-comic-light-mask">Button</div>
+              </div>
+              <div class="ui-form__button-input__label-text">Comic Light</div>
+            </label>
+            <label class="ui-form__button-input">
+              <input type="radio" name="buttonInput" value="comicBold" class="ui-form__button-input__input u-visually-hidden">
+              <div class="ui-form__button-input__mask">
+                <div class="ui-form__button plugin-button plugin-button--comic-bold" id="button-comic-bold-mask">Button</div>
+              </div>
+              <div class="ui-form__button-input__label-text">Comic Bold</div>
+            </label>
+            <label class="ui-form__button-input">
+              <input type="radio" name="buttonInput" value="fancy" class="ui-form__button-input__input u-visually-hidden">
+              <div class="ui-form__button-input__mask">
+                <div class="ui-form__button plugin-button plugin-button--fancy" id="button-fancy-mask">Button</div>
+              </div>
+              <div class="ui-form__button-input__label-text">Fancy</div>
+            </label>
+            <label class="ui-form__button-input">
+              <input type="radio" name="buttonInput" value="flatShadow" class="ui-form__button-input__input u-visually-hidden">
+              <div class="ui-form__button-input__mask">
+                <div class="ui-form__button plugin-button plugin-button--flat-shadow" id="button-flat-shadow-mask">Button</div>
+              </div>
+              <div class="ui-form__button-input__label-text">Flat Shadow</div>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="ui-form__form-footer">
+        <button class="ui-form__form-button ui-form__form-button--submit" type="submit">Create Buttons</button>
+      </div>
+    </form>
+  <div class="ui-form__backdrop"></div>
 </div>

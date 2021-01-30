@@ -1,51 +1,13 @@
 // stylelint-disable
 
-.ui-form-wrapper {
-  display: flex;
-  position: relative;
-  padding: px-to-rem(2px);
-  justify-content: center;
-}
-
-.ui-form-backdrop {
-  position: absolute;
-  top: 48px;
-  left: 48px;
-  height: calc(100% - 96px);
-  width: calc(100% - 96px);
-  animation: backgroundGradient 4s ease infinite;
-  background-size: 200% 200%;
-  transform: translate3d(0, 0, 0);
-  background-image: conic-gradient(
-    from 180deg at 50% 50%,
-    #00b2ff 0deg,
-    #8f00ff 125deg,
-    #fa56b8 225deg,
-    #ff00f5 360deg
-  );
-  filter: blur(80px);
-  z-index: -1;
-}
-
-@keyframes backgroundGradient {
-  0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
-}
-
 .ui-form {
   --ui-form-default-color: #{$color-hollywood-cerise};
 
   transform: translate(0);
   width: px-to-rem(450);
   border-radius: px-to-rem(24);
-  overflow: hidden;
+  position: relative;
+  padding: px-to-rem(2px);
 
   &__header {
     background-color: $color-black;
@@ -83,16 +45,6 @@
     color: $color-wild-blue-yonder;
     font-weight: 600;
     display: block;
-  }
-
-  &__visually-hidden {
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
   }
 
   &__color-input__input:focus + &__color-input__mask {
@@ -311,6 +263,46 @@
   &__form-button--feedback {
     background-color: #e6ebf1;
     color: #000000;
+  }
+
+  &__tooltip {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, calc(-100% + #{px-to-rem(-24)}));
+    z-index: 1;
+  }
+
+  &__backdrop {
+    position: absolute;
+    top: 48px;
+    left: 48px;
+    height: calc(100% - 96px);
+    width: calc(100% - 96px);
+    animation: backgroundGradient 4s ease infinite;
+    background-size: 200% 200%;
+    transform: translate3d(0, 0, 0);
+    background-image: conic-gradient(
+      from 180deg at 50% 50%,
+      #00b2ff 0deg,
+      #8f00ff 125deg,
+      #fa56b8 225deg,
+      #ff00f5 360deg
+    );
+    filter: blur(80px);
+    z-index: -1;
+  }
+}
+
+@keyframes backgroundGradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
   }
 }
 

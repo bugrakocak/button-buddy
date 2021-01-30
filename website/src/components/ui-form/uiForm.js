@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import Color from 'color';
+import ScrollTrigger from 'gsap/src/ScrollTrigger';
 
 const styleButton = (element) => {
   return {
@@ -145,7 +146,11 @@ formElements.form.addEventListener('submit', (e) => {
     showcaseButtonsStateHandler(styler, state, buttonStyle, primaryColor, secondaryColor);
   });
 
-  document.getElementById('showcase').scrollIntoView({
+  const showcase = document.getElementById('showcase');
+  showcase.hidden = false;
+  ScrollTrigger.refresh();
+
+  showcase.scrollIntoView({
     behavior: 'smooth',
   });
 });

@@ -1,0 +1,21 @@
+.tooltip {
+  display: inline-block;
+  padding: pad(2xsmall) pad(small);
+  background-color: $color-hollywood-cerise;
+  border-radius: px-to-rem(8);
+  color: $color-white;
+  font-weight: 700;
+
+  &::before {
+    position: absolute;
+    bottom: px-to-rem(2);
+    left: 50%;
+    width: px-to-rem(16);
+    height: px-to-rem(16);
+    background-color: $color-hollywood-cerise;
+    border-radius: px-to-rem(3);
+    content: '';
+    transform: translate(-50%, 50%) rotate(45deg);
+    transform-origin: 50% 50%;
+  }
+}
