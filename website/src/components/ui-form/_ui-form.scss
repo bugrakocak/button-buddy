@@ -5,7 +5,6 @@
 
   transform: translate(0);
   width: px-to-rem(450);
-  border-radius: px-to-rem(24);
   position: relative;
   padding: px-to-rem(2px);
 
@@ -83,8 +82,9 @@
   }
 
   &__form {
-    background-color: #ffffff;
     height: 100%;
+    border-radius: px-to-rem(24);
+    overflow: hidden;
   }
 
   &__header-inputs {
@@ -119,16 +119,11 @@
     padding: 24px;
   }
 
-  &__button-container {
-    padding-bottom: 40px;
-  }
-
   &__buttons {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 16px;
     row-gap: 16px;
-    padding-bottom: 32px;
     padding-right: 24px;
   }
 
@@ -231,10 +226,6 @@
     justify-content: space-between;
     align-items: center;
     border-top: 1px solid $color-vulcan;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
   }
 
   &__form-button {
@@ -271,6 +262,14 @@
     left: 50%;
     transform: translate(-50%, calc(-100% + #{px-to-rem(-24)}));
     z-index: 1;
+    animation: tooltip 1s infinite ease;
+    animation-direction: alternate;
+  }
+
+  @keyframes tooltip {
+    to {
+      transform: translate(-50%, calc(-100% + #{px-to-rem(-20)}));
+    }
   }
 
   &__backdrop {

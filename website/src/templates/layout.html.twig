@@ -27,6 +27,22 @@
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
     <link rel="manifest" href="img/favicon/site.webmanifest">
 
+    <link rel="preload" as="image" href="img/tutorial-1-left-figure.svg">
+    <link rel="preload" as="image" href="img/tutorial-1-right-figure.svg">
+    <link rel="preload" as="image" href="img/tutorial-2-left-figure.svg">
+    <link rel="preload" as="image" href="img/tutorial-2-right-figure.svg">
+    <link rel="preload" as="image" href="img/tutorial-3-left-figure.svg">
+    <link rel="preload" as="image" href="img/tutorial-3-right-figure.svg">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N2KBKGCC37"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-N2KBKGCC37');
+    </script>
+
     {% endblock %}
     <link rel=stylesheet href="css/app{% if is_production() %}.min{% endif %}.css">
     {% block headerStylesheets %}{% endblock %}
