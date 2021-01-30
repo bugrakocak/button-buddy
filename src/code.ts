@@ -95,11 +95,11 @@ import { LAYOUTS, SIZES, STATES, SIZE_GROUP_DISTANCE, MAIN_BUTTON_AND_INSTANCE_H
       const colorDarken = hexToRgbUnitObject(Color(primaryColor).darken(0.4));
       instance.fills = [{ type: 'SOLID', color: colorDarken }];
 
-      if (instance.effects && instance.effects[0] && instance.effects[0].type === 'DROP_SHADOW') {
-        const effectClone = instance.effects.slice();
-        const newEffect = {...effectClone[0], color: {...colorDarken, a: 1}};
-        instance.effects = [newEffect]
-      }
+      // if (instance.effects && instance.effects[0] && instance.effects[0].type === 'DROP_SHADOW') {
+      //   const effectClone = instance.effects.slice();
+      //   const newEffect = {...effectClone[0], color: {...colorDarken, a: .4}};
+      //   instance.effects = [newEffect]
+      // }
 
       if (style === 'basicOutline') {
         const color = primaryColorAsRgbUnit;

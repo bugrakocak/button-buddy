@@ -20,7 +20,7 @@ const styleByButtonType = (button, buttonStyle, primaryColor, secondarycolor) =>
 
   if (buttonStyle === 'modern') {
     button.fills = [{type: 'SOLID', color: primaryColorAsRgbUnit}];
-    button.effects = [{type: 'DROP_SHADOW', color: {...primaryColorAsRgbUnit, a: .4}, offset: {x: 0, y: 4}, radius: 16, visible: true, blendMode: 'NORMAL'}]
+    button.effects = [{type: 'DROP_SHADOW', color: {...primaryColorAsRgbUnit, a: .2}, offset: {x: 0, y: 4}, radius: 12, visible: true, blendMode: 'NORMAL'}]
   }
 
 //TODO// Shadow should be 0.3 darker than the original color.
@@ -60,7 +60,7 @@ const styleByButtonType = (button, buttonStyle, primaryColor, secondarycolor) =>
     button.fills = [{type: 'SOLID', color: primaryColorAsRgbUnit}];
     button.strokeWeight = 2;
     button.strokes = [{type: 'SOLID', color: {r: 255/255, g: 255/255, b: 255/255}}];
-    button.effects = [{type: 'DROP_SHADOW', color: {...primaryColorAsRgbUnit, a: 0.4}, offset: {x: 0, y: 4}, radius: 16, visible: true, blendMode: 'NORMAL' }]
+    button.effects = [{type: 'DROP_SHADOW', color: {...primaryColorAsRgbUnit, a: .2}, offset: {x: 0, y: 4}, radius: 12, visible: true, blendMode: 'NORMAL' }]
   }
 
   return button;
