@@ -11,9 +11,19 @@
     overflow: hidden;
   }
 
-  .header {
+  .header-local-style-toggle {
+    display: flex;
+    align-items: center;
     padding: 16px 24px;
-    border-bottom: 1px solid #E5E5E5;
+    background-color: #fafbfc;
+  }
+
+  .header-local-style-toggle-label {
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 600;
+    color: #4f5d73;
+    margin-right: 16px;
   }
 
   .title {
@@ -30,6 +40,8 @@
   .header-inputs {
     display: flex;
     align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px solid #E5E5E5;
   }
 
   .label-text {
@@ -89,11 +101,6 @@
     background-color: #ffffff;
   }
 
-  .header-inputs {
-    display: flex;
-    align-items: center;
-  }
-
   .text-input {
     background-color: #E6EBF1;
     border-radius: 8px;
@@ -105,6 +112,10 @@
 
   .u-gap-top-8 {
     margin-top: 8px;
+  }
+
+  .u-gap-left-24 {
+    margin-left: 24px;
   }
 
   .u-pad-bottom-16 {
@@ -259,15 +270,123 @@
     color: #000000;
   }
 
+  .switch {
+    align-items: center;
+    cursor: default;
+    display: flex;
+    position: relative;
+  }
+
+  .switch__toggle {
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    border: 0;
+    margin: -1px;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .switch__toggle:checked + .switch__label:before {
+    color: #4f5d73;
+    background-color: #4f5d73;
+  }
+
+  .switch__toggle:checked + .switch__label:after {
+    transform: translateX(18px);
+  }
+
+  .switch__toggle:checked:disabled + .switch__label:before {
+    border: 2px solid #4f5d73;
+    background-color: #4f5d73;
+  }
+
+  .switch__toggle:disabled + .switch__label {
+    color: #000;
+    opacity: 0.3;
+  }
+
+  .switch__label {
+    align-items: center;
+    color: #4f5d73;
+    display: flex;
+    font-family: inherit;
+    height: 100%;
+    -webkit-user-select: none;
+      -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+  }
+
+  .switch__label:before {
+    background-color: #ffffff;
+    border: 2px solid #4f5d73;
+    border-radius: 10px;
+    content: '';
+    display: block;
+    height: 14px;
+    position: absolute;
+    transition: background-color 0 0.2s;
+    width: 32px;
+  }
+
+  .switch__label:after {
+    background-color: #ffffff;
+    border: 2px solid #4f5d73;
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 14px;
+    position: absolute;
+    transition: transform 0.2s;
+    width: 14px;
+  }
+
+  .select {
+    display: block;
+    background-color: #E6EBF1;
+    border-radius: 8px;
+    padding: 8px;
+    font-family: inherit;
+    font-size: 10px;
+    line-height: 16px;
+    font-weight: 500;
+    color: #1F2C37;
+    border: 0;
+    min-height: 32px;
+    -webkit-appearance: none;
+    -moz-appearance : none;
+    appearance:none;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA5IDUiPjxkZWZzLz48cGF0aCBmaWxsPSIjMUYyQzM3IiBkPSJNNC41OSA0LjQ0MWEuNzMxLjczMSAwIDAwLjUzOS0uMjQ2TDggMS4yNTRhLjYwMS42MDEgMCAwMC4xODQtLjQ1LjY1Ni42NTYgMCAwMC0uNjQ5LS42NTYuNjc3LjY3NyAwIDAwLS40OC4yMTFMNC41OTQgMi45MSAyLjEyNS4zNmEuNjguNjggMCAwMC0uNDgtLjIxMi42NTYuNjU2IDAgMDAtLjQ2NSAxLjExbDIuODcgMi45MzdjLjE3My4xNjguMzM3LjI0Ni41NC4yNDZ6Ii8+PC9zdmc+");
+    background-repeat: no-repeat;
+    background-size: 10px 16px;
+    background-position: right 8px center;
+  }
+
 </style>
 
   <form class="form" id="form" action="">
     <div class="header">
+      <div class="header-local-style-toggle">
+        <span class="header-local-style-toggle-label" id="header-local-style-toggle">Use Local Colors Styles</span>
+        <label class="switch">
+          <input class="switch__toggle" aria-labelledby="header-local-style-toggle" type="checkbox" id="local-style-toggle">
+          <span class="switch__label"></span>
+        </label>
+      </div>
       <div class="header-inputs">
         <div class='form-group'>
-          <label class="color-input">
+          <label class="js-local-input-wrapper" hidden>
             <span class="label-text">Primary Color</span>
-            <input class="visually-hidden color-input__input js-color-input" name="primaryColor" type='color' value='#1c4efe'>
+            <select class="select u-gap-top-8 js-local-color-input" name="primaryColorLocal" data-color-type="primaryColor" id="local-color-primary">
+              <option value="#1c4efe">Select a style</option>
+            </select>
+          </label>
+          <label class="color-input js-color-input-wrapper">
+            <span class="label-text">Primary Color</span>
+            <input class="visually-hidden color-input__input js-color-input" name="primaryColorCustom" data-color-type="primaryColor" type='color' value='#1c4efe'>
             <div class="color-input__mask u-gap-top-8">
               <span class="color-input__preview js-color-preview" style="background-color: #1c4efe;"></span>
               <div class="color-input__hex js-color-hex">#1c4efe</div>
@@ -275,9 +394,15 @@
           </label>
         </div>
         <div class='form-group'>
-          <label class="color-input">
+          <label class="js-local-input-wrapper" hidden>
             <span class="label-text">Secondary Color</span>
-            <input class="visually-hidden color-input__input js-color-input" name="secondaryColor" type='color' value='#ffffff'>
+            <select class="select u-gap-top-8 js-local-color-input" name="secondaryColorLocal" data-color-type="secondaryColor" id="local-color-secondary">
+              <option value="#fff">Select a style</option>
+            </select>
+          </label>
+          <label class="color-input js-color-input-wrapper">
+            <span class="label-text">Secondary Color</span>
+            <input class="visually-hidden color-input__input js-color-input" name="secondaryColorCustom" data-color-type="secondaryColor" type='color' value='#ffffff'>
             <div class="color-input__mask u-gap-top-8">
               <span class="color-input__preview js-color-preview" style="background-color: #ffffff;"></span>
               <div class="color-input__hex js-color-hex">#ffffff</div>

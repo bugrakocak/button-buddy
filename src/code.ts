@@ -12,6 +12,10 @@ import { LAYOUTS, SIZES, STATES, SIZE_GROUP_DISTANCE, MAIN_BUTTON_AND_INSTANCE_H
 
   figma.showUI(__html__, { height: 560, width: 450 });
 
+  const localStyles = figma.getLocalPaintStyles();
+  const localColors = localStyles.map(style => ({ name: style.name, color: (style.paints[0] as any).color }));
+  figma.ui.postMessage({ codeMessage: { type: 'render', localColors } });
+
   const createIcon = ({ color, size, name, y }) => {
     const iconNode = figma.createNodeFromSvg(iconsBySize[size](color));
     iconNode.name = name;
