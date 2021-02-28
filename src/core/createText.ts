@@ -9,9 +9,9 @@ const createText = ({ fontSize, lineHeight, color }) => {
     family: 'Inter',
     style: 'Bold',
   };
-  text.fills = [{type: 'SOLID', color: hexToRgbUnitObject(color)}];
+  text.fills = [{ type: 'SOLID', color: hexToRgbUnitObject(color) }];
 
   return text;
-}
+};
 
 export default createText;
