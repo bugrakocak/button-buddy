@@ -2,8 +2,8 @@ import Color from 'color';
 
 const formElements = {
   form: document.getElementById('form'),
-  primaryColorInput: (document.getElementsByName('primaryColor')[0] as HTMLInputElement),
-  secondaryColorInput: (document.getElementsByName('secondaryColor')[0] as HTMLInputElement),
+  primaryColorInput: (document.getElementsByName('primaryColorCustom')[0] as HTMLInputElement),
+  secondaryColorInput: (document.getElementsByName('secondaryColorCustom')[0] as HTMLInputElement),
   radiusInput: (document.getElementsByName('borderRadius')[0] as HTMLInputElement),
   radioButtonInputs: (document.getElementsByName('buttonInput') as NodeListOf<HTMLInputElement>),
   colorInputs: document.getElementsByClassName('js-color-input'),
