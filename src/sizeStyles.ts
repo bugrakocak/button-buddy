@@ -8,7 +8,7 @@ const sizeStyles = {
     fontSize: 14,
     lineHeight: {
       unit: 'PIXELS',
-      value: 16
+      value: 16,
     },
   },
   MEDIUM: {
@@ -20,7 +20,7 @@ const sizeStyles = {
     fontSize: 16,
     lineHeight: {
       unit: 'PIXELS',
-      value: 24
+      value: 24,
     },
   },
   LARGE: {
@@ -32,9 +32,9 @@ const sizeStyles = {
     fontSize: 24,
     lineHeight: {
       unit: 'PIXELS',
-      value: 32
+      value: 32,
     },
-  }
+  },
 };
 
 export default sizeStyles;

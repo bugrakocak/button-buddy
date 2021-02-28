@@ -13,7 +13,7 @@
 
   .header {
     padding: 16px 24px;
-    border-bottom: 1px solid #E5E5E5;
+    border-bottom: 1px solid #e5e5e5;
   }
 
   .title {
@@ -50,7 +50,7 @@
     width: 1px;
   }
 
-  .color-input__input:focus + .color-input__mask{
+  .color-input__input:focus + .color-input__mask {
     outline: 1px dotted #212121;
     outline: 5px auto -webkit-focus-ring-color;
   }
@@ -61,9 +61,9 @@
     font-size: 12px;
     line-height: 16px;
     font-weight: 600;
-    color: #1F2C37;
+    color: #1f2c37;
     border-radius: 8px;
-    border: 1px solid #E6EBF1;
+    border: 1px solid #e6ebf1;
     display: flex;
     overflow: hidden;
   }
@@ -78,8 +78,8 @@
   .color-input__hex {
     padding: 8px 16px 8px 12px;
     font-weight: 600;
-    color: #1F2C37;
-    background-color: #E6EBF1;
+    color: #1f2c37;
+    background-color: #e6ebf1;
     text-align: center;
     flex-grow: 1;
     text-transform: uppercase;
@@ -95,7 +95,7 @@
   }
 
   .text-input {
-    background-color: #E6EBF1;
+    background-color: #e6ebf1;
     border-radius: 8px;
     text-align: center;
     padding: 8px 4px;
@@ -144,13 +144,13 @@
 
   .button-input__mask {
     padding: 16px 12px;
-    border: 1px solid #E6EBF1;
+    border: 1px solid #e6ebf1;
     border-radius: 8px;
     cursor: pointer;
   }
 
   .button-input__mask:hover {
-    background-color: #E6EBF1;
+    background-color: #e6ebf1;
   }
 
   .button-input__label-text {
@@ -202,7 +202,7 @@
     background-color: var(--default-color);
     border: 1px solid #ffffff;
     color: #ffffff;
-    box-shadow: 0 4px 16px rgba(28, 78, 254, 0.4);;
+    box-shadow: 0 4px 16px rgba(28, 78, 254, 0.4);
   }
 
   .flat-shadow-button {
@@ -216,12 +216,12 @@
   }
 
   .button-input__input:checked + .button-input__mask {
-    background-color: #E6EBF1;
+    background-color: #e6ebf1;
     border-color: #1c4efe;
   }
 
   .button-input__input:focus + .button-input__mask {
-    background-color: #E6EBF1;
+    background-color: #e6ebf1;
     border-color: #1c4efe;
   }
 
@@ -250,111 +250,172 @@
   }
 
   .form-button--submit {
-    background-color: #18A0FB;
+    background-color: #18a0fb;
     color: #ffffff;
   }
 
   .form-button--feedback {
-    background-color: #E6EBF1;
+    background-color: #e6ebf1;
     color: #000000;
   }
-
 </style>
 
-  <form class="form" id="form" action="">
-    <div class="header">
-      <div class="header-inputs">
-        <div class='form-group'>
-          <label class="color-input">
-            <span class="label-text">Primary Color</span>
-            <input class="visually-hidden color-input__input js-color-input" name="primaryColor" type='color' value='#1c4efe'>
-            <div class="color-input__mask u-gap-top-8">
-              <span class="color-input__preview js-color-preview" style="background-color: #1c4efe;"></span>
-              <div class="color-input__hex js-color-hex">#1c4efe</div>
-            </div>
-          </label>
-        </div>
-        <div class='form-group'>
-          <label class="color-input">
-            <span class="label-text">Secondary Color</span>
-            <input class="visually-hidden color-input__input js-color-input" name="secondaryColor" type='color' value='#ffffff'>
-            <div class="color-input__mask u-gap-top-8">
-              <span class="color-input__preview js-color-preview" style="background-color: #ffffff;"></span>
-              <div class="color-input__hex js-color-hex">#ffffff</div>
-            </div>
-          </label>
-        </div>
-        <div class="form-group">
-          <label class="label-text" for="radiusInput">Radius</label>
-          <input class="text-input u-gap-top-8" name="borderRadius" type="text" value="8">
-        </div>
+<form class="form" id="form" action="">
+  <div class="header">
+    <div class="header-inputs">
+      <div class="form-group">
+        <label class="color-input">
+          <span class="label-text">Primary Color</span>
+          <input
+            class="visually-hidden color-input__input js-color-input"
+            name="primaryColor"
+            type="color"
+            value="#1c4efe"
+          />
+          <div class="color-input__mask u-gap-top-8">
+            <span
+              class="color-input__preview js-color-preview"
+              style="background-color: #1c4efe"
+            ></span>
+            <div class="color-input__hex js-color-hex">#1c4efe</div>
+          </div>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="color-input">
+          <span class="label-text">Secondary Color</span>
+          <input
+            class="visually-hidden color-input__input js-color-input"
+            name="secondaryColor"
+            type="color"
+            value="#ffffff"
+          />
+          <div class="color-input__mask u-gap-top-8">
+            <span
+              class="color-input__preview js-color-preview"
+              style="background-color: #ffffff"
+            ></span>
+            <div class="color-input__hex js-color-hex">#ffffff</div>
+          </div>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="label-text" for="radiusInput">Radius</label>
+        <input class="text-input u-gap-top-8" name="borderRadius" type="text" value="8" />
       </div>
     </div>
-    <div class="body">
-      <h2 class="title u-pad-bottom-16">Pick Your Style</h2>
-      <div class="button-container">
-        <div class="buttons">
-          <label class="button-input">
-            <input type="radio" checked name="buttonInput" value="basicSolid" class="button-input__input visually-hidden">
-            <div class="button-input__mask">
-              <div class="button basic-button" id="button-basic-mask">Button</div>
-            </div>
-            <div class="button-input__label-text">Basic</div>
-          </label>
-          <label class="button-input">
-            <input type="radio" name="buttonInput" value="basicOutline" class="button-input__input visually-hidden">
-            <div class="button-input__mask">
-              <div class="button basic-outline-button" id="button-basic-outline-mask">Button</div>
-            </div>
-            <div class="button-input__label-text">Basic Outline</div>
-          </label>
-          <label class="button-input">
-            <input type="radio" name="buttonInput" value="modern" class="button-input__input visually-hidden">
-            <div class="button-input__mask">
-              <div class="button modern-button" id="button-modern-mask">Button</div>
-            </div>
-            <div class="button-input__label-text">Modern</div>
-          </label>
-          <label class="button-input">
-            <input type="radio" name="buttonInput" value="glossy" class="button-input__input visually-hidden">
-            <div class="button-input__mask">
-              <div class="button glossy-button" id="button-glossy-mask">Button</div>
-            </div>
-            <div class="button-input__label-text">Glossy</div>
-          </label>
-          <label class="button-input">
-            <input type="radio" name="buttonInput" value="comicLight" class="button-input__input visually-hidden">
-            <div class="button-input__mask">
-              <div class="button comic-light-button" id="button-comic-light-mask">Button</div>
-            </div>
-            <div class="button-input__label-text">Comic Light</div>
-          </label>
-          <label class="button-input">
-            <input type="radio" name="buttonInput" value="comicBold" class="button-input__input visually-hidden">
-            <div class="button-input__mask">
-              <div class="button comic-bold-button" id="button-comic-bold-mask">Button</div>
-            </div>
-            <div class="button-input__label-text">Comic Bold</div>
-          </label>
-          <label class="button-input">
-            <input type="radio" name="buttonInput" value="fancy" class="button-input__input visually-hidden">
-            <div class="button-input__mask">
-              <div class="button fancy-button" id="button-fancy-mask">Button</div>
-            </div>
-            <div class="button-input__label-text">Fancy</div>
-          </label>
-          <label class="button-input">
-            <input type="radio" name="buttonInput" value="flatShadow" class="button-input__input visually-hidden">
-            <div class="button-input__mask">
-              <div class="button flat-shadow-button" id="button-flat-shadow-mask">Button</div>
-            </div>
-            <div class="button-input__label-text">Flat Shadow</div>
-          </label>
-        </div>
+  </div>
+  <div class="body">
+    <h2 class="title u-pad-bottom-16">Pick Your Style</h2>
+    <div class="button-container">
+      <div class="buttons">
+        <label class="button-input">
+          <input
+            type="radio"
+            checked
+            name="buttonInput"
+            value="basicSolid"
+            class="button-input__input visually-hidden"
+          />
+          <div class="button-input__mask">
+            <div class="button basic-button" id="button-basic-mask">Button</div>
+          </div>
+          <div class="button-input__label-text">Basic</div>
+        </label>
+        <label class="button-input">
+          <input
+            type="radio"
+            name="buttonInput"
+            value="basicOutline"
+            class="button-input__input visually-hidden"
+          />
+          <div class="button-input__mask">
+            <div class="button basic-outline-button" id="button-basic-outline-mask">Button</div>
+          </div>
+          <div class="button-input__label-text">Basic Outline</div>
+        </label>
+        <label class="button-input">
+          <input
+            type="radio"
+            name="buttonInput"
+            value="modern"
+            class="button-input__input visually-hidden"
+          />
+          <div class="button-input__mask">
+            <div class="button modern-button" id="button-modern-mask">Button</div>
+          </div>
+          <div class="button-input__label-text">Modern</div>
+        </label>
+        <label class="button-input">
+          <input
+            type="radio"
+            name="buttonInput"
+            value="glossy"
+            class="button-input__input visually-hidden"
+          />
+          <div class="button-input__mask">
+            <div class="button glossy-button" id="button-glossy-mask">Button</div>
+          </div>
+          <div class="button-input__label-text">Glossy</div>
+        </label>
+        <label class="button-input">
+          <input
+            type="radio"
+            name="buttonInput"
+            value="comicLight"
+            class="button-input__input visually-hidden"
+          />
+          <div class="button-input__mask">
+            <div class="button comic-light-button" id="button-comic-light-mask">Button</div>
+          </div>
+          <div class="button-input__label-text">Comic Light</div>
+        </label>
+        <label class="button-input">
+          <input
+            type="radio"
+            name="buttonInput"
+            value="comicBold"
+            class="button-input__input visually-hidden"
+          />
+          <div class="button-input__mask">
+            <div class="button comic-bold-button" id="button-comic-bold-mask">Button</div>
+          </div>
+          <div class="button-input__label-text">Comic Bold</div>
+        </label>
+        <label class="button-input">
+          <input
+            type="radio"
+            name="buttonInput"
+            value="fancy"
+            class="button-input__input visually-hidden"
+          />
+          <div class="button-input__mask">
+            <div class="button fancy-button" id="button-fancy-mask">Button</div>
+          </div>
+          <div class="button-input__label-text">Fancy</div>
+        </label>
+        <label class="button-input">
+          <input
+            type="radio"
+            name="buttonInput"
+            value="flatShadow"
+            class="button-input__input visually-hidden"
+          />
+          <div class="button-input__mask">
+            <div class="button flat-shadow-button" id="button-flat-shadow-mask">Button</div>
+          </div>
+          <div class="button-input__label-text">Flat Shadow</div>
+        </label>
       </div>
     </div>
-    <div class="form-footer">
-      <a target="_blank" class="form-button form-button--feedback" href="https://twitter.com/GetButtonBuddy">Give Feedback</a>
-      <button class="form-button form-button--submit" type="submit">Create Buttons</button>
-    </div>
-  </form>
+  </div>
+  <div class="form-footer">
+    <a
+      target="_blank"
+      class="form-button form-button--feedback"
+      href="https://twitter.com/GetButtonBuddy"
+      >Give Feedback</a
+    >
+    <button class="form-button form-button--submit" type="submit">Create Buttons</button>
+  </div>
+</form>

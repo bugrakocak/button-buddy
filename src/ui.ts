@@ -2,12 +2,12 @@ import Color from 'color';
 
 const formElements = {
   form: document.getElementById('form'),
-  primaryColorInput: (document.getElementsByName('primaryColor')[0] as HTMLInputElement),
-  secondaryColorInput: (document.getElementsByName('secondaryColor')[0] as HTMLInputElement),
-  radiusInput: (document.getElementsByName('borderRadius')[0] as HTMLInputElement),
-  radioButtonInputs: (document.getElementsByName('buttonInput') as NodeListOf<HTMLInputElement>),
-  colorInputs: document.getElementsByClassName('js-color-input')
-}
+  primaryColorInput: document.getElementsByName('primaryColor')[0] as HTMLInputElement,
+  secondaryColorInput: document.getElementsByName('secondaryColor')[0] as HTMLInputElement,
+  radiusInput: document.getElementsByName('borderRadius')[0] as HTMLInputElement,
+  radioButtonInputs: document.getElementsByName('buttonInput') as NodeListOf<HTMLInputElement>,
+  colorInputs: document.getElementsByClassName('js-color-input'),
+};
 
 const buttons = {
   basicMask: document.getElementById('button-basic-mask'),
@@ -18,16 +18,28 @@ const buttons = {
   comicBoldMask: document.getElementById('button-comic-bold-mask'),
   fancyMask: document.getElementById('button-fancy-mask'),
   flatShadowMask: document.getElementById('button-flat-shadow-mask'),
-}
+};
 
 formElements.form.addEventListener('submit', () => {
-  const buttonStyle = Array.from(formElements.radioButtonInputs).find(radio => radio.checked).value;
+  const buttonStyle = Array.from(formElements.radioButtonInputs).find((radio) => radio.checked)
+    .value;
   const secondaryColor = formElements.secondaryColorInput.value;
   const primaryColor = formElements.primaryColorInput.value;
   const borderRadius = parseInt(formElements.radiusInput.value, 10) || 0;
-  parent.postMessage({ pluginMessage: { type: 'button-buddy', borderRadius, buttonStyle, secondaryColor, primaryColor, strokeWeight: 1 } }, '*')
-})
-
+  parent.postMessage(
+    {
+      pluginMessage: {
+        type: 'button-buddy',
+        borderRadius,
+        buttonStyle,
+        secondaryColor,
+        primaryColor,
+        strokeWeight: 1,
+      },
+    },
+    '*'
+  );
+});
 
 type UIButtonStyleTypes = 'radius' | 'primaryColor' | 'secondaryColor';
 
@@ -49,7 +61,9 @@ const updateUIButtonStyles = (type: UIButtonStyleTypes, value: string) => {
     buttons.basicOutlineMask.style.borderColor = value;
     buttons.basicOutlineMask.style.color = value;
     buttons.modernMask.style.backgroundColor = value;
-    buttons.modernMask.style.boxShadow = `0 5px 10px rgba(${rgb.r * 255}, ${rgb.g * 255}, ${rgb.b * 255}, 0.3)`;
+    buttons.modernMask.style.boxShadow = `0 5px 10px rgba(${rgb.r * 255}, ${rgb.g * 255}, ${
+      rgb.b * 255
+    }, 0.3)`;
     buttons.glossyMask.style.backgroundColor = value;
     buttons.comicLightMask.style.boxShadow = `-4px 4px 0 ${value}`;
     buttons.comicLightMask.style.borderColor = value;
@@ -57,7 +71,9 @@ const updateUIButtonStyles = (type: UIButtonStyleTypes, value: string) => {
     buttons.comicBoldMask.style.backgroundColor = value;
     buttons.comicBoldMask.style.boxShadow = `-4px 4px 0 ${value}`;
     buttons.fancyMask.style.backgroundColor = value;
-    buttons.fancyMask.style.boxShadow = `0 4px 16px rgba(${rgb.r * 255}, ${rgb.g * 255}, ${rgb.b * 255}, 0.4)`;
+    buttons.fancyMask.style.boxShadow = `0 4px 16px rgba(${rgb.r * 255}, ${rgb.g * 255}, ${
+      rgb.b * 255
+    }, 0.4)`;
     const darken = Color(value).darken(0.3).hex();
     buttons.flatShadowMask.style.boxShadow = `0 4px 0 ${darken}`;
     buttons.flatShadowMask.style.backgroundColor = value;
@@ -72,27 +88,29 @@ const updateUIButtonStyles = (type: UIButtonStyleTypes, value: string) => {
     buttons.fancyMask.style.color = value;
     buttons.flatShadowMask.style.color = value;
   }
-}
+};
 
 formElements.primaryColorInput.addEventListener('change', (event) => {
   const hexValue = (event.target as any).value;
   updateUIButtonStyles('primaryColor', hexValue);
-})
+});
 
 formElements.secondaryColorInput.addEventListener('change', (event) => {
   const hex = (event.target as any).value;
   updateUIButtonStyles('secondaryColor', hex);
-})
+});
 
 formElements.radiusInput.addEventListener('keyup', (event) => {
   const value = (event.target as HTMLInputElement).value;
   updateUIButtonStyles('radius', value);
-})
+});
 
-Array.from(formElements.colorInputs).forEach(input => {
+Array.from(formElements.colorInputs).forEach((input) => {
   input.addEventListener('change', (event) => {
     const hex = (event.target as any).value;
     input.parentElement.getElementsByClassName('js-color-hex')[0].textContent = hex.substring(1);
-    (input.parentElement.getElementsByClassName('js-color-preview')[0] as HTMLElement).style.backgroundColor = hex;
-  })
-})
+    (input.parentElement.getElementsByClassName(
+      'js-color-preview'
+    )[0] as HTMLElement).style.backgroundColor = hex;
+  });
+});
