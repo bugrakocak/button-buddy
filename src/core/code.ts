@@ -3,8 +3,8 @@ import styleByButtonType from './styleByButtonType';
 import sizeStyles from './sizeStyles';
 import iconsBySize from './iconsBySize';
 import createText from './createText';
-import { hexToRgbUnitObject, rgbUnitObjectToHex } from './utils';
-import { LAYOUTS, SIZES, STATES, SIZE_GROUP_DISTANCE, MAIN_BUTTON_AND_INSTANCE_HORIZONTAL_OFFSET, ICON_TOP_OFFSET } from './constants';
+import { hexToRgbUnitObject, rgbUnitObjectToHex } from '../utils';
+import { LAYOUTS, SIZES, STATES, SIZE_GROUP_GAP, MAIN_BUTTON_AND_INSTANCE_HORIZONTAL_OFFSET, ICON_COMPONENT_TOP_OFFSET } from './constants';
 
 (async () => {
   await figma.loadFontAsync({ family: 'Roboto', style: 'Regular' });
@@ -57,12 +57,12 @@ import { LAYOUTS, SIZES, STATES, SIZE_GROUP_DISTANCE, MAIN_BUTTON_AND_INSTANCE_H
     return frame;
   }
 
-  const createMainComponents = ({ styles, size, buttonY, iconY }) => {
+  const createMainComponents = ({ styles, size, buttonY, iconComponentYOffset }) => {
     const { buttonStyle, primaryColor, secondaryColor } = styles;
 
     const button = createBaseButton({ styles, size, y: buttonY });
 
-    const icon = createIcon({ color: secondaryColor, size, name: 'Icon', y: iconY });
+    const icon = createIcon({ color: secondaryColor, size, name: 'Icon', y: iconComponentYOffset });
     const iconInstance = icon.createInstance();
 
     const { fontSize, lineHeight} = sizeStyles[size];
@@ -98,12 +98,6 @@ import { LAYOUTS, SIZES, STATES, SIZE_GROUP_DISTANCE, MAIN_BUTTON_AND_INSTANCE_H
     if (state === 'HOVER' || state === 'ACTIVE') {
       const colorDarken = hexToRgbUnitObject(Color(primaryColor).darken(0.4));
       instance.fills = [{ type: 'SOLID', color: colorDarken }];
-
-      // if (instance.effects && instance.effects[0] && instance.effects[0].type === 'DROP_SHADOW') {
-      //   const effectClone = instance.effects.slice();
-      //   const newEffect = {...effectClone[0], color: {...colorDarken, a: .4}};
-      //   instance.effects = [newEffect]
-      // }
 
       if (style === 'basicOutline') {
         const color = primaryColorAsRgbUnit;
@@ -188,10 +182,10 @@ import { LAYOUTS, SIZES, STATES, SIZE_GROUP_DISTANCE, MAIN_BUTTON_AND_INSTANCE_H
 
     if (msg.type === 'button-buddy') {
       SIZES.forEach((size, i) => {
-        const sizeGroupYOffset = i * SIZE_GROUP_DISTANCE;
-        const iconY = sizeGroupYOffset + ICON_TOP_OFFSET;
+        const sizeGroupYOffset = i * SIZE_GROUP_GAP;
+        const iconComponentYOffset = sizeGroupYOffset + ICON_COMPONENT_TOP_OFFSET;
 
-        const [buttonComponent, iconComponent] = createMainComponents({ styles: msg, size, buttonY: sizeGroupYOffset, iconY });
+        const [buttonComponent, iconComponent] = createMainComponents({ styles: msg, size, buttonY: sizeGroupYOffset, iconComponentYOffset });
 
         const buttons = createButtonsByLayout({
           button: buttonComponent,
