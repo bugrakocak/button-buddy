@@ -1,4 +1,4 @@
-import { hexToRgbUnitObject } from './utils';
+import { hexToRgbUnitObject } from '../utils';
 
 const styleByButtonType = (button, buttonStyle, primaryColor, secondarycolor) => {
   const primaryColorAsRgbUnit = hexToRgbUnitObject(primaryColor);

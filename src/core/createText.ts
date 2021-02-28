@@ -1,4 +1,4 @@
-import { hexToRgbUnitObject } from './utils';
+import { hexToRgbUnitObject } from '../utils';
 
 const createText = ({ fontSize, lineHeight, color }) => {
   const text = figma.createText();
