@@ -1,8 +1,8 @@
 import { hexToRgbUnitObject } from '../utils';
 
-const styleByButtonType = (button, buttonStyle, primaryColor, secondarycolor) => {
+const styleByButtonType = ({ button, buttonStyle, primaryColor, secondaryColor }) => {
   const primaryColorAsRgbUnit = hexToRgbUnitObject(primaryColor);
-  const secondaryColorAsRgbUnit = hexToRgbUnitObject(secondarycolor);
+  const secondaryColorAsRgbUnit = hexToRgbUnitObject(secondaryColor);
 
   if (buttonStyle === 'basicSolid') {
     button.fills = [{ type: 'SOLID', color: primaryColorAsRgbUnit }];

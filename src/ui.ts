@@ -47,7 +47,7 @@ formElements.form.addEventListener('submit', () => {
   parent.postMessage(
     {
       pluginMessage: {
-        type: 'button-buddy',
+        type: 'ui-form-message',
         borderRadius,
         buttonStyle,
         secondaryColor,
