@@ -38,10 +38,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@figma/plugin-typings@^1.16.1":
-  version "1.19.0"
-  resolved "https://registry.yarnpkg.com/@figma/plugin-typings/-/plugin-typings-1.19.0.tgz#9eec4e6750c53a7ca5464b57d77db7be84143a4a"
-  integrity sha512-CioK7sIBXrpgbYsbzTS6clGwuO+97DjM16PqDmXKtcTBJhg8AjTiZ7XIDeJ078Kpwh0QiLDuG+D2ukKbFpBw7g==
+"@figma/plugin-typings@^1.50.0":
+  version "1.50.0"
+  resolved "https://registry.yarnpkg.com/@figma/plugin-typings/-/plugin-typings-1.50.0.tgz#1bc7de6639ff8a5525ac937c19241e2e4e925e96"
+  integrity sha512-ue1He4XimFEjY7eS7x6tBY6pyMp7zfVOjgStFioqKUxPPIz0gCFLmFUjR5g6fMrYJCqAMP5/Mjwq4Ks0vpe2sA==
 
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
