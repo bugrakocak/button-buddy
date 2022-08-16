@@ -31,8 +31,6 @@ const createButtonGroups = (size, styles, index) => {
     styles: { style: styles.buttonStyle, secondaryColor: styles.secondaryColor },
   });
 
-  console.log({ buttonComponent, iconComponent, buttons });
-
   return { buttonComponent, iconComponent, buttons };
 };
 
